@@ -32,7 +32,7 @@ public class ComplexNumber {
         return new ComplexNumber(real, imaginary * -1);
     }
 
-    // 새로운 개체(ComplexNumber)를 만들어서, 복소수의 사칙연산 결과를 반환함
+    // 새로운 개체(ComplexNumber, 클래스형)를 만들어서, 복소수의 사칙연산 결과를 반환함
     public ComplexNumber add(ComplexNumber num) {
         return new ComplexNumber(this.real + num.real, this.imaginary + num.imaginary);
     }
