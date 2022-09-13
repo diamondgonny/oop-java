@@ -12,11 +12,11 @@ public class ComplexNumber {
     }
 
     public ComplexNumber(double real) {
-        this(real,0.0);
+        this(real, 0.0);
     }
 
     public ComplexNumber() {
-        this(0.0,0.0);
+        this(0.0, 0.0);
     }
 
     // 클래스와 달리, 기본자료형은 참조형이 아닌 값형 (feat. equals())
