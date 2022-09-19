@@ -53,12 +53,12 @@ public class ListItem {
 
     public String toString() {
         // StringBuilder, sb.append, sb.toString, String.format
-        String indents = "";
-        for (int i = 0; i < this.subCount; i++) {
-            indents += "    ";
-        }
         final StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s%c %s%s", indents, this.bulletStyle, this.text, System.lineSeparator()));
+        final String indents = "    ";
+        for (int i = 0; i < this.subCount; i++) {
+            sb.append(indents);
+        }
+        sb.append(String.format("%c %s%s", this.bulletStyle, this.text, System.lineSeparator()));
         for (ListItem item : sublistItems) {
             item.addSubCount(this.subCount);
             sb.append(item.toString());
