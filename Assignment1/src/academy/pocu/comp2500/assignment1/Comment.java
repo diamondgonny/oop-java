@@ -2,16 +2,17 @@ package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Comment {
     private String text;
-    private List<Comment> subcomments = new ArrayList<>();
-    // private List<String> upvoters = new ArrayList<>();
-    // private List<String> downvoters = new ArrayList<>();
-    // private String author;
+    private ArrayList<Comment> subcomments = new ArrayList<>();
+    private HashSet<User> upvoters = new HashSet<>();
+    private HashSet<User> downvoters = new HashSet<>();
+    private User author;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
 
+    // constructor
 
 }
