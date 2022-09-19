@@ -54,9 +54,9 @@ public class ListItem {
     public String toString() {
         // StringBuilder, sb.append, sb.toString, String.format
         final StringBuilder sb = new StringBuilder();
-        final String indents = "    ";
+        final String INDENT = "    ";
         for (int i = 0; i < this.subCount; i++) {
-            sb.append(indents);
+            sb.append(INDENT);
         }
         sb.append(String.format("%c %s%s", this.bulletStyle, this.text, System.lineSeparator()));
         for (ListItem item : sublistItems) {
