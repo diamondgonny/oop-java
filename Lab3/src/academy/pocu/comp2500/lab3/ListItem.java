@@ -42,9 +42,9 @@ public class ListItem {
         this.sublistItems.remove(index);
     }
 
-    public void getSublistItem(final int index) {
+    public ListItem getSublistItem(final int index) {
         // ArrayList : add, remove, get
-        this.sublistItems.get(index);
+        return this.sublistItems.get(index);
     }
 
     private void addSubCount(final int subCount) {
