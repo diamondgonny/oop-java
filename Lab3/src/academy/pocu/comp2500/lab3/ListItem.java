@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ListItem {
     private String text;
-    private final ArrayList<ListItem> sublistItems = new ArrayList<>();
+    private ArrayList<ListItem> sublistItems = new ArrayList<>();
     private char bulletStyle;
     private int subCount;
 
@@ -13,7 +13,7 @@ public class ListItem {
         this(text, '*');
     }
 
-    public ListItem(String text, char bulletStyle) {
+    public ListItem(final String text, final char bulletStyle) {
         this.text = text;
         this.bulletStyle = bulletStyle;
     }
@@ -22,7 +22,7 @@ public class ListItem {
         return this.text;
     }
 
-    public void setText(String text) {
+    public void setText(final String text) {
         this.text = text;
     }
 
@@ -30,24 +30,24 @@ public class ListItem {
         return this.bulletStyle;
     }
 
-    public void setBulletStyle(char bulletStyle) {
+    public void setBulletStyle(final char bulletStyle) {
         this.bulletStyle = bulletStyle;
     }
 
-    public void addSublistItem(ListItem sublistItem) {
+    public void addSublistItem(final ListItem sublistItem) {
         this.sublistItems.add(sublistItem);
     }
 
-    public void removeSublistItem(int index) {
+    public void removeSublistItem(final int index) {
         this.sublistItems.remove(index);
     }
 
-    public void getSublistItem(int index) {
+    public void getSublistItem(final int index) {
         // ArrayList : add, remove, get
         this.sublistItems.get(index);
     }
 
-    public void addSubCount(int subCount) {
+    public void addSubCount(final int subCount) {
         this.subCount += subCount + 1;
     }
 
@@ -57,7 +57,7 @@ public class ListItem {
         for (int i = 0; i < this.subCount; i++) {
             indents += "    ";
         }
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s%c %s%s", indents, this.bulletStyle, this.text, System.lineSeparator()));
         for (ListItem item : sublistItems) {
             item.addSubCount(this.subCount);
