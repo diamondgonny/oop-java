@@ -54,7 +54,7 @@ public class ListItem {
     public String toString() {
         // StringBuilder, sb.append, sb.toString, String.format
         String indents = "";
-        for (int i = 0; i < this.subCount ; i++) {
+        for (int i = 0; i < this.subCount; i++) {
             indents += "    ";
         }
         StringBuilder sb = new StringBuilder();
