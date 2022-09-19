@@ -47,7 +47,7 @@ public class ListItem {
         this.sublistItems.get(index);
     }
 
-    public void plusSubCount(int subCount) {
+    public void addSubCount(int subCount) {
         this.subCount += subCount + 1;
     }
 
@@ -60,7 +60,7 @@ public class ListItem {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s%c %s%s", indents, this.bulletStyle, this.text, System.lineSeparator()));
         for (ListItem item : sublistItems) {
-            item.plusSubCount(this.subCount);
+            item.addSubCount(this.subCount);
             sb.append(item.toString());
         }
         return sb.toString();
