@@ -47,7 +47,7 @@ public class ListItem {
         this.sublistItems.get(index);
     }
 
-    public void addSubCount(final int subCount) {
+    private void addSubCount(final int subCount) {
         this.subCount += subCount + 1;
     }
 
