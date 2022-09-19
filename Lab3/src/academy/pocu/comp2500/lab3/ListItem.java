@@ -48,7 +48,7 @@ public class ListItem {
     }
 
     private void addSubCount(final int subCount) {
-        this.subCount += subCount + 1;
+        this.subCount = subCount + 1;
     }
 
     public String toString() {
