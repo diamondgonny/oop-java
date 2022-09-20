@@ -1,14 +1,12 @@
 package academy.pocu.comp2500.assignment1;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Blog {
-    private ArrayList<Post> posts;
     private User master;
-    private OffsetDateTime createdDateTime;
-    private HashSet<String> tagFilter;
+    private ArrayList<Post> posts;
+    private HashSet<String> tagFilterOrNone;
     private User authorFilterOrNull;
     private SortingType sortingType;
 
@@ -22,24 +20,45 @@ public class Blog {
 
     public Blog(User master) {
         this.master = master;
-        this.createdDateTime = OffsetDateTime.now();
         this.posts = new ArrayList<>();
-        this.sortingType = SortingType.CREATED_DESC;
-        this.tagFilter = new HashSet<>();
+        this.tagFilterOrNone = new HashSet<>();
         this.authorFilterOrNull = null;
+        this.sortingType = SortingType.CREATED_DESC;
     }
 
-    // addPost : boolean으로 성공여부까지 체크할 것인가?
+    // addPost : boolean으로 성공여부까지 확인?
     public void addPost(Post post) {
         this.posts.add(post);
     }
 
-    //getPostList : PostList 통째로 읽어들이기... 어떻게?
+    // setTagFilter : Unset까지 어떻게 감안할건가?
+    public void setTagFilter(HashSet<String> tags) {
+        this.tagFilterOrNone = tags;
+    }
 
-    // setTagFilter : tags 받아와서, PostList중 선별해서 반환
+    public void setauthorFilter(User author) {
+        this.authorFilterOrNull = author;
+    }
 
-    // setAuthorFilter : author 받아와서, PostList중 선별해서 반환
+    public void setPostOrder(SortingType sortingType) {
+        this.sortingType = sortingType;
+    }
 
-    // setPostOrder : sortingType 받아와서, PostList 정렬조건 선별해서 반환
+    // getPostList : PostList 통째로 읽어들이기... 어떻게?
+    public ArrayList<Post> getPostList() {
+        ArrayList<Post> sexyPostList = new ArrayList<>();
+        /*
+        새로운 ArrayList 생성
 
+        1. tag 변수가 유효
+        2. author 변수가 유효
+        3. tag, author 변수 둘 다 유효
+        4. tag, author 변수 둘 다 null
+        -> 새로운 ArrayList에 작성
+
+        1. 글 목록 정렬 (1~5)
+        -> 반환
+         */
+        return sexyPostList;
+    }
 }
