@@ -17,9 +17,9 @@ public class App {
         registry.registerPostTagAdder("Post", "setPostTag");
         registry.registerReactionAdder("Post", "addReaction");
         registry.registerReactionRemover("Post", "removeReaction");
-        // registry.registerCommentAdder();
-        // registry.registerCommentUpdater();
-        // registry.registerCommentListGetter();
+        registry.registerCommentAdder("Post", "addComment");
+        registry.registerCommentUpdater("Post", "setComment");
+        registry.registerCommentListGetter("Post", "getCommentList");
         registry.registerSubcommentAdder("Comment", "addSubcomment");
         registry.registerSubcommentUpdater("Comment", "setSubcomment");
         registry.registerSubcommentListGetter("Comment", "getSubcommentList");

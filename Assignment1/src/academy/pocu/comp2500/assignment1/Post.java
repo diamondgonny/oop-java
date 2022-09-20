@@ -12,8 +12,31 @@ public class Post {
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
     private ArrayList<Comment> comments = new ArrayList<>();
-    private ReactionType reactionType;
 
-    // constructor
+    private enum ReactionType {
+        GREAT,
+        SAD,
+        ANGRY,
+        FUN,
+        LOVE
+    }
+
+    public Post(User author, String title, String body) {}
+
+    // setPostTitle
+
+    // setPostBody
+
+    // addPostTag
+
+    // addReaction
+
+    // removeReaction
+
+    // addComment
+
+    // setComment
+
+    // getCommentlist
 
 }

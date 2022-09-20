@@ -13,6 +13,16 @@ public class Comment {
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
 
-    // constructor
+    public Comment(User author, String text) {}
+
+    // addSubcomment
+
+    // setSubcomment
+
+    // getSubcommentList
+
+    // addUpvote
+
+    // addDownvote
 
 }
