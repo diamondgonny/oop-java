@@ -19,7 +19,6 @@ public class Comment {
         this.createdDateTime = OffsetDateTime.now();
         this.updatedDateTime = createdDateTime;
         // subcomments, upvoters, downvoters?
-
     }
 
     // addSubcomment
@@ -28,8 +27,8 @@ public class Comment {
 
     // getSubcommentList
 
-    // addUpvote
+    // addUpvoter
 
-    // addDownvote
+    // addDownvoter
 
 }

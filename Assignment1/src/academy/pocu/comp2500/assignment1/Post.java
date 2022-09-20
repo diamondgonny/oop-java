@@ -10,8 +10,8 @@ public class Post {
     private User author;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
-    private HashSet<String> tags = new HashSet<>();
-    private ArrayList<Comment> comments = new ArrayList<>();
+    private HashSet<String> tags;
+    private ArrayList<Comment> comments;
     private ReactionType reactionType;
 
     private enum ReactionType {
@@ -28,14 +28,25 @@ public class Post {
         this.body = body;
         this.createdDateTime = OffsetDateTime.now();
         this.updatedDateTime = createdDateTime;
-        // tags, comments and *reactionType?
+        this.tags = new HashSet<>();
+        this.comments = new ArrayList<>();
+        // *reactionType?
     }
 
     // setPostTitle
+    public void setPostTitle(String title) {
+        this.title = title;
+    }
 
     // setPostBody
+    public void setPostBody(String body) {
+        this.body = body;
+    }
 
     // addPostTag
+    public void addPostTag(String tag) {
+        this.tags.add(tag);
+    }
 
     // addReaction
 
