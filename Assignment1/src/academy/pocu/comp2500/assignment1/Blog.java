@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Blog {
-    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Post> posts;
+    private User master;
+    private OffsetDateTime createdDateTime;
     private HashSet<String> tagFilter = new HashSet<>();
     private User authorFilter;
     private SortingType sortingType;
-    private OffsetDateTime createdDateTime;
 
     private enum SortingType {
         CREATED_DESC,
@@ -19,7 +20,11 @@ public class Blog {
         ABC_ASC
     }
 
-    public Blog(User author) {}
+    public Blog(User master) {
+        this.master = master;
+        this.createdDateTime = OffsetDateTime.now();
+        this.posts = new ArrayList<>();
+    }
 
     // setTagFilter
 

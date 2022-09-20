@@ -13,7 +13,14 @@ public class Comment {
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
 
-    public Comment(User author, String text) {}
+    public Comment(User author, String text) {
+        this.author = author;
+        this.text = text;
+        this.createdDateTime = OffsetDateTime.now();
+        this.updatedDateTime = createdDateTime;
+        // subcomments, upvoters, downvoters?
+
+    }
 
     // addSubcomment
 
