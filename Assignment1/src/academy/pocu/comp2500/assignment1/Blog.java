@@ -27,11 +27,6 @@ public class Blog {
         this.sortingType = SortingType.CREATED_DESC;
     }
 
-    // addPost : boolean으로 성공여부까지 확인?
-    public void addPost(Post post) {
-        this.posts.add(post);
-    }
-
     // setTagFilter : Unset까지 어떻게 감안할건가?
     public void setTagFilter(HashSet<String> tags) {
         this.tagFilterOrEmpty = tags;
@@ -43,6 +38,11 @@ public class Blog {
 
     public void setPostOrder(SortingType sortingType) {
         this.sortingType = sortingType;
+    }
+
+    // addPost : boolean으로 성공여부까지 확인?
+    public void addPost(Post post) {
+        this.posts.add(post);
     }
 
     public ArrayList<Post> getPostList() {
@@ -110,5 +110,4 @@ public class Blog {
         }
         return thePostList;
     }
-
 }
