@@ -7,15 +7,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Post {
+    private User author;
     private String title;
     private String body;
-    private User author;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
     private HashSet<String> tags;
     private ArrayList<Comment> comments;
     private HashMap<ReactionType, HashSet<User>> reactions;
-    // private ReactionType reactionType;
 
     private enum ReactionType {
         GREAT,
@@ -40,12 +39,12 @@ public class Post {
         }
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
     public User getAuthor() {
         return this.author;
+    }
+
+    public String getTitle() {
+        return this.title;
     }
 
     public OffsetDateTime getCreatedDateTime() {
@@ -85,22 +84,16 @@ public class Post {
         this.tags.add(tag);
     }
 
-    // addComment : boolean?
+    // addComment
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
 
-    // getCommentlist : Upvotes - Downvotes 차이에 의한 정렬 req.
+    // getCommentListWithSort : Upvotes - Downvotes 차이에 의한 정렬 req.
     // cf. 얕은 복사 vs 깊은 복사
-    public ArrayList<Comment> getCommentlist() {
-        ArrayList<Comment> comments = sortCommentList(this.comments);
-        return comments;
-
-    }
-
-    private ArrayList<Comment> sortCommentList(ArrayList<Comment> theCommentList) {
-        Collections.sort(theCommentList, (s1, s2) -> s1.countVotePoints() - s2.countVotePoints());
-        return theCommentList;
+    public ArrayList<Comment> getCommentListWithSort() {
+        Collections.sort(this.comments, (s1, s2) -> s1.countVotePoints() - s2.countVotePoints());
+        return this.comments;
     }
 
     private boolean checkReactionExists(ReactionType reactionType) {
@@ -137,5 +130,4 @@ public class Post {
         reactionUsers.remove(user);
         return true;
     }
-
 }
