@@ -58,7 +58,7 @@ public class Comment {
     }
 
     // countVotes
-     int countVotePoints() {
+    public int countVotePoints() {
         int upvote = this.upvoters.size();
         int downvote = this.downvoters.size();
         return upvote - downvote;
