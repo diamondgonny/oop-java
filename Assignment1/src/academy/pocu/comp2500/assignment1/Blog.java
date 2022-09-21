@@ -14,9 +14,9 @@ public class Blog {
     private enum SortingType {
         CREATED_DESC,
         CREATED_ASC,
-        MODIFIED_DESC,
-        MODIFIED_ASC,
-        ABC_ASC
+        UPDATED_DESC,
+        UPDATED_ASC,
+        LEXICAL_ASC
     }
 
     public Blog(User master) {
@@ -46,19 +46,18 @@ public class Blog {
     }
 
     public ArrayList<Post> getPostList() {
-        ArrayList<Post> sexyPostList = new ArrayList<>();
-        sexyPostList = doAuthorFilter(this.posts);
-        sexyPostList = doTagFilter(sexyPostList);
-        sexyPostList = doSorting(sexyPostList);
-        return sexyPostList;
+        ArrayList<Post> resultPostList = new ArrayList<>();
+        resultPostList = doAuthorFilter(this.posts);
+        resultPostList = doTagFilter(resultPostList);
+        resultPostList = doSorting(resultPostList);
+        return resultPostList;
     }
 
     private ArrayList<Post> doAuthorFilter(ArrayList<Post> thePostList) {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (this.authorFilterOrNull != null) {
             for (Post post : thePostList) {
-                // User 판별 문제, equals 문제
-                if (post.getAuthor() == authorFilterOrNull) {
+                if (this.authorFilterOrNull.equals(post.getAuthor())) {
                     filteredPostList.add(post);
                 }
             }
@@ -68,12 +67,16 @@ public class Blog {
         return filteredPostList;
     }
 
-    // 무엇을 호출? 어떻게 손질? 무엇을 반환?
+    // tagFilter는 어떻게 unset할 것인가? / contains?
     private ArrayList<Post> doTagFilter(ArrayList<Post> thePostList) {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (!tagFilterOrEmpty.isEmpty()) {
             for (Post post : thePostList) {
-                // 조건이 들어맞으면, filteredList에 add하라
+                for (String tag : this.tagFilterOrEmpty) {
+                    if (post.getTags().contains(tag)) {
+                        filteredPostList.add(post);
+                    }
+                }
             }
         } else {
             filteredPostList = thePostList;
@@ -81,20 +84,31 @@ public class Blog {
         return filteredPostList;
     }
 
+    // Lambda로 Comparator 작성 && compareTo Comparable?
+    // (s1, s2) -> 기준값.compareTo(비교값);
     private ArrayList<Post> doSorting(ArrayList<Post> thePostList) {
-        switch (sortingType) {
-            case SortingType.CREATED_DESC:
-                Collections.reverse(thePostList.getCreatedDateTime());
-            case SortingType.CREATED_ASC:
-                Collections.sort(thePostList.getCreatedDateTime());
-            case SortingType.MODIFIED_DESC:
-            case SortingType.MODIFIED_ASC:
-            case SortingType.ABC_ASC:
+        ArrayList<Post> sortedPostList = thePostList;
+        switch (this.sortingType) {
+            case CREATED_DESC:
+                Collections.sort(sortedPostList, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
+                break;
+            case CREATED_ASC:
+                Collections.sort(sortedPostList, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
+                break;
+            case UPDATED_DESC:
+                Collections.sort(sortedPostList, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
+                break;
+            case UPDATED_ASC:
+                Collections.sort(sortedPostList, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
+                break;
+            case LEXICAL_ASC:
+                Collections.sort(sortedPostList, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
+                break;
             default:
                 assert (false) : "Unknown case SortingType. in 'doSorting' method";
                 break;
         }
-        return thePostList;
+        return sortedPostList;
     }
 
 }
