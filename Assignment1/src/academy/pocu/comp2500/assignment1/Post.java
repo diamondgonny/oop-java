@@ -2,6 +2,7 @@ package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -61,7 +62,7 @@ public class Post {
 
     // setPostTitle(... boolean?)
     public boolean setPostTitle(User author, String title) {
-        if(this.author.equals(author)) {
+        if(this.author.equals(author) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
@@ -71,7 +72,7 @@ public class Post {
 
     // setPostBody(")
     public boolean setPostBody(User author, String body) {
-        if(this.author.equals(author)) {
+        if(this.author.equals(author) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
@@ -80,11 +81,29 @@ public class Post {
     }
 
     // *addPostTag??? setPostTags???
-    public void addPostTag(String tag) {
+    public void setPostTags(String tag) {
         this.tags.add(tag);
     }
 
-    public boolean checkReactionExists(ReactionType reactionType) {
+    // addComment : boolean?
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
+
+    // getCommentlist : Upvotes - Downvotes 차이에 의한 정렬 req.
+    // cf. 얕은 복사 vs 깊은 복사
+    public ArrayList<Comment> getCommentlist() {
+        ArrayList<Comment> comments = sortCommentList(this.comments);
+        return comments;
+
+    }
+
+    private ArrayList<Comment> sortCommentList(ArrayList<Comment> theCommentList) {
+        Collections.sort(theCommentList, (s1, s2) -> s1.countVotePoints() - s2.countVotePoints());
+        return theCommentList;
+    }
+
+    private boolean checkReactionExists(ReactionType reactionType) {
         for (ReactionType reaction : ReactionType.values()) {
             if (reactionType.equals(reaction)) {
                 return true;
@@ -118,18 +137,5 @@ public class Post {
         reactionUsers.remove(user);
         return true;
     }
-
-    // addComment : boolean?
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
-    }
-
-    // *setComment : Comment로 보낼 듯 (댓글 수정)
-    public void setComment(Comment comment) {
-        // -----------------------
-    }
-
-    // getCommentlist : Upvotes - Downvotes 차이에 의한 정렬 req.
-    //public ArrayList<Comment> getCommentlist() {}
 
 }
