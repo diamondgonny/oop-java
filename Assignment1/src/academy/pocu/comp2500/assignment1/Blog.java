@@ -1,12 +1,13 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
     private User master;
     private ArrayList<Post> posts;
-    private HashSet<String> tagFilterOrNone;
+    private HashSet<String> tagFilterOrEmpty;
     private User authorFilterOrNull;
     private SortingType sortingType;
 
@@ -21,7 +22,7 @@ public class Blog {
     public Blog(User master) {
         this.master = master;
         this.posts = new ArrayList<>();
-        this.tagFilterOrNone = new HashSet<>();
+        this.tagFilterOrEmpty = new HashSet<>();
         this.authorFilterOrNull = null;
         this.sortingType = SortingType.CREATED_DESC;
     }
@@ -33,7 +34,7 @@ public class Blog {
 
     // setTagFilter : Unset까지 어떻게 감안할건가?
     public void setTagFilter(HashSet<String> tags) {
-        this.tagFilterOrNone = tags;
+        this.tagFilterOrEmpty = tags;
     }
 
     public void setauthorFilter(User author) {
@@ -44,21 +45,56 @@ public class Blog {
         this.sortingType = sortingType;
     }
 
-    // getPostList : PostList 통째로 읽어들이기... 어떻게?
     public ArrayList<Post> getPostList() {
         ArrayList<Post> sexyPostList = new ArrayList<>();
-        /*
-        새로운 ArrayList 생성
-
-        1. tag 변수가 유효
-        2. author 변수가 유효
-        3. tag, author 변수 둘 다 유효
-        4. tag, author 변수 둘 다 null
-        -> 새로운 ArrayList에 작성
-
-        1. 글 목록 정렬 (1~5)
-        -> 반환
-         */
+        sexyPostList = doAuthorFilter(this.posts);
+        sexyPostList = doTagFilter(sexyPostList);
+        sexyPostList = doSorting(sexyPostList);
         return sexyPostList;
     }
+
+    private ArrayList<Post> doAuthorFilter(ArrayList<Post> thePostList) {
+        ArrayList<Post> filteredPostList = new ArrayList<>();
+        if (this.authorFilterOrNull != null) {
+            for (Post post : thePostList) {
+                // User 판별 문제, equals 문제
+                if (post.getAuthor() == authorFilterOrNull) {
+                    filteredPostList.add(post);
+                }
+            }
+        } else {
+            filteredPostList = thePostList;
+        }
+        return filteredPostList;
+    }
+
+    // 무엇을 호출? 어떻게 손질? 무엇을 반환?
+    private ArrayList<Post> doTagFilter(ArrayList<Post> thePostList) {
+        ArrayList<Post> filteredPostList = new ArrayList<>();
+        if (!tagFilterOrEmpty.isEmpty()) {
+            for (Post post : thePostList) {
+                // 조건이 들어맞으면, filteredList에 add하라
+            }
+        } else {
+            filteredPostList = thePostList;
+        }
+        return filteredPostList;
+    }
+
+    private ArrayList<Post> doSorting(ArrayList<Post> thePostList) {
+        switch (sortingType) {
+            case SortingType.CREATED_DESC:
+                Collections.reverse(thePostList.getCreatedDateTime());
+            case SortingType.CREATED_ASC:
+                Collections.sort(thePostList.getCreatedDateTime());
+            case SortingType.MODIFIED_DESC:
+            case SortingType.MODIFIED_ASC:
+            case SortingType.ABC_ASC:
+            default:
+                assert (false) : "Unknown case SortingType. in 'doSorting' method";
+                break;
+        }
+        return thePostList;
+    }
+
 }

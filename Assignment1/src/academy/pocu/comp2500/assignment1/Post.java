@@ -33,6 +33,18 @@ public class Post {
         // *reactionType?
     }
 
+    public String getAuthor() {
+        return this.author.getName();
+    }
+
+    public OffsetDateTime getCreatedDateTime() {
+        return createdDateTime;
+    }
+
+    public OffsetDateTime getUpdatedDateTime() {
+        return updatedDateTime;
+    }
+
     // setPostTitle
     public void setPostTitle(String title) {
         this.title = title;
