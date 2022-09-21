@@ -61,7 +61,7 @@ public class Post {
 
     // setPostTitle(... boolean?)
     public boolean setPostTitle(User author, String title) {
-        if(this.author.equals(author) == false) {
+        if (this.author.equals(author) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
@@ -71,7 +71,7 @@ public class Post {
 
     // setPostBody(")
     public boolean setPostBody(User author, String body) {
-        if(this.author.equals(author) == false) {
+        if (this.author.equals(author) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
