@@ -49,7 +49,7 @@ public class Blog {
         ArrayList<Post> resultPostList = new ArrayList<>();
         resultPostList = doAuthorFilter(this.posts);
         resultPostList = doTagFilter(resultPostList);
-        resultPostList = doSorting(resultPostList);
+        resultPostList = sortPostList(resultPostList);
         return resultPostList;
     }
 
@@ -86,30 +86,29 @@ public class Blog {
     }
 
     // Lambda로 Comparator 작성 && compareTo Comparable?
-    // (s1, s2) -> 기준값.compareTo(비교값);
-    private ArrayList<Post> doSorting(ArrayList<Post> thePostList) {
-        ArrayList<Post> sortedPostList = thePostList;
+    // 문자열(s1, s2) -> 기준값.compareTo(비교값);
+    private ArrayList<Post> sortPostList(ArrayList<Post> thePostList) {
         switch (this.sortingType) {
             case CREATED_DESC:
-                Collections.sort(sortedPostList, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
+                Collections.sort(thePostList, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
                 break;
             case CREATED_ASC:
-                Collections.sort(sortedPostList, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
+                Collections.sort(thePostList, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
                 break;
             case UPDATED_DESC:
-                Collections.sort(sortedPostList, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
+                Collections.sort(thePostList, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
                 break;
             case UPDATED_ASC:
-                Collections.sort(sortedPostList, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
+                Collections.sort(thePostList, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
                 break;
             case LEXICAL_ASC:
-                Collections.sort(sortedPostList, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
+                Collections.sort(thePostList, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
                 break;
             default:
                 assert (false) : "Unknown case SortingType. in 'doSorting' method";
                 break;
         }
-        return sortedPostList;
+        return thePostList;
     }
 
 }
