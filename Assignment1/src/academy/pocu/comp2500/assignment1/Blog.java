@@ -75,6 +75,7 @@ public class Blog {
                 for (String tag : this.tagFilterOrEmpty) {
                     if (post.getTags().contains(tag)) {
                         filteredPostList.add(post);
+                        break;
                     }
                 }
             }
