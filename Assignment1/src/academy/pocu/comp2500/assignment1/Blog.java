@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private User master;
+    private User user;
     private ArrayList<Post> posts;
     private HashSet<String> tagFilterOrEmpty;
     private User authorFilterOrNull;
@@ -19,8 +19,8 @@ public class Blog {
         LEXICAL_ASC
     }
 
-    public Blog(User master) {
-        this.master = master;
+    public Blog(User user) {
+        this.user = user;
         this.posts = new ArrayList<>();
         this.tagFilterOrEmpty = new HashSet<>();
         this.authorFilterOrNull = null;
@@ -53,25 +53,25 @@ public class Blog {
         return resultPostList;
     }
 
-    private ArrayList<Post> doAuthorFilter(ArrayList<Post> thePostList) {
+    private ArrayList<Post> doAuthorFilter(ArrayList<Post> posts) {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (this.authorFilterOrNull != null) {
-            for (Post post : thePostList) {
+            for (Post post : posts) {
                 if (this.authorFilterOrNull.equals(post.getAuthor())) {
                     filteredPostList.add(post);
                 }
             }
         } else {
-            filteredPostList = thePostList;
+            filteredPostList = posts;
         }
         return filteredPostList;
     }
 
     // tagFilter는 어떻게 unset할 것인가? / contains?
-    private ArrayList<Post> doTagFilter(ArrayList<Post> thePostList) {
+    private ArrayList<Post> doTagFilter(ArrayList<Post> posts) {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (!tagFilterOrEmpty.isEmpty()) {
-            for (Post post : thePostList) {
+            for (Post post : posts) {
                 for (String tag : this.tagFilterOrEmpty) {
                     if (post.getTags().contains(tag)) {
                         filteredPostList.add(post);
@@ -80,34 +80,34 @@ public class Blog {
                 }
             }
         } else {
-            filteredPostList = thePostList;
+            filteredPostList = posts;
         }
         return filteredPostList;
     }
 
     // Lambda로 Comparator 작성 && compareTo Comparable?
     // 문자열(s1, s2) -> 기준값.compareTo(비교값);
-    private ArrayList<Post> sortPostList(ArrayList<Post> thePostList) {
+    private ArrayList<Post> sortPostList(ArrayList<Post> posts) {
         switch (this.sortingType) {
             case CREATED_DESC:
-                Collections.sort(thePostList, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
+                Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
                 break;
             case CREATED_ASC:
-                Collections.sort(thePostList, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
+                Collections.sort(posts, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
                 break;
             case UPDATED_DESC:
-                Collections.sort(thePostList, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
+                Collections.sort(posts, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
                 break;
             case UPDATED_ASC:
-                Collections.sort(thePostList, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
+                Collections.sort(posts, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
                 break;
             case LEXICAL_ASC:
-                Collections.sort(thePostList, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
+                Collections.sort(posts, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
                 break;
             default:
                 assert (false) : "Unknown case SortingType. in 'doSorting' method";
                 break;
         }
-        return thePostList;
+        return posts;
     }
 }
