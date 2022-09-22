@@ -90,19 +90,19 @@ public class Blog {
     private ArrayList<Post> sortPostList(ArrayList<Post> posts) {
         switch (this.sortingType) {
             case CREATED_DESC:
-                Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
-                break;
-            case CREATED_ASC:
                 Collections.sort(posts, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));
                 break;
-            case UPDATED_DESC:
-                Collections.sort(posts, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
+            case CREATED_ASC:
+                Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
                 break;
-            case UPDATED_ASC:
+            case UPDATED_DESC:
                 Collections.sort(posts, (s1, s2) -> s1.getUpdatedDateTime().compareTo(s2.getUpdatedDateTime()));
                 break;
+            case UPDATED_ASC:
+                Collections.sort(posts, (s1, s2) -> s2.getUpdatedDateTime().compareTo(s1.getUpdatedDateTime()));
+                break;
             case LEXICAL_ASC:
-                Collections.sort(posts, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
+                Collections.sort(posts, (s1, s2) -> s2.getTitle().compareTo(s1.getTitle()));
                 break;
             default:
                 assert (false) : "Unknown case SortingType in 'sortPostList' method";
