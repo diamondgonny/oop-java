@@ -26,7 +26,7 @@ public class Comment {
     public String getText() {
         return this.text;
     }
-
+    
     // setCommentFamily
     public boolean setCommentFamily(User author, String text) {
         if (this.author.equals(author) == false) {

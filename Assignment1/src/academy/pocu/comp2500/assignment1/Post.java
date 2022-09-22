@@ -33,7 +33,7 @@ public class Post {
         this.tags = new HashSet<>();
         this.comments = new ArrayList<>();
         this.reactions = new HashMap<>();
-        // *reactions는 HashMap? ArrayList? (User의 고유성) / .values, .put(HashMap)
+        // *reactions는 HashMap? ArrayList? (작성자의 고유성) / .values, .put(HashMap)
         for (ReactionType reactionType : ReactionType.values()) {
             reactions.put(reactionType, new HashSet<>());
         }
