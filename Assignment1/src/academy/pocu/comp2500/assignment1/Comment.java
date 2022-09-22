@@ -47,7 +47,7 @@ public class Comment {
         return this.subcomments;
     }
 
-    // addUpvoter
+    // addUpvote
     public boolean addUpvote(String userId) {
         if (upvoters.contains(userId) == true) {
             return false;
@@ -56,7 +56,7 @@ public class Comment {
         return true;
     }
 
-    // addDownvoter
+    // addDownvote
     public boolean addDownvote(String userId) {
         if (upvoters.contains(userId) == true) {
             return false;
