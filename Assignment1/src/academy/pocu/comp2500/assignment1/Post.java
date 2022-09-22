@@ -64,7 +64,7 @@ public class Post {
     }
 
     // setPostTitle(... boolean?)
-    public boolean setPostTitle(User author, String title) {
+    public boolean setTitle(User author, String title) {
         if (this.author.equals(author) == false) {
             return false;
         }
@@ -74,7 +74,7 @@ public class Post {
     }
 
     // setPostBody(")
-    public boolean setPostBody(User author, String body) {
+    public boolean setBody(User author, String body) {
         if (this.author.equals(author) == false) {
             return false;
         }
@@ -84,7 +84,7 @@ public class Post {
     }
 
     // *setPostTag??? setPostTags??? Or...add?
-    public boolean addPostTag(String tag) {
+    public boolean addTag(String tag) {
         this.tags.add(tag);
         return true;
     }
