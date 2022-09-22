@@ -32,7 +32,7 @@ public class Blog {
         this.tagFilterOrEmpty = tags;
     }
 
-    public void setauthorFilter(User author) {
+    public void setAuthorFilter(User author) {
         this.authorFilterOrNull = author;
     }
 
