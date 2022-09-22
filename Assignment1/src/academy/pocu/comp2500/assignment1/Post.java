@@ -33,7 +33,7 @@ public class Post {
         this.tags = new HashSet<>();
         this.comments = new ArrayList<>();
         this.reactions = new HashMap<>();
-        // *reactions는 HashMap? ArrayList? (User의 고유성)  /  .values, .put(HashMap)
+        // *reactions는 HashMap? ArrayList? (User의 고유성) / .values, .put(HashMap)
         for (ReactionType reactionType : ReactionType.values()) {
             reactions.put(reactionType, new HashSet<>());
         }
@@ -84,9 +84,8 @@ public class Post {
     }
 
     // *setPostTag??? setPostTags??? Or...add?
-    public boolean addTag(String tag) {
+    public void addTag(String tag) {
         this.tags.add(tag);
-        return true;
     }
 
     // addComment
