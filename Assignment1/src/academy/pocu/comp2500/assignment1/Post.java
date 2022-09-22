@@ -84,10 +84,7 @@ public class Post {
     }
 
     // *setPostTag??? setPostTags??? Or...add?
-    public boolean setPostTag(User author, String tag) {
-        if (this.author.equals(author) == false) {
-            return false;
-        }
+    public boolean addPostTag(String tag) {
         this.tags.add(tag);
         return true;
     }
