@@ -16,7 +16,7 @@ public class Post {
     private ArrayList<Comment> comments;
     private HashMap<ReactionType, HashSet<User>> reactions;
 
-    private enum ReactionType {
+    public enum ReactionType {
         GREAT,
         SAD,
         ANGRY,

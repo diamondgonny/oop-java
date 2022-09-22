@@ -11,7 +11,7 @@ public class Blog {
     private User authorFilterOrNull;
     private SortingType sortingType;
 
-    private enum SortingType {
+    public enum SortingType {
         CREATED_DESC,
         CREATED_ASC,
         UPDATED_DESC,
