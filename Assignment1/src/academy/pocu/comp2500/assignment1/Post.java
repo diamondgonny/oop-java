@@ -63,8 +63,14 @@ public class Post {
         return this.tags;
     }
 
+    /*
     public HashMap<ReactionType, HashSet<String>> getReactions() {
         return this.reactions;
+    }
+     */
+
+    public int getReactions(ReactionType reactionType) {
+        return this.reactions.get(reactionType).size();
     }
 
     // setPostTitle(...boolean?)
