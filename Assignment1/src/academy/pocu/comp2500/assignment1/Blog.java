@@ -105,7 +105,7 @@ public class Blog {
                 Collections.sort(posts, (s1, s2) -> s1.getTitle().compareTo(s2.getTitle()));
                 break;
             default:
-                assert (false) : "Unknown case SortingType. in 'doSorting' method";
+                assert (false) : "Unknown case SortingType in 'sortPostList' method";
                 break;
         }
         return posts;
