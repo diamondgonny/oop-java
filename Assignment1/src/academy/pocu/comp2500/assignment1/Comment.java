@@ -47,6 +47,14 @@ public class Comment {
         return this.subcomments;
     }
 
+    public int getUpvoters() {
+        return this.upvoters.size();
+    }
+
+    public int getDownvoters() {
+        return this.downvoters.size();
+    }
+
     // addUpvote
     public boolean addUpvote(String userId) {
         if (upvoters.contains(userId) == true) {
