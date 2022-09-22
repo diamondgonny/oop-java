@@ -63,6 +63,10 @@ public class Post {
         return this.tags;
     }
 
+    public HashMap<ReactionType, HashSet<String>> getReactions() {
+        return this.reactions;
+    }
+
     // setPostTitle(...boolean?)
     public boolean setTitle(String userId, String title) {
         if (this.userId.equals(userId) == false) {
