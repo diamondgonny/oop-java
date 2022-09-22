@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Post {
-    private User author;
+    private String userId;
     private String title;
     private String body;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
     private HashSet<String> tags;
     private ArrayList<Comment> comments;
-    private HashMap<ReactionType, HashSet<User>> reactions;
+    private HashMap<ReactionType, HashSet<String>> reactions;
 
     public enum ReactionType {
         GREAT,
@@ -24,8 +24,8 @@ public class Post {
         LOVE
     }
 
-    public Post(User author, String title, String body) {
-        this.author = author;
+    public Post(String userId, String title, String body) {
+        this.userId = userId;
         this.title = title;
         this.body = body;
         this.createdDateTime = OffsetDateTime.now();
@@ -39,8 +39,8 @@ public class Post {
         }
     }
 
-    public User getAuthor() {
-        return this.author;
+    public String getUserId() {
+        return this.userId;
     }
 
     public String getTitle() {
@@ -63,9 +63,9 @@ public class Post {
         return this.tags;
     }
 
-    // setPostTitle(... boolean?)
-    public boolean setTitle(User author, String title) {
-        if (this.author.equals(author) == false) {
+    // setPostTitle(...boolean?)
+    public boolean setTitle(String userId, String title) {
+        if (this.userId.equals(userId) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
@@ -74,8 +74,8 @@ public class Post {
     }
 
     // setPostBody(")
-    public boolean setBody(User author, String body) {
-        if (this.author.equals(author) == false) {
+    public boolean setBody(String userId, String body) {
+        if (this.userId.equals(userId) == false) {
             return false;
         }
         this.updatedDateTime = OffsetDateTime.now();
@@ -110,28 +110,28 @@ public class Post {
     }
 
     // addReaction / .get(HashMap?)
-    public boolean addReaction(User user, ReactionType reactionType) {
+    public boolean addReaction(String userId, ReactionType reactionType) {
         if (checkReactionExists(reactionType) == false) {
             return false;
         }
-        HashSet<User> reactionUsers = this.reactions.get(reactionType);
-        if (reactionUsers.contains(user) == true) {
+        HashSet<String> reactionUsers = this.reactions.get(reactionType);
+        if (reactionUsers.contains(userId) == true) {
             return false;
         }
-        reactionUsers.add(user);
+        reactionUsers.add(userId);
         return true;
     }
 
     // removeReaction
-    public boolean removeReaction(User user, ReactionType reactionType) {
+    public boolean removeReaction(String userId, ReactionType reactionType) {
         if (checkReactionExists(reactionType) == false) {
             return false;
         }
-        HashSet<User> reactionUsers = this.reactions.get(reactionType);
-        if (reactionUsers.contains(user) == false) {
+        HashSet<String> reactionUsers = this.reactions.get(reactionType);
+        if (reactionUsers.contains(userId) == false) {
             return false;
         }
-        reactionUsers.remove(user);
+        reactionUsers.remove(userId);
         return true;
     }
 }

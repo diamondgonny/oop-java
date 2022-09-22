@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Blog {
-    private User user;
+    private String userId;
     private ArrayList<Post> posts;
     private HashSet<String> tagFilterOrEmpty;
-    private User authorFilterOrNull;
+    private String authorFilterOrNull;
     private SortingType sortingType;
 
     public enum SortingType {
@@ -19,8 +19,8 @@ public class Blog {
         LEXICAL_ASC
     }
 
-    public Blog(User user) {
-        this.user = user;
+    public Blog(String userId) {
+        this.userId = userId;
         this.posts = new ArrayList<>();
         this.tagFilterOrEmpty = new HashSet<>();
         this.authorFilterOrNull = null;
@@ -32,8 +32,8 @@ public class Blog {
         this.tagFilterOrEmpty = tags;
     }
 
-    public void setAuthorFilter(User author) {
-        this.authorFilterOrNull = author;
+    public void setAuthorFilter(String userId) {
+        this.authorFilterOrNull = userId;
     }
 
     public void setPostOrder(SortingType sortingType) {
@@ -57,7 +57,7 @@ public class Blog {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (this.authorFilterOrNull != null) {
             for (Post post : posts) {
-                if (this.authorFilterOrNull.equals(post.getAuthor())) {
+                if (this.authorFilterOrNull.equals(post.getUserId())) {
                     filteredPostList.add(post);
                 }
             }

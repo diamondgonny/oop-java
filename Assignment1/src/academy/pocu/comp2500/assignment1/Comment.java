@@ -5,31 +5,31 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class Comment {
-    private User author;
+    private String userId;
     private String text;
     private ArrayList<Comment> subcomments;
-    private HashSet<User> upvoters;
-    private HashSet<User> downvoters;
+    private HashSet<String> upvoters;
+    private HashSet<String> downvoters;
 
-    public Comment(User author, String text) {
-        this.author = author;
+    public Comment(String userId, String text) {
+        this.userId = userId;
         this.text = text;
         this.subcomments = new ArrayList<>();
         this.upvoters = new HashSet<>();
         this.downvoters = new HashSet<>();
     }
 
-    public User getAuthor() {
-        return this.author;
+    public String getUserId() {
+        return this.userId;
     }
 
     public String getText() {
         return this.text;
     }
-    
+
     // setCommentFamily
-    public boolean setCommentFamily(User author, String text) {
-        if (this.author.equals(author) == false) {
+    public boolean setCommentFamily(String userId, String text) {
+        if (this.userId.equals(userId) == false) {
             return false;
         }
         this.text = text;
@@ -48,20 +48,20 @@ public class Comment {
     }
 
     // addUpvoter
-    public boolean addUpvoter(User user) {
-        if (upvoters.contains(user) == true) {
+    public boolean addUpvoter(String userId) {
+        if (upvoters.contains(userId) == true) {
             return false;
         }
-        this.upvoters.add(user);
+        this.upvoters.add(userId);
         return true;
     }
 
     // addDownvoter
-    public boolean addDownvoter(User user) {
-        if (upvoters.contains(user) == true) {
+    public boolean addDownvoter(String userId) {
+        if (upvoters.contains(userId) == true) {
             return false;
         }
-        this.downvoters.add(user);
+        this.downvoters.add(userId);
         return true;
     }
 
