@@ -25,9 +25,9 @@ public class App {
         registry.registerSubcommentUpdater("Comment", "setCommentFamily");
         registry.registerSubcommentAdder("Comment", "addSubcomment");
         registry.registerSubcommentListGetter("Comment", "getSubcommentListWithSort");
-        registry.registerCommentUpvoter("Comment", "addUpvoter");
-        registry.registerCommentDownvoter("Comment", "addDownvoter");
-        registry.registerSubcommentUpvoter("Comment", "addUpvoter");
-        registry.registerSubcommentDownvoter("Comment", "addDownvoter");
+        registry.registerCommentUpvoter("Comment", "addUpvote");
+        registry.registerCommentDownvoter("Comment", "addDownvote");
+        registry.registerSubcommentUpvoter("Comment", "addUpvote");
+        registry.registerSubcommentDownvoter("Comment", "addDownvote");
     }
 }
