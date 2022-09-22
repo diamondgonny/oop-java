@@ -83,9 +83,13 @@ public class Post {
         return true;
     }
 
-    // *addPostTag??? setPostTags???
-    public void setPostTags(String tag) {
+    // *setPostTag??? setPostTags??? Or...add?
+    public boolean setPostTag(User author, String tag) {
+        if (this.author.equals(author) == false) {
+            return false;
+        }
         this.tags.add(tag);
+        return true;
     }
 
     // addComment
