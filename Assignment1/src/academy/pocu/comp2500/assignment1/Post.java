@@ -47,6 +47,10 @@ public class Post {
         return this.title;
     }
 
+    public String getBody() {
+        return this.body;
+    }
+
     public OffsetDateTime getCreatedDateTime() {
         return this.createdDateTime;
     }
