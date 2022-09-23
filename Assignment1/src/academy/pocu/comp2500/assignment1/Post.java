@@ -29,10 +29,6 @@ public class Post {
         }
     }
 
-    public String getUserId() {
-        return this.userId;
-    }
-
     public String getTitle() {
         return this.title;
     }
@@ -47,6 +43,10 @@ public class Post {
 
     public OffsetDateTime getUpdatedDateTime() {
         return this.updatedDateTime;
+    }
+
+    public String getUserId() {
+        return this.userId;
     }
 
     public HashSet<String> getTags() {
