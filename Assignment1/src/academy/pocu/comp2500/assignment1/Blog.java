@@ -38,7 +38,7 @@ public class Blog {
 
     // getPostList
     public ArrayList<Post> getPostList() {
-        ArrayList<Post> resultPostList = new ArrayList<>();
+        ArrayList<Post> resultPostList;
         resultPostList = doAuthorFilter(this.posts);
         resultPostList = doTagFilter(resultPostList);
         resultPostList = sortPostList(resultPostList);
@@ -60,9 +60,8 @@ public class Blog {
     }
 
     private ArrayList<Post> doTagFilter(ArrayList<Post> posts) {
-        // .contains?
         ArrayList<Post> filteredPostList = new ArrayList<>();
-        if (!tagFilterOrEmpty.isEmpty()) {
+        if (tagFilterOrEmpty.isEmpty() != true) {
             for (Post post : posts) {
                 for (String tag : this.tagFilterOrEmpty) {
                     if (post.getTags().contains(tag)) {
