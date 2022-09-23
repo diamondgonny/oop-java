@@ -11,14 +11,6 @@ public class Blog {
     private String authorFilterOrNull;
     private SortingType sortingType;
 
-    public enum SortingType {
-        CREATED_DESC,
-        CREATED_ASC,
-        UPDATED_DESC,
-        UPDATED_ASC,
-        LEXICAL_ASC
-    }
-
     public Blog(String userId) {
         this.userId = userId;
         this.posts = new ArrayList<>();

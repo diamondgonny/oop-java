@@ -16,14 +16,6 @@ public class Post {
     private ArrayList<Comment> comments;
     private HashMap<ReactionType, HashSet<String>> reactions;
 
-    public enum ReactionType {
-        GREAT,
-        SAD,
-        ANGRY,
-        FUN,
-        LOVE
-    }
-
     public Post(String userId, String title, String body) {
         this.userId = userId;
         this.title = title;
