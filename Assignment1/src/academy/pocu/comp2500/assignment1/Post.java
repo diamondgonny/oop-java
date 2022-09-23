@@ -94,9 +94,9 @@ public class Post {
         return this.comments;
     }
 
-    // addReaction (.get(HashMap?))
+    // addReaction
     public boolean addReaction(String userId, ReactionType reactionType) {
-        HashSet<String> reactionUsers = this.reactions.get(reactionType);
+        HashSet<String> reactionUsers = this.reactions.get(reactionType);   // .get
         if (reactionUsers.contains(userId) == true) {
             return false;
         }
