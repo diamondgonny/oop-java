@@ -47,6 +47,10 @@ public class Post {
         return this.title;
     }
 
+    public String getBody() {
+        return this.body;
+    }
+
     public OffsetDateTime getCreatedDateTime() {
         return this.createdDateTime;
     }
@@ -57,6 +61,16 @@ public class Post {
 
     public HashSet<String> getTags() {
         return this.tags;
+    }
+
+    /*
+    public HashMap<ReactionType, HashSet<String>> getReactions() {
+        return this.reactions;
+    }
+     */
+
+    public int getReactions(ReactionType reactionType) {
+        return this.reactions.get(reactionType).size();
     }
 
     // setTitle
