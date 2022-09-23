@@ -30,7 +30,7 @@ public class Comment {
         this.subcomments.add(comment);
     }
 
-    // getSubcommentListWithSort
+    // getSubcommentListWithSort (sort 분리시 static wtf)
     public ArrayList<Comment> getSubcommentListWithSort() {
         Collections.sort(this.subcomments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.subcomments;
@@ -38,22 +38,20 @@ public class Comment {
 
     // addUpvote
     public boolean addUpvote(String userId) {
-        if (upvoters.contains(userId) == true) {
-            return false;
+        if (this.upvoters.add(userId) == true) {
+            this.downvoters.remove(userId);
+            return true;
         }
-        this.downvoters.remove(userId);
-        this.upvoters.add(userId);
-        return true;
+        return false;
     }
 
     // addDownvote
     public boolean addDownvote(String userId) {
-        if (downvoters.contains(userId) == true) {
-            return false;
+        if (this.downvoters.add(userId) == true) {
+            this.upvoters.remove(userId);
+            return true;
         }
-        this.upvoters.remove(userId);
-        this.downvoters.add(userId);
-        return true;
+        return false;
     }
 
     int countVotePoints() {
