@@ -60,7 +60,7 @@ public class Comment {
     }
 
     // +
-     int countVotePoints() {
+    int countVotePoints() {
         return this.upvoters.size() - this.downvoters.size();
     }
 }
