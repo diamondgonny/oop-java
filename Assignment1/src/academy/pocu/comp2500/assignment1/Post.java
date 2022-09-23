@@ -97,20 +97,12 @@ public class Post {
     // addReaction
     public boolean addReaction(String userId, ReactionType reactionType) {
         HashSet<String> reactionUsers = this.reactions.get(reactionType);   // .get
-        if (reactionUsers.contains(userId) == true) {
-            return false;
-        }
-        reactionUsers.add(userId);
-        return true;
+        return reactionUsers.add(userId);
     }
 
     // removeReaction
     public boolean removeReaction(String userId, ReactionType reactionType) {
         HashSet<String> reactionUsers = this.reactions.get(reactionType);
-        if (reactionUsers.contains(userId) == false) {
-            return false;
-        }
-        reactionUsers.remove(userId);
-        return true;
+        return reactionUsers.remove(userId);
     }
 }
