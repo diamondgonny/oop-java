@@ -110,20 +110,8 @@ public class Post {
         return this.comments;
     }
 
-    private boolean checkReactionExists(ReactionType reactionType) {
-        for (ReactionType reaction : ReactionType.values()) {
-            if (reactionType.equals(reaction)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     // addReaction / .get(HashMap?)
     public boolean addReaction(String userId, ReactionType reactionType) {
-        if (checkReactionExists(reactionType) == false) {
-            return false;
-        }
         HashSet<String> reactionUsers = this.reactions.get(reactionType);
         if (reactionUsers.contains(userId) == true) {
             return false;
@@ -134,9 +122,6 @@ public class Post {
 
     // removeReaction
     public boolean removeReaction(String userId, ReactionType reactionType) {
-        if (checkReactionExists(reactionType) == false) {
-            return false;
-        }
         HashSet<String> reactionUsers = this.reactions.get(reactionType);
         if (reactionUsers.contains(userId) == false) {
             return false;
