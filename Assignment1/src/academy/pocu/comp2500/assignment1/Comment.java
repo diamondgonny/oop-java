@@ -67,7 +67,7 @@ public class Comment {
 
     // addDownvote
     public boolean addDownvote(String userId) {
-        if (upvoters.contains(userId) == true) {
+        if (downvoters.contains(userId) == true) {
             return false;
         }
         this.upvoters.remove(userId);
