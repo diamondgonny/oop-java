@@ -43,7 +43,7 @@ public class Comment {
 
     // getSubcommentListWithSort
     public ArrayList<Comment> getSubcommentListWithSort() {
-        Collections.sort(this.subcomments, (s1, s2) -> s1.countVotePoints() - s2.countVotePoints());
+        Collections.sort(this.subcomments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.subcomments;
     }
 
