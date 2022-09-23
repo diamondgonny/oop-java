@@ -6,16 +6,13 @@ import java.util.HashSet;
 
 public class Blog {
     private String userId;
-    private ArrayList<Post> posts;
-    private HashSet<String> tagFilterOrEmpty;
-    private String authorFilterOrNull;
+    private ArrayList<Post> posts = new ArrayList<>();
+    private HashSet<String> tagFilterOrEmpty = new HashSet<>();
+    private String authorFilterOrNull = null;
     private SortingType sortingType;
 
     public Blog(String userId) {
         this.userId = userId;
-        this.posts = new ArrayList<>();
-        this.tagFilterOrEmpty = new HashSet<>();
-        this.authorFilterOrNull = null;
         this.sortingType = SortingType.CREATED_DESC;
     }
 
