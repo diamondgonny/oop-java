@@ -7,16 +7,13 @@ import java.util.HashSet;
 public class Comment {
     private String userId;
     private String text;
-    private ArrayList<Comment> subcomments;
-    private HashSet<String> upvoters;
-    private HashSet<String> downvoters;
+    private ArrayList<Comment> subcomments = new ArrayList<>();
+    private HashSet<String> upvoters = new HashSet<>();
+    private HashSet<String> downvoters = new HashSet<>();
 
     public Comment(String userId, String text) {
         this.userId = userId;
         this.text = text;
-        this.subcomments = new ArrayList<>();
-        this.upvoters = new HashSet<>();
-        this.downvoters = new HashSet<>();
     }
 
     // setCommentFamily
@@ -59,7 +56,6 @@ public class Comment {
         return true;
     }
 
-    // +
     int countVotePoints() {
         return this.upvoters.size() - this.downvoters.size();
     }
