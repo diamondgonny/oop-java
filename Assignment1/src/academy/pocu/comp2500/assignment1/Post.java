@@ -24,7 +24,7 @@ public class Post {
         this.createdDateTime = OffsetDateTime.now();
         this.updatedDateTime = createdDateTime;
         for (ReactionType reactionType : ReactionType.values()) {
-            reactions.put(reactionType, new HashSet<>());
+            this.reactions.put(reactionType, new HashSet<>());
             // .values(), .put()
         }
     }
