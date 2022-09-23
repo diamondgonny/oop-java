@@ -16,27 +16,22 @@ public class Blog {
         this.sortingType = SortingType.CREATED_DESC;
     }
 
-    // setTagFilter (네이밍으로 unset까지 힌트주기)
     public void setTagFilter(HashSet<String> tags) {
         this.tagFilterOrEmpty = tags;
     }
 
-    // setAuthorFilter (")
     public void setAuthorFilter(String userId) {
         this.authorFilterOrNull = userId;
     }
 
-    // setPostOrder
     public void setPostOrder(SortingType sortingType) {
         this.sortingType = sortingType;
     }
 
-    // addPost (void vs boolean)
     public void addPost(Post post) {
         this.posts.add(post);
     }
 
-    // getPostList
     public ArrayList<Post> getPostList() {
         ArrayList<Post> resultPostList;
         resultPostList = doAuthorFilter(this.posts);
@@ -77,8 +72,6 @@ public class Blog {
     }
 
     private ArrayList<Post> sortPostList(ArrayList<Post> posts) {
-        // Lambda로 Comparator 작성 && compareTo Comparable?
-        // 문자열(s1, s2) -> 기준값.compareTo(비교값);
         switch (this.sortingType) {
             case CREATED_DESC:
                 Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));

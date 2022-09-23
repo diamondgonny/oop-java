@@ -15,7 +15,6 @@ public class Post {
     private HashSet<String> tags = new HashSet<>();
     private ArrayList<Comment> comments = new ArrayList<>();
     private HashMap<ReactionType, HashSet<String>> reactions = new HashMap<>();
-    // Hashmap, HashSet, ArrayList 사용에 대한 이해 (key, value)
 
     public Post(String userId, String title, String body) {
         this.userId = userId;
@@ -25,7 +24,6 @@ public class Post {
         this.updatedDateTime = createdDateTime;
         for (ReactionType reactionType : ReactionType.values()) {
             this.reactions.put(reactionType, new HashSet<>());
-            // .values(), .put()
         }
     }
 
@@ -54,11 +52,9 @@ public class Post {
     }
 
     public int getReactions(ReactionType reactionType) {
-        // 명세서 : 유저명단이 아닌 인원수를 요구함
         return this.reactions.get(reactionType).size();
     }
 
-    // setTitle
     public boolean setTitle(String userId, String title) {
         if (this.userId.equals(userId) == false) {
             return false;
@@ -68,7 +64,6 @@ public class Post {
         return true;
     }
 
-    // setBody
     public boolean setBody(String userId, String body) {
         if (this.userId.equals(userId) == false) {
             return false;
@@ -78,29 +73,24 @@ public class Post {
         return true;
     }
 
-    // addtag (단수 vs 복수)
     public void addTag(String tag) {
         this.tags.add(tag);
     }
 
-    // addComment
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
 
-    // getCommentListWithSort (cf. 얕은 복사 vs 깊은 복사?)
     public ArrayList<Comment> getCommentListWithSort() {
         Collections.sort(this.comments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.comments;
     }
 
-    // addReaction
     public boolean addReaction(String userId, ReactionType reactionType) {
-        HashSet<String> reactionUsers = this.reactions.get(reactionType);   // .get
+        HashSet<String> reactionUsers = this.reactions.get(reactionType);
         return reactionUsers.add(userId);
     }
 
-    // removeReaction
     public boolean removeReaction(String userId, ReactionType reactionType) {
         HashSet<String> reactionUsers = this.reactions.get(reactionType);
         return reactionUsers.remove(userId);
