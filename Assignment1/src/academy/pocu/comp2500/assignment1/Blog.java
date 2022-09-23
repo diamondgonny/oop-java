@@ -27,24 +27,27 @@ public class Blog {
         this.sortingType = SortingType.CREATED_DESC;
     }
 
-    // setTagFilter : Unset까지 어떻게 감안할건가?
+    // setTagFilter (네이밍으로 unset까지 힌트주기)
     public void setTagFilter(HashSet<String> tags) {
         this.tagFilterOrEmpty = tags;
     }
 
+    // setAuthorFilter (")
     public void setAuthorFilter(String userId) {
         this.authorFilterOrNull = userId;
     }
 
+    // setPostOrder
     public void setPostOrder(SortingType sortingType) {
         this.sortingType = sortingType;
     }
 
-    // addPost : boolean으로 성공여부까지 확인?
+    // addPost (void vs boolean)
     public void addPost(Post post) {
         this.posts.add(post);
     }
 
+    // getPostList
     public ArrayList<Post> getPostList() {
         ArrayList<Post> resultPostList = new ArrayList<>();
         resultPostList = doAuthorFilter(this.posts);
@@ -67,8 +70,8 @@ public class Blog {
         return filteredPostList;
     }
 
-    // tagFilter는 어떻게 unset할 것인가? / contains?
     private ArrayList<Post> doTagFilter(ArrayList<Post> posts) {
+        // .contains?
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (!tagFilterOrEmpty.isEmpty()) {
             for (Post post : posts) {
@@ -85,9 +88,9 @@ public class Blog {
         return filteredPostList;
     }
 
-    // Lambda로 Comparator 작성 && compareTo Comparable?
-    // 문자열(s1, s2) -> 기준값.compareTo(비교값);
     private ArrayList<Post> sortPostList(ArrayList<Post> posts) {
+        // Lambda로 Comparator 작성 && compareTo Comparable?
+        // 문자열(s1, s2) -> 기준값.compareTo(비교값);
         switch (this.sortingType) {
             case CREATED_DESC:
                 Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));

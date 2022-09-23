@@ -75,7 +75,7 @@ public class Comment {
         return true;
     }
 
-    // countVotes
+    // +
      int countVotePoints() {
         return this.upvoters.size() - this.downvoters.size();
     }

@@ -73,7 +73,7 @@ public class Post {
         return this.reactions.get(reactionType).size();
     }
 
-    // setPostTitle(...boolean?)
+    // setTitle
     public boolean setTitle(String userId, String title) {
         if (this.userId.equals(userId) == false) {
             return false;
@@ -83,7 +83,7 @@ public class Post {
         return true;
     }
 
-    // setPostBody(")
+    // setBody
     public boolean setBody(String userId, String body) {
         if (this.userId.equals(userId) == false) {
             return false;
@@ -93,7 +93,7 @@ public class Post {
         return true;
     }
 
-    // *setPostTag??? setPostTags??? Or...add?
+    // addtag (단수 vs 복수)
     public void addTag(String tag) {
         this.tags.add(tag);
     }
@@ -103,14 +103,13 @@ public class Post {
         this.comments.add(comment);
     }
 
-    // getCommentListWithSort : Upvotes - Downvotes 차이에 의한 정렬 req.
-    // cf. 얕은 복사 vs 깊은 복사
+    // getCommentListWithSort (cf. 얕은 복사 vs 깊은 복사?)
     public ArrayList<Comment> getCommentListWithSort() {
         Collections.sort(this.comments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.comments;
     }
 
-    // addReaction / .get(HashMap?)
+    // addReaction (.get(HashMap?))
     public boolean addReaction(String userId, ReactionType reactionType) {
         HashSet<String> reactionUsers = this.reactions.get(reactionType);
         if (reactionUsers.contains(userId) == true) {
