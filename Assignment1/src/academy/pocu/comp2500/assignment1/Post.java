@@ -15,6 +15,7 @@ public class Post {
     private HashSet<String> tags;
     private ArrayList<Comment> comments;
     private HashMap<ReactionType, HashSet<String>> reactions;
+    // Hashmap, HashSet, ArrayList 사용에 대한 이해 (key, value)
 
     public Post(String userId, String title, String body) {
         this.userId = userId;
@@ -25,9 +26,9 @@ public class Post {
         this.tags = new HashSet<>();
         this.comments = new ArrayList<>();
         this.reactions = new HashMap<>();
-        // *reactions는 HashMap? ArrayList? (작성자의 고유성) / .values, .put(HashMap)
         for (ReactionType reactionType : ReactionType.values()) {
             reactions.put(reactionType, new HashSet<>());
+            // .values(), .put()
         }
     }
 
@@ -55,13 +56,8 @@ public class Post {
         return this.tags;
     }
 
-    /*
-    public HashMap<ReactionType, HashSet<String>> getReactions() {
-        return this.reactions;
-    }
-     */
-
     public int getReactions(ReactionType reactionType) {
+        // 명세서 : 유저명단이 아닌 인원수를 요구함
         return this.reactions.get(reactionType).size();
     }
 
