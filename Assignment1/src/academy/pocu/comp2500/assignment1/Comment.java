@@ -37,8 +37,8 @@ public class Comment {
     }
 
     // addSubcomment
-    public void addSubcomment(Comment subcomment) {
-        this.subcomments.add(subcomment);
+    public void addSubcomment(Comment comment) {
+        this.subcomments.add(comment);
     }
 
     // getSubcommentListWithSort
