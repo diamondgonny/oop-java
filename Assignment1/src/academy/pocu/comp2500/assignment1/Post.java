@@ -106,7 +106,7 @@ public class Post {
     // getCommentListWithSort : Upvotes - Downvotes 차이에 의한 정렬 req.
     // cf. 얕은 복사 vs 깊은 복사
     public ArrayList<Comment> getCommentListWithSort() {
-        Collections.sort(this.comments, (s1, s2) -> s1.countVotePoints() - s2.countVotePoints());
+        Collections.sort(this.comments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.comments;
     }
 
