@@ -76,9 +76,7 @@ public class Comment {
     }
 
     // countVotes
-    public int countVotePoints() {
-        int upvote = this.upvoters.size();
-        int downvote = this.downvoters.size();
-        return upvote - downvote;
+     int countVotePoints() {
+        return this.upvoters.size() - this.downvoters.size();
     }
 }
