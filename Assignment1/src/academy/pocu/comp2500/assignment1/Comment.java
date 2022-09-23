@@ -19,14 +19,6 @@ public class Comment {
         this.downvoters = new HashSet<>();
     }
 
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public String getText() {
-        return this.text;
-    }
-
     // setCommentFamily
     public boolean setCommentFamily(String userId, String text) {
         if (this.userId.equals(userId) == false) {
@@ -45,14 +37,6 @@ public class Comment {
     public ArrayList<Comment> getSubcommentListWithSort() {
         Collections.sort(this.subcomments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
         return this.subcomments;
-    }
-
-    public int getUpvoters() {
-        return this.upvoters.size();
-    }
-
-    public int getDownvoters() {
-        return this.downvoters.size();
     }
 
     // addUpvote
