@@ -8,7 +8,7 @@ public class Blog {
     private String userId;
     private ArrayList<Post> posts = new ArrayList<>();
     private HashSet<String> tagFilterOrEmpty = new HashSet<>();
-    private String authorFilterOrNull = null;
+    private String authorFilterOrNull;
     private SortingType sortingType;
 
     public Blog(String userId) {
