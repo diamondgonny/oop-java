@@ -12,9 +12,9 @@ public class Post {
     private String body;
     private OffsetDateTime createdDateTime;
     private OffsetDateTime updatedDateTime;
-    private HashSet<String> tags;
-    private ArrayList<Comment> comments;
-    private HashMap<ReactionType, HashSet<String>> reactions;
+    private HashSet<String> tags = new HashSet<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
+    private HashMap<ReactionType, HashSet<String>> reactions = new HashMap<>();
     // Hashmap, HashSet, ArrayList 사용에 대한 이해 (key, value)
 
     public Post(String userId, String title, String body) {
@@ -23,9 +23,6 @@ public class Post {
         this.body = body;
         this.createdDateTime = OffsetDateTime.now();
         this.updatedDateTime = createdDateTime;
-        this.tags = new HashSet<>();
-        this.comments = new ArrayList<>();
-        this.reactions = new HashMap<>();
         for (ReactionType reactionType : ReactionType.values()) {
             reactions.put(reactionType, new HashSet<>());
             // .values(), .put()
