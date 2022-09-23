@@ -60,6 +60,7 @@ public class Comment {
         if (upvoters.contains(userId) == true) {
             return false;
         }
+        this.downvoters.remove(userId);
         this.upvoters.add(userId);
         return true;
     }
@@ -69,6 +70,7 @@ public class Comment {
         if (upvoters.contains(userId) == true) {
             return false;
         }
+        this.upvoters.remove(userId);
         this.downvoters.add(userId);
         return true;
     }
