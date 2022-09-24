@@ -42,7 +42,7 @@ public class Post {
     public OffsetDateTime getUpdatedDateTime() {
         return this.updatedDateTime;
     }
-    /*
+
     public String getUserId() {
         return this.userId;
     }
@@ -50,7 +50,7 @@ public class Post {
     public HashSet<String> getTags() {
         return this.tags;
     }
-    */
+
     public boolean isUserIdExists(String userId) {
         return this.userId.equals(userId);
     }
