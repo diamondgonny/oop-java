@@ -29,7 +29,8 @@ public class Comment {
     }
 
     public ArrayList<Comment> getSubcommentListWithSort() {
-        Collections.sort(this.subcomments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
+        Collections.sort(this.subcomments, (n1, n2) -> Integer.compare(n2.getVotePoints(), n1.getVotePoints()));
+        // Duplicated method... any solution without being 'static'?
         return this.subcomments;
     }
 
@@ -49,7 +50,7 @@ public class Comment {
         return false;
     }
 
-    int countVotePoints() {
+    int getVotePoints() {
         return this.upvoters.size() - this.downvoters.size();
     }
 }

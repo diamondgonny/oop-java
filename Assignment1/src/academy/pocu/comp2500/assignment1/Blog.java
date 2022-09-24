@@ -75,6 +75,7 @@ public class Blog {
         switch (this.sortingType) {
             case CREATED_DESC:
                 Collections.sort(posts, (s1, s2) -> s2.getCreatedDateTime().compareTo(s1.getCreatedDateTime()));
+                // Collections.sort(posts, Comparator.comparing(Post::getCreatedDateTime).reversed());
                 break;
             case CREATED_ASC:
                 Collections.sort(posts, (s1, s2) -> s1.getCreatedDateTime().compareTo(s2.getCreatedDateTime()));

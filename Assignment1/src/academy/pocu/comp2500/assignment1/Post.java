@@ -1,10 +1,7 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class Post {
     private String userId;
@@ -82,7 +79,8 @@ public class Post {
     }
 
     public ArrayList<Comment> getCommentListWithSort() {
-        Collections.sort(this.comments, (s1, s2) -> s2.countVotePoints() - s1.countVotePoints());
+        Collections.sort(this.comments, (n1, n2) -> Integer.compare(n2.getVotePoints(), n1.getVotePoints()));
+        // Collections.sort(comments, Comparator.comparing(Comment::getVotePoints).reversed());
         return this.comments;
     }
 
