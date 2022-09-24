@@ -12,7 +12,6 @@ public class App {
         registry.registerPostOrderSetter("Blog", "setPostOrder");
         registry.registerPostAdder("Blog", "addPost");
         registry.registerPostListGetter("Blog", "getPostList");
-
         registry.registerPostTitleUpdater("Post", "setTitle");
         registry.registerPostBodyUpdater("Post", "setBody");
         registry.registerPostTagAdder("Post", "addTag");
@@ -20,7 +19,6 @@ public class App {
         registry.registerCommentListGetter("Post", "getCommentListWithSort");
         registry.registerReactionAdder("Post", "addReaction");
         registry.registerReactionRemover("Post", "removeReaction");
-
         registry.registerCommentUpdater("Comment", "setCommentFamily");
         registry.registerSubcommentUpdater("Comment", "setCommentFamily");
         registry.registerSubcommentAdder("Comment", "addSubcomment");
