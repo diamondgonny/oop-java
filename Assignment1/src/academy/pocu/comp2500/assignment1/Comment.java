@@ -30,7 +30,8 @@ public class Comment {
 
     public ArrayList<Comment> getSubcommentListWithSort() {
         Collections.sort(this.subcomments, (n1, n2) -> Integer.compare(n2.getVotePoints(), n1.getVotePoints()));
-        // Duplicated method... any solution without being 'static'?
+        // Is wrapper class unnecessary here?
+        // Duplicated method(addComment in Post)... Any solution without being 'static'?
         return this.subcomments;
     }
 
