@@ -24,15 +24,15 @@ public class Comment {
         return true;
     }
 
-    public void addSubcomment(Comment comment) {
-        this.subcomments.add(comment);
-    }
-
     public ArrayList<Comment> getSubcommentListWithSort() {
         Collections.sort(this.subcomments, (n1, n2) -> Integer.compare(n2.getVotePoints(), n1.getVotePoints()));
         // Is wrapper class unnecessary here?
         // Duplicated method(addComment in Post)... Any solution without being 'static'?
         return this.subcomments;
+    }
+
+    public void addSubcomment(Comment comment) {
+        this.subcomments.add(comment);
     }
 
     public boolean addUpvote(String userId) {

@@ -51,6 +51,10 @@ public class Post {
         return this.tags;
     }
 
+    public int getReactions(ReactionType reactionType) {
+        return this.reactions.get(reactionType).size();
+    }
+
     public boolean isUserIdExists(String userId) {
         return this.userId.equals(userId);
     }
@@ -62,10 +66,6 @@ public class Post {
             }
         }
         return false;
-    }
-
-    public int getReactions(ReactionType reactionType) {
-        return this.reactions.get(reactionType).size();
     }
 
     public boolean setTitle(String userId, String title) {

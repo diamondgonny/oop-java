@@ -21,8 +21,8 @@ public class App {
         registry.registerReactionRemover("Post", "removeReaction");
         registry.registerCommentUpdater("Comment", "setCommentFamily");
         registry.registerSubcommentUpdater("Comment", "setCommentFamily");
-        registry.registerSubcommentAdder("Comment", "addSubcomment");
         registry.registerSubcommentListGetter("Comment", "getSubcommentListWithSort");
+        registry.registerSubcommentAdder("Comment", "addSubcomment");
         registry.registerCommentUpvoter("Comment", "addUpvote");
         registry.registerCommentDownvoter("Comment", "addDownvote");
         registry.registerSubcommentUpvoter("Comment", "addUpvote");
