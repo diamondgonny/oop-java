@@ -101,12 +101,10 @@ public class Post {
     }
 
     public boolean addReaction(String userId, ReactionType reactionType) {
-        HashSet<String> reactionUsers = this.reactions.get(reactionType);
-        return reactionUsers.add(userId);
+        return this.reactions.get(reactionType).add(userId);
     }
 
     public boolean removeReaction(String userId, ReactionType reactionType) {
-        HashSet<String> reactionUsers = this.reactions.get(reactionType);
-        return reactionUsers.remove(userId);
+        return this.reactions.get(reactionType).remove(userId);
     }
 }
