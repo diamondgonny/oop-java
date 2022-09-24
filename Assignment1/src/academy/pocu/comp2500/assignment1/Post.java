@@ -42,13 +42,26 @@ public class Post {
     public OffsetDateTime getUpdatedDateTime() {
         return this.updatedDateTime;
     }
-
+    /*
     public String getUserId() {
         return this.userId;
     }
 
     public HashSet<String> getTags() {
         return this.tags;
+    }
+    */
+    public boolean isUserIdExists(String userId) {
+        return this.userId.equals(userId);
+    }
+
+    public boolean isTagAtLeastExists(HashSet<String> tags) {
+        for (String tag : tags) {
+            if (this.tags.contains(tag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getReactions(ReactionType reactionType) {

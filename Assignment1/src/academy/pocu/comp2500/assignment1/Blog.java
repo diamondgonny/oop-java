@@ -44,7 +44,7 @@ public class Blog {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (this.authorFilterOrNull != null) {
             for (Post post : posts) {
-                if (this.authorFilterOrNull.equals(post.getUserId())) {
+                if (post.isUserIdExists(this.authorFilterOrNull) == true) {
                     filteredPostList.add(post);
                 }
             }
@@ -58,11 +58,8 @@ public class Blog {
         ArrayList<Post> filteredPostList = new ArrayList<>();
         if (tagFilterOrEmpty.isEmpty() != true) {
             for (Post post : posts) {
-                for (String tag : this.tagFilterOrEmpty) {
-                    if (post.getTags().contains(tag)) {
-                        filteredPostList.add(post);
-                        break;
-                    }
+                if (post.isTagAtLeastExists(this.tagFilterOrEmpty) == true) {
+                    filteredPostList.add(post);
                 }
             }
         } else {
