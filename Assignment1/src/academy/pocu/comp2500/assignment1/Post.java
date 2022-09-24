@@ -1,7 +1,10 @@
 package academy.pocu.comp2500.assignment1;
 
 import java.time.OffsetDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Post {
     private String userId;
