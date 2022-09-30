@@ -28,8 +28,8 @@ public class MemoryCache {
     }
 
     public static void clear() {
-        instanceMap.clear();       // 하위 항목들도 clear 처리 (cf. 메모리누수?)
-        // ...
+        instanceMap.clear();       // 하위 항목들도 clear 처리? (cf. 메모리누수?)
+        instanceList.clear();
     }
 
     public static void setMaxInstanceCount(int maxInstanceCount) {
@@ -41,7 +41,10 @@ public class MemoryCache {
     // private 메서드는 맨 아래로
     private static void removeExceedingMaxInstance() {
         while (instanceMap.size() > maxInstanceCount) {
-            // instanceMap.remove(?);
+            int lastIndex = instanceList.size() - 1;
+            String key = instanceList.get(lastIndex);
+            instanceMap.remove(lastIndex);
+            instanceList.remove(key);
         }
     }
 
