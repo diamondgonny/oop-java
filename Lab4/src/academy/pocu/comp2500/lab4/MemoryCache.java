@@ -60,7 +60,7 @@ public class MemoryCache {
         if (entryMap.containsKey(key) == false) {
             return null;
         } else {
-            //entryListUsedOrder.remove(key);
+            // entryListUsedOrder.remove(key);
             removeReverse(entryListUsedOrder, key);
             entryListUsedOrder.addFirst(key);
             return entryMap.get(key);
@@ -91,7 +91,7 @@ public class MemoryCache {
                 index = entryListAddedOrder.size() - 1;
                 key = entryListAddedOrder.get(index);
                 entryListAddedOrder.remove(index);
-                //entryListUsedOrder.remove(key);
+                // entryListUsedOrder.remove(key);
                 removeReverse(entryListUsedOrder, key);
             } else if (this.evictionPolicy == EvictionPolicy.LAST_IN_FIRST_OUT) {
                 index = targetIndexOfLifo;
@@ -102,7 +102,7 @@ public class MemoryCache {
                 index = entryListUsedOrder.size() - 1;
                 key = entryListUsedOrder.get(index);
                 entryListUsedOrder.remove(index);
-                //entryListAddedOrder.remove(key);
+                // entryListAddedOrder.remove(key);
                 removeReverse(entryListAddedOrder, key);
             } else {
                 assert (false) : "Unknown case evictionPolicy in 'removeExceedingMaxEntry' method";
