@@ -3,7 +3,6 @@ package academy.pocu.comp2500.lab4;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import static academy.pocu.comp2500.lab4.EvictionPolicy.*;
 
 public class MemoryCache {
     // 아래에서 static, non-static인 멤버변수의 차이?
@@ -94,17 +93,17 @@ public class MemoryCache {
         int index;
         String key = null;
         while (entryMap.size() > maxEntryCount) {
-            if (this.evictionPolicy == FIRST_IN_FIRST_OUT) {
+            if (this.evictionPolicy == EvictionPolicy.FIRST_IN_FIRST_OUT) {
                 index = entryListAddedOrder.size() - 1;
                 key = entryListAddedOrder.get(index);
                 entryListAddedOrder.remove(index);
                 entryListUsedOrder.remove(key);
-            } else if (this.evictionPolicy == LAST_IN_FIRST_OUT) {
+            } else if (this.evictionPolicy == EvictionPolicy.LAST_IN_FIRST_OUT) {
                 index = 1;
                 key = entryListAddedOrder.get(index);
                 entryListAddedOrder.remove(key);
                 entryListUsedOrder.remove(key);
-            } else if (this.evictionPolicy == LEAST_RECENTLY_USED) {
+            } else if (this.evictionPolicy == EvictionPolicy.LEAST_RECENTLY_USED) {
                 index = entryListUsedOrder.size() - 1;
                 key = entryListUsedOrder.get(index);
                 entryListUsedOrder.remove(index);
