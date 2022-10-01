@@ -49,7 +49,7 @@ public class MemoryCache {
             entryMap.put(key, value);
             entryListAddedOrder.addFirst(key);
             entryListUsedOrder.addFirst(key);
-            this.removeExceedingMaxEntry();
+            this.removeExceedingMaxEntry(1);
         } else {
             entryMap.put(key, value);
             entryListUsedOrder.remove(key);
@@ -70,7 +70,7 @@ public class MemoryCache {
 
     public void setMaxEntryCount(int maxEntryCount) {
         this.maxEntryCount = maxEntryCount;
-        this.removeExceedingMaxEntry();
+        this.removeExceedingMaxEntry(0);
     }
 
     private static void removeExceedingMaxInstance() {
@@ -85,7 +85,7 @@ public class MemoryCache {
     }
 
     // 시간복잡도
-    private void removeExceedingMaxEntry() {
+    private void removeExceedingMaxEntry(int targetIndexOfLifo) {
         int index;
         String key = null;
         while (entryMap.size() > maxEntryCount) {
@@ -95,7 +95,7 @@ public class MemoryCache {
                 entryListAddedOrder.remove(index);
                 entryListUsedOrder.remove(key);
             } else if (this.evictionPolicy == EvictionPolicy.LAST_IN_FIRST_OUT) {
-                index = 1;
+                index = targetIndexOfLifo;
                 key = entryListAddedOrder.get(index);
                 entryListAddedOrder.remove(key);
                 entryListUsedOrder.remove(key);
