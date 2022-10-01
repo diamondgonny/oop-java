@@ -60,8 +60,8 @@ public class MemoryCache {
         if (entryMap.containsKey(key) == false) {
             return null;
         } else {
-            entryListUsedOrder.remove(key);
-            // removeReverse(entryListUsedOrder, key);
+            // entryListUsedOrder.remove(key);
+            removeReverse(entryListUsedOrder, key);
             entryListUsedOrder.addFirst(key);
             return entryMap.get(key);
         }
