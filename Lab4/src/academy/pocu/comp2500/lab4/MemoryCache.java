@@ -3,9 +3,8 @@ package academy.pocu.comp2500.lab4;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
 public class MemoryCache {
-    // 아래에서 static, non-static인 멤버변수의 차이?
+    // static vs non-static
     private static HashMap<String, MemoryCache> instanceMap = new HashMap<>();
     private static LinkedList<String> instanceList = new LinkedList<>();
     private static int maxInstanceCount = Integer.MAX_VALUE;
@@ -19,7 +18,6 @@ public class MemoryCache {
     }
 
     public static MemoryCache getInstance(String myHardDiskName) {
-        // 인스턴스 신규 등록 or 기존 등록
         if (instanceMap.containsKey(myHardDiskName) == false) {
             instanceMap.put(myHardDiskName, new MemoryCache());
             instanceList.addFirst(myHardDiskName);
@@ -40,8 +38,6 @@ public class MemoryCache {
         MemoryCache.maxInstanceCount = maxInstanceCount;
         MemoryCache.removeExceedingMaxInstance();
     }
-
-    // -------------------------------------------------------------
 
     public void setEvictionPolicy(EvictionPolicy evictionPolicy) {
         this.evictionPolicy = evictionPolicy;
