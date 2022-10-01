@@ -34,7 +34,7 @@ public class MemoryCache {
 
     public static void clear() {
         instanceList.clear();
-        instanceMap.clear();       // 하위 항목들도 clear 처리? (cf. 메모리누수?)
+        instanceMap.clear();
     }
 
     public static void setMaxInstanceCount(int maxInstanceCount) {
@@ -42,6 +42,7 @@ public class MemoryCache {
         MemoryCache.removeExceedingMaxInstance();
     }
 
+    // -------------------------------------------------------------
 
     public void setEvictionPolicy(EvictionPolicy evictionPolicy) {
         this.evictionPolicy = evictionPolicy;
@@ -88,6 +89,7 @@ public class MemoryCache {
         }
     }
 
+    // 시간복잡도
     private void removeExceedingMaxEntry() {
         int index;
         String key = null;
