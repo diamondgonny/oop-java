@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MemoryCache {
-    // static vs non-static
+    // static and non-static
     private static HashMap<String, MemoryCache> instanceMap = new HashMap<>();
     private static LinkedList<String> instanceList = new LinkedList<>();
     private static int maxInstanceCount = Integer.MAX_VALUE;
@@ -43,7 +43,6 @@ public class MemoryCache {
         this.evictionPolicy = evictionPolicy;
     }
 
-    // 시간복잡도
     public void addEntry(String key, String value) {
         if (entryMap.containsKey(key) == false) {
             entryMap.put(key, value);
@@ -57,7 +56,6 @@ public class MemoryCache {
         }
     }
 
-    // 시간복잡도
     public String getEntryOrNull(String key) {
         if (entryMap.containsKey(key) == false) {
             return null;
@@ -84,7 +82,6 @@ public class MemoryCache {
         }
     }
 
-    // 시간복잡도
     private void removeExceedingMaxEntry(int targetIndexOfLifo) {
         int index;
         String key = null;
