@@ -17,7 +17,7 @@ public class MemoryCache {
     private MemoryCache() {
     }
 
-    public static MemoryCache getInstance(String myHardDiskName) {
+    public static MemoryCache getInstance(final String myHardDiskName) {
         if (instanceMap.containsKey(myHardDiskName) == false) {
             instanceMap.put(myHardDiskName, new MemoryCache());
             instanceList.addFirst(myHardDiskName);
@@ -34,16 +34,16 @@ public class MemoryCache {
         instanceMap.clear();
     }
 
-    public static void setMaxInstanceCount(int maxInstanceCount) {
+    public static void setMaxInstanceCount(final int maxInstanceCount) {
         MemoryCache.maxInstanceCount = maxInstanceCount;
         MemoryCache.removeExceedingMaxInstance();
     }
 
-    public void setEvictionPolicy(EvictionPolicy evictionPolicy) {
+    public void setEvictionPolicy(final EvictionPolicy evictionPolicy) {
         this.evictionPolicy = evictionPolicy;
     }
 
-    public void addEntry(String key, String value) {
+    public void addEntry(final String key, final String value) {
         if (entryMap.containsKey(key) == false) {
             entryMap.put(key, value);
             entryListAddedOrder.addFirst(key);
@@ -56,7 +56,7 @@ public class MemoryCache {
         }
     }
 
-    public String getEntryOrNull(String key) {
+    public String getEntryOrNull(final String key) {
         if (entryMap.containsKey(key) == false) {
             return null;
         } else {
@@ -66,14 +66,14 @@ public class MemoryCache {
         }
     }
 
-    public void setMaxEntryCount(int maxEntryCount) {
+    public void setMaxEntryCount(final int maxEntryCount) {
         this.maxEntryCount = maxEntryCount;
         this.removeExceedingMaxEntry(0);
     }
 
     private static void removeExceedingMaxInstance() {
         int index;
-        String key = null;
+        String key;
         while (instanceMap.size() > maxInstanceCount) {
             index = instanceList.size() - 1;
             key = instanceList.get(index);
@@ -82,7 +82,7 @@ public class MemoryCache {
         }
     }
 
-    private void removeExceedingMaxEntry(int targetIndexOfLifo) {
+    private void removeExceedingMaxEntry(final int targetIndexOfLifo) {
         int index;
         String key = null;
         while (entryMap.size() > maxEntryCount) {
