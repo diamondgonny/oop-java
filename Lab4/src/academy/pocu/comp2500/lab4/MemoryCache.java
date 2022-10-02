@@ -1,17 +1,17 @@
 package academy.pocu.comp2500.lab4;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
 public class MemoryCache {
-    // static and non-static
     private static HashMap<String, MemoryCache> instanceMap = new HashMap<>();
-    private static LinkedList<String> instanceList = new LinkedList<>();
+    private static LinkedHashSet<String> instances = new LinkedHashSet<>();
     private static int maxInstanceCount = Integer.MAX_VALUE;
     private EvictionPolicy evictionPolicy = EvictionPolicy.LEAST_RECENTLY_USED;
     private HashMap<String, String> entryMap = new HashMap<>();
-    private LinkedList<String> entryListAddedOrder = new LinkedList<>();
-    private LinkedList<String> entryListUsedOrder = new LinkedList<>();
+    private LinkedList<String> entryAddedOrder = new LinkedList<>();
+    private LinkedHashSet<String> entryUsedOrder = new LinkedHashSet<>();
     private int maxEntryCount = Integer.MAX_VALUE;
 
     private MemoryCache() {
@@ -20,17 +20,17 @@ public class MemoryCache {
     public static MemoryCache getInstance(final String myHardDiskName) {
         if (instanceMap.containsKey(myHardDiskName) == false) {
             instanceMap.put(myHardDiskName, new MemoryCache());
-            instanceList.addFirst(myHardDiskName);
+            instances.add(myHardDiskName);
             MemoryCache.removeExceedingMaxInstance();
         } else {
-            instanceList.remove(myHardDiskName);
-            instanceList.addFirst(myHardDiskName);
+            instances.remove(myHardDiskName);
+            instances.add(myHardDiskName);
         }
         return instanceMap.get(myHardDiskName);
     }
 
     public static void clear() {
-        instanceList.clear();
+        instances.clear();
         instanceMap.clear();
     }
 
@@ -39,20 +39,29 @@ public class MemoryCache {
         MemoryCache.removeExceedingMaxInstance();
     }
 
+    private static void removeExceedingMaxInstance() {
+        String key;
+        while (instanceMap.size() > maxInstanceCount) {
+            key = instances.iterator().next();
+            instances.remove(key);
+            instanceMap.remove(key);
+        }
+    }
+
     public void setEvictionPolicy(final EvictionPolicy evictionPolicy) {
         this.evictionPolicy = evictionPolicy;
     }
 
     public void addEntry(final String key, final String value) {
         if (entryMap.containsKey(key) == false) {
-            entryMap.put(key, value);
-            entryListAddedOrder.addFirst(key);
-            entryListUsedOrder.addFirst(key);
             this.removeExceedingMaxEntry(1);
+            entryMap.put(key, value);
+            entryAddedOrder.add(key);
+            entryUsedOrder.add(key);
         } else {
             entryMap.put(key, value);
-            entryListUsedOrder.remove(key);
-            entryListUsedOrder.addFirst(key);
+            entryUsedOrder.remove(key);
+            entryUsedOrder.add(key);
         }
     }
 
@@ -60,9 +69,8 @@ public class MemoryCache {
         if (entryMap.containsKey(key) == false) {
             return null;
         } else {
-            // entryListUsedOrder.remove(key);
-            removeReverse(entryListUsedOrder, key);
-            entryListUsedOrder.addFirst(key);
+            entryUsedOrder.remove(key);
+            entryUsedOrder.add(key);
             return entryMap.get(key);
         }
     }
@@ -72,51 +80,25 @@ public class MemoryCache {
         this.removeExceedingMaxEntry(0);
     }
 
-    private static void removeExceedingMaxInstance() {
-        int index;
-        String key;
-        while (instanceMap.size() > maxInstanceCount) {
-            index = instanceList.size() - 1;
-            key = instanceList.get(index);
-            instanceList.remove(index);
-            instanceMap.remove(key);
-        }
-    }
-
-    private void removeExceedingMaxEntry(final int targetIndexOfLifo) {
-        int index;
+    private void removeExceedingMaxEntry(final int addEntry) {
         String key = null;
-        while (entryMap.size() > maxEntryCount) {
+        while (entryMap.size() + addEntry > maxEntryCount) {
             if (this.evictionPolicy == EvictionPolicy.FIRST_IN_FIRST_OUT) {
-                index = entryListAddedOrder.size() - 1;
-                key = entryListAddedOrder.get(index);
-                entryListAddedOrder.remove(index);
-                // entryListUsedOrder.remove(key);
-                removeReverse(entryListUsedOrder, key);
+                key = entryAddedOrder.get(0);
+                entryAddedOrder.remove(0);
+                entryUsedOrder.remove(key);
             } else if (this.evictionPolicy == EvictionPolicy.LAST_IN_FIRST_OUT) {
-                index = targetIndexOfLifo;
-                key = entryListAddedOrder.get(index);
-                entryListAddedOrder.remove(key);
-                entryListUsedOrder.remove(key);
+                key = entryAddedOrder.get(entryAddedOrder.size() - 1);
+                entryAddedOrder.remove(entryAddedOrder.size() - 1);
+                entryUsedOrder.remove(key);
             } else if (this.evictionPolicy == EvictionPolicy.LEAST_RECENTLY_USED) {
-                index = entryListUsedOrder.size() - 1;
-                key = entryListUsedOrder.get(index);
-                entryListUsedOrder.remove(index);
-                // entryListAddedOrder.remove(key);
-                removeReverse(entryListAddedOrder, key);
+                key = entryUsedOrder.iterator().next();
+                entryUsedOrder.remove(key);
+                entryAddedOrder.remove(key);
             } else {
                 assert (false) : "Unknown case evictionPolicy in 'removeExceedingMaxEntry' method";
             }
             entryMap.remove(key);
-        }
-    }
-
-    private void removeReverse(LinkedList<String> entryList, final String key) {
-        for (int i = entryList.size() - 1; i >= 0; i--) {
-            if (entryList.get(i).equals(key)) {
-                entryList.remove(i);
-                return;
-            }
         }
     }
 }
