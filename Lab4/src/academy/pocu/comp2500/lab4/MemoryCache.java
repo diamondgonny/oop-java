@@ -39,15 +39,6 @@ public class MemoryCache {
         MemoryCache.removeExceedingMaxInstance();
     }
 
-    private static void removeExceedingMaxInstance() {
-        String key;
-        while (instanceMap.size() > maxInstanceCount) {
-            key = instances.iterator().next();
-            instances.remove(key);
-            instanceMap.remove(key);
-        }
-    }
-
     public void setEvictionPolicy(final EvictionPolicy evictionPolicy) {
         this.evictionPolicy = evictionPolicy;
     }
@@ -78,6 +69,14 @@ public class MemoryCache {
     public void setMaxEntryCount(final int maxEntryCount) {
         this.maxEntryCount = maxEntryCount;
         this.removeExceedingMaxEntry(0);
+    }
+
+    private static void removeExceedingMaxInstance() {
+        while (instanceMap.size() > maxInstanceCount) {
+            String key = instances.iterator().next();
+            instances.remove(key);
+            instanceMap.remove(key);
+        }
     }
 
     private void removeExceedingMaxEntry(final int addEntry) {
