@@ -60,8 +60,8 @@ public class MemoryCache {
         if (entryMap.containsKey(key) == false) {
             return null;
         } else {
-            entryListUsedOrder.remove(key);
-            // removeReverse(entryListUsedOrder, key);
+            // entryListUsedOrder.remove(key);
+            removeReverse(entryListUsedOrder, key);
             entryListUsedOrder.addFirst(key);
             return entryMap.get(key);
         }
@@ -113,7 +113,7 @@ public class MemoryCache {
 
     private void removeReverse(LinkedList<String> entryList, final String key) {
         for (int i = entryList.size() - 1; i >= 0; i--) {
-            if (entryList.get(i) == key) {
+            if (entryList.get(i).equals(key)) {
                 entryList.remove(i);
                 return;
             }
