@@ -57,7 +57,7 @@ public class Gladiator extends Barbarian {
         }
     }
 
-    public void addHp(int hp) {
+    private void addHp(int hp) {
         this.hp = (this.hp + hp < this.maxHp) ? this.hp + hp : this.maxHp;
     }
 }

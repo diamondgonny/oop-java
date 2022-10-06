@@ -19,14 +19,6 @@ public class Move {
         return power;
     }
 
-    public int getMaxPowerCount() {
-        return maxPowerCount;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
     public void addPower(int power) {
         this.power = (this.power + power < this.maxPowerCount) ? this.power + power : this.maxPowerCount;
     }
