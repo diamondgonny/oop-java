@@ -28,7 +28,7 @@ public class Gladiator extends Barbarian {
 
     public void attack(String moveName, Barbarian enemy) {
         int movePower = 0;
-        if (!this.isAlive() || !enemy.isAlive() || this.name == enemy.name || !moveMap.containsKey(moveName)) {
+        if (this.name == enemy.name || !this.isAlive() || !enemy.isAlive() || !moveMap.containsKey(moveName)) {
             return;
         }
         for (Move move : moveMap.values()) {
