@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab5;
 import java.util.HashMap;
 
 public class Gladiator extends Barbarian {
-    private HashMap<String, Move> moveMap;
+    protected HashMap<String, Move> moveMap;
 
     public Gladiator(String name, int hp, int attack, int defense) {
         super(name, hp, attack, defense);
