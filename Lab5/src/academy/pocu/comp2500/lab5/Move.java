@@ -28,10 +28,6 @@ public class Move {
     }
 
     public void addPower(int power) {
-        if (this.power + power < this.maxPowerCount) {
-            this.power += power;
-        } else {
-            this.power = this.maxPowerCount;
-        }
+        this.power = (this.power + power < this.maxPowerCount) ? this.power + power : this.maxPowerCount;
     }
 }

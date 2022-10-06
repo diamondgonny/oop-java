@@ -1,38 +1,38 @@
 package academy.pocu.comp2500.lab5;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Gladiator extends Barbarian {
-    private HashSet<Move> moveSet;
+    private HashMap<String, Move> moveMap;
 
     public Gladiator(String name, int hp, int attack, int defense) {
         super(name, hp, attack, defense);
-        this.moveSet = new HashSet<>();
+        this.moveMap = new HashMap<>();
     }
 
     public boolean addMove(Move move) {
-        if (this.moveSet.size() >= 4) {
+        if (this.moveMap.size() >= 4 || this.moveMap.containsKey(move.getName())) {
             return false;
         }
-        return this.moveSet.add(move) ? true : false;
+        this.moveMap.put(move.getName(), move);
+        return true;
     }
 
     public boolean removeMove(String moveName) {
-        return this.moveSet.remove(moveName) ? true : false;
+        if (!this.moveMap.containsKey(moveName)) {
+            return false;
+        }
+        this.moveMap.remove(moveName);
+        return true;
     }
 
     public void attack(String moveName, Barbarian enemy) {
         int movePower = 0;
-        if (!this.isAlive() || !enemy.isAlive() || this.name == enemy.name) {
+        if (!this.isAlive() || !enemy.isAlive() || this.name == enemy.name || !moveMap.containsKey(moveName)) {
             return;
         }
-        // 지정된 공격스킬을 사용하여 적을 공격하는데, 그 스킬을 모를경우 공격실패
-        if (!moveSet.contains(moveName)) {
-            return;
-        }
-        // 남아있는 파워 수치가 불충분하면 공격실패
-        for (Move move : moveSet) {
-            if (move.equals(moveName)) {
+        for (Move move : moveMap.values()) {
+            if (move.getName().equals(moveName)) {
                 if (move.getPower() == 0) {
                     return;
                 } else {
@@ -41,12 +41,9 @@ public class Gladiator extends Barbarian {
                 }
             }
         }
-        double damage = (this.attack / enemy.defense * movePower) / 2;
-        if (damage >= 2) {
-            enemy.hp -= (int) damage;
-        } else {
-            enemy.hp -= 1;
-        }
+        double damageForCalc = ((double)this.attack / (double)enemy.defense * (double)movePower) / 2;
+        int damage = (int)damageForCalc;
+        enemy.hp = (damage > 1) ? enemy.hp - damage : enemy.hp - 1;
     }
 
     public void rest() {
@@ -54,17 +51,12 @@ public class Gladiator extends Barbarian {
             return;
         }
         addHp(10);
-        for (Move move : moveSet) {
+        for (Move move : moveMap.values()) {
             move.addPower(1);
         }
     }
 
     public void addHp(int hp) {
-        if (this.hp + hp < this.maxHp) {
-            this.hp += hp;
-        } else {
-            this.hp = this.maxHp;
-        }
+        this.hp = (this.hp + hp < this.maxHp) ? this.hp + hp : this.maxHp;
     }
-
 }

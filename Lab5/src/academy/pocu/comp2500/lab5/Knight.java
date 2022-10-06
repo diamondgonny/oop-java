@@ -15,11 +15,8 @@ public class Knight extends Gladiator {
         if (pet == null) {
             return;
         }
-        double damage = (this.attack + pet.getAttack() * enemy.defense) / 2;
-        if (damage >= 2) {
-            enemy.hp -= (int) damage;
-        } else {
-            enemy.hp -= 1;
-        }
+        double damageForCalc = ((double)this.attack + (double)pet.getAttack() - (double)enemy.defense) / 2;
+        int damage = (int)damageForCalc;
+        enemy.hp = (damage > 1) ? enemy.hp - damage : enemy.hp - 1;
     }
 }

@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.lab5;
 
 public class Barbarian {
+    // private? protected?
     protected String name;
     protected int attack;
     protected int defense;
@@ -20,16 +21,12 @@ public class Barbarian {
     }
 
     public void attack(Barbarian enemy) {
-        if (!this.isAlive() || !enemy.isAlive() || this.name == enemy.name) {
+        if (this.name == enemy.name || !this.isAlive() || !enemy.isAlive()) {
             return;
         }
-
-        double damage = (this.attack - enemy.defense) / 2;
-        if (damage >= 2) {
-            enemy.hp -= (int) damage;
-        } else {
-            enemy.hp -= 1;
-        }
+        double damageForCalc = ((double)this.attack - (double)enemy.defense) / 2;
+        int damage = (int)damageForCalc;
+        enemy.hp = (damage > 1) ? enemy.hp - damage : enemy.hp - 1;
     }
 
     public boolean isAlive() {
