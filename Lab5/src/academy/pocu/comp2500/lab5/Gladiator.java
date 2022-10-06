@@ -41,8 +41,8 @@ public class Gladiator extends Barbarian {
                 }
             }
         }
-        double damageForCalc = ((double)this.attack / (double)enemy.defense * (double)movePower) / 2;
-        int damage = (int)damageForCalc;
+        double damageForCalc = ((double) this.attack / (double) enemy.defense * (double) movePower) / 2;
+        int damage = (int) damageForCalc;
         enemy.hp = (damage > 1) ? enemy.hp - damage : enemy.hp - 1;
         enemy.hp = (enemy.hp > 0) ? enemy.hp : 0;
     }
