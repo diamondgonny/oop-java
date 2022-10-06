@@ -8,12 +8,12 @@ public class Barbarian {
     protected int hp;
     protected int maxHp;
 
-    public Barbarian(String name, int hp, int attack, int defense) {
+    public Barbarian(String name, int maxHp, int attack, int defense) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.hp = hp;
-        this.maxHp = hp;
+        this.hp = maxHp;
+        this.maxHp = maxHp;
     }
 
     public int getHp() {
