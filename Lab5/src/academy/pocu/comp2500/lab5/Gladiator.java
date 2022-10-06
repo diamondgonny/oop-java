@@ -33,7 +33,7 @@ public class Gladiator extends Barbarian {
         }
         for (Move move : moveMap.values()) {
             if (move.getName().equals(moveName)) {
-                if (move.getPower() == 0) {
+                if (move.getPp() == 0) {
                     return;
                 } else {
                     movePower = move.getPower();
@@ -53,7 +53,7 @@ public class Gladiator extends Barbarian {
         }
         addHp(10);
         for (Move move : moveMap.values()) {
-            move.addPower(1);
+            move.addPp(1);
         }
     }
 

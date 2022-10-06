@@ -3,12 +3,14 @@ package academy.pocu.comp2500.lab5;
 public class Move {
     private String name;
     private int power;
-    private int maxPowerPoints;
+    private int pp;
+    private int maxPp;
 
     public Move(String name, int power, int maxPowerPoints) {
         this.name = name;
         this.power = power;
-        this.maxPowerPoints = maxPowerPoints;
+        this.pp = maxPowerPoints;
+        this.maxPp = maxPowerPoints;
     }
 
     public String getName() {
@@ -19,7 +21,11 @@ public class Move {
         return power;
     }
 
-    public void addPower(int power) {
-        this.power = (this.power + power < this.maxPowerPoints) ? this.power + power : this.maxPowerPoints;
+    public int getPp() {
+        return pp;
+    }
+
+    public void addPp(int pp) {
+        this.pp = (this.pp + pp < this.maxPp) ? this.pp + pp : this.maxPp;
     }
 }
