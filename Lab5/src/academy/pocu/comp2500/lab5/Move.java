@@ -25,6 +25,10 @@ public class Move {
         return pp;
     }
 
+    public void setPp(int pp) {
+        this.pp = pp;
+    }
+
     public void addPp(int pp) {
         this.pp = (this.pp + pp < this.maxPp) ? this.pp + pp : this.maxPp;
     }

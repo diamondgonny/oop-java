@@ -36,6 +36,7 @@ public class Gladiator extends Barbarian {
                 if (move.getPp() == 0) {
                     return;
                 } else {
+                    move.setPp(move.getPp() - 1);
                     movePower = move.getPower();
                     break;
                 }
