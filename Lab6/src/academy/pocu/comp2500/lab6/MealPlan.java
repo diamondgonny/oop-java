@@ -3,9 +3,9 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class MealPlan extends MenuItems {
-    private ArrayList<Appetizer> appetizers;
-    private ArrayList<MainCourse> mainCourses;
-    private ArrayList<Dessert> desserts;
+    protected ArrayList<Appetizer> appetizers;
+    protected ArrayList<MainCourse> mainCourses;
+    protected ArrayList<Dessert> desserts;
 
     protected MealPlan(final int price) {
         super(price);
