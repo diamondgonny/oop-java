@@ -6,25 +6,25 @@ public class MeatLoverPizza extends Pizza {
 
     public MeatLoverPizza() {
         super(PRICE);
-        this.getToppings().add(Topping.BACON);
-        this.getToppings().add(Topping.PEPERONI);
-        this.getToppings().add(Topping.HAM);
-        this.getToppings().add(Topping.SAUSAGES);
-        this.getToppings().add(Topping.CHEDDAR_CHEESE);
+        this.toppings.add(Topping.BACON);
+        this.toppings.add(Topping.PEPERONI);
+        this.toppings.add(Topping.HAM);
+        this.toppings.add(Topping.SAUSAGES);
+        this.toppings.add(Topping.CHEDDAR_CHEESE);
     }
 
     public boolean addBlackOlives() {
         if (isValid()) {
             return false;
         }
-        this.getToppings().add(Topping.BLACK_OLIVES);
+        this.toppings.add(Topping.BLACK_OLIVES);
         this.isVeggieAdded = true;
         this.isValidMenu();
         return true;
     }
 
     public boolean removeBlackOlives() {
-        boolean isRemoved = this.getToppings().remove(Topping.BLACK_OLIVES);
+        boolean isRemoved = this.toppings.remove(Topping.BLACK_OLIVES);
         if (isRemoved) {
             this.isVeggieAdded = false;
         }
@@ -36,14 +36,14 @@ public class MeatLoverPizza extends Pizza {
         if (isValid()) {
             return false;
         }
-        this.getToppings().add(Topping.RED_ONIONS);
+        this.toppings.add(Topping.RED_ONIONS);
         this.isVeggieAdded = true;
         this.isValidMenu();
         return true;
     }
 
     public boolean removeRedOnions() {
-        boolean isRemoved = this.getToppings().remove(Topping.RED_ONIONS);
+        boolean isRemoved = this.toppings.remove(Topping.RED_ONIONS);
         if (isRemoved) {
             this.isVeggieAdded = false;
         }
@@ -55,14 +55,14 @@ public class MeatLoverPizza extends Pizza {
         if (isValid()) {
             return false;
         }
-        this.getToppings().add(Topping.GREEN_PEPPERS);
+        this.toppings.add(Topping.GREEN_PEPPERS);
         this.isVeggieAdded = true;
         this.isValidMenu();
         return true;
     }
 
     public boolean removeGreenPeppers() {
-        boolean isRemoved = this.getToppings().remove(Topping.GREEN_PEPPERS);
+        boolean isRemoved = this.toppings.remove(Topping.GREEN_PEPPERS);
         if (isRemoved) {
             this.isVeggieAdded = false;
         }

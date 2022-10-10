@@ -8,20 +8,20 @@ public class NoHeavyMeal extends MealPlan {
     }
 
     public void setAppetizers(Appetizer appetizer1, Appetizer appetizer2) {
-        this.getAppetizers().clear();
-        this.getAppetizers().add(appetizer1);
-        this.getAppetizers().add(appetizer2);
+        this.appetizers.clear();
+        this.appetizers.add(appetizer1);
+        this.appetizers.add(appetizer2);
         this.isValidMenu();
     }
 
     public void setDessert(Dessert dessert) {
-        this.getDesserts().clear();
-        this.getDesserts().add(dessert);
+        this.desserts.clear();
+        this.desserts.add(dessert);
         this.isValidMenu();
     }
 
     private void isValidMenu() {
-        boolean isValid = this.getAppetizers().size() == 2 && this.getDesserts().size() == 1;
+        boolean isValid = this.appetizers.size() == 2 && this.desserts.size() == 1;
         setValid(isValid);
     }
 }

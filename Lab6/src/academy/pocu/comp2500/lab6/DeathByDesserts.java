@@ -8,16 +8,16 @@ public class DeathByDesserts extends MealPlan {
     }
 
     public void setDesserts(Dessert dessert1, Dessert dessert2, Dessert dessert3, Dessert dessert4) {
-        this.getDesserts().clear();
-        this.getDesserts().add(dessert1);
-        this.getDesserts().add(dessert2);
-        this.getDesserts().add(dessert3);
-        this.getDesserts().add(dessert4);
+        this.desserts.clear();
+        this.desserts.add(dessert1);
+        this.desserts.add(dessert2);
+        this.desserts.add(dessert3);
+        this.desserts.add(dessert4);
         this.isValidMenu();
     }
 
     private void isValidMenu() {
-        boolean isValid = this.getDesserts().size() == 4;
+        boolean isValid = this.desserts.size() == 4;
         setValid(isValid);
     }
 }
