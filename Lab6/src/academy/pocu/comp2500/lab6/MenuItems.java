@@ -4,7 +4,7 @@ public class MenuItems {
     private final int price;
     private boolean isValid;
 
-    protected MenuItems(final int price) {
+    protected MenuItems(int price) {
         this.price = price;
         this.isValid = false;
     }
