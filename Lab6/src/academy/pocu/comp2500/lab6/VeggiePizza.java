@@ -72,6 +72,6 @@ public class VeggiePizza extends Pizza {
 
     private boolean isValidMenu() {
         boolean isValid = this.cheeseCount == MAX_CHEESE_COUNT;
-        return isValid;
+        return this.isValid = isValid;
     }
 }

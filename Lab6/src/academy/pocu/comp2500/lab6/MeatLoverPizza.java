@@ -72,6 +72,6 @@ public class MeatLoverPizza extends Pizza {
 
     private boolean isValidMenu() {
         boolean isValid = this.isVeggieAdded;
-        return isValid;
+        return this.isValid = isValid;
     }
 }

@@ -22,6 +22,6 @@ public class NoHeavyMeal extends MealPlan {
 
     private boolean isValidMenu() {
         boolean isValid = this.appetizers.size() == 2 && this.desserts.size() == 1;
-        return isValid;
+        return this.isValid = isValid;
     }
 }

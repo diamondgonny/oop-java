@@ -29,6 +29,6 @@ public class ThreeCourseMeal extends MealPlan {
         boolean isValid = this.appetizers.size() == 1
                 && this.mainCourses.size() == 1
                 && this.desserts.size() == 1;
-        return isValid;
+        return this.isValid = isValid;
     }
 }

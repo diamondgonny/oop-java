@@ -73,6 +73,6 @@ public class HousePizza extends Pizza {
 
     private boolean isValidMenu() {
         boolean isValid = this.meatCount == MAX_MEAT_COUNT;
-        return isValid;
+        return this.isValid = isValid;
     }
 }
