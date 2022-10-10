@@ -15,14 +15,17 @@ public class MealPlan extends MenuItems {
     }
 
     public ArrayList<Appetizer> getAppetizers() {
+        assert (this.appetizers != null) : "call isValid() first!";
         return this.appetizers;
     }
 
     public ArrayList<MainCourse> getMainCourses() {
+        assert (this.mainCourses != null) : "call isValid() first!";
         return this.mainCourses;
     }
 
     public ArrayList<Dessert> getDesserts() {
+        assert (this.desserts != null) : "call isValid() first!";
         return this.desserts;
     }
 }
