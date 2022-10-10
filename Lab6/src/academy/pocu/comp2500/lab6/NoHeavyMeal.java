@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab6;
 
-import java.util.ArrayList;
-
 public class NoHeavyMeal extends MealPlan {
     private static final int PRICE = 15;
 
