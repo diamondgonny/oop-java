@@ -70,8 +70,8 @@ public class MeatLoverPizza extends Pizza {
         return isRemoved;
     }
 
-    private void isValidMenu() {
+    private boolean isValidMenu() {
         boolean isValid = this.isVeggieAdded;
-        setValid(isValid);
+        return isValid;
     }
 }

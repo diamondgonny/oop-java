@@ -16,8 +16,8 @@ public class DeathByDesserts extends MealPlan {
         this.isValidMenu();
     }
 
-    private void isValidMenu() {
+    private boolean isValidMenu() {
         boolean isValid = this.desserts.size() == 4;
-        setValid(isValid);
+        return isValid;
     }
 }

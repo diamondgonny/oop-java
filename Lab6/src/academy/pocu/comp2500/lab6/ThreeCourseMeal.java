@@ -25,10 +25,10 @@ public class ThreeCourseMeal extends MealPlan {
         this.isValidMenu();
     }
 
-    private void isValidMenu() {
+    private boolean isValidMenu() {
         boolean isValid = this.appetizers.size() == 1
                 && this.mainCourses.size() == 1
                 && this.desserts.size() == 1;
-        setValid(isValid);
+        return isValid;
     }
 }

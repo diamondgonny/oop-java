@@ -69,10 +69,10 @@ public class FreeSoulPizza extends Pizza {
                 || topping == Topping.FETA_CHEESE;
     }
 
-    private void isValidMenu() {
+    private boolean isValidMenu() {
         boolean isValid = this.meatCount == MAX_MEAT_COUNT
                 && this.veggieCount == MAX_VEGGIE_COUNT
                 && this.isCheeseAdded;
-        setValid(isValid);
+        return isValid;
     }
 }
