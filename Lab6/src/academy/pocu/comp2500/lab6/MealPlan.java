@@ -7,7 +7,7 @@ public class MealPlan extends MenuItems {
     private ArrayList<MainCourse> mainCourses;
     private ArrayList<Dessert> desserts;
 
-    protected MealPlan(int price) {
+    protected MealPlan(final int price) {
         super(price);
         this.appetizers = new ArrayList<>();
         this.mainCourses = new ArrayList<>();
