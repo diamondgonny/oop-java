@@ -16,8 +16,4 @@ public class MenuItems {
     public boolean isValid() {
         return this.isValid;
     }
-
-    public void setValid(boolean valid) {
-        this.isValid = valid;
-    }
 }
