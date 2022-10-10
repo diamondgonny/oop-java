@@ -7,24 +7,24 @@ public class HousePizza extends Pizza {
 
     public HousePizza() {
         super(PRICE);
-        this.toppings.add(Topping.BLACK_OLIVES);
-        this.toppings.add(Topping.RED_ONIONS);
-        this.toppings.add(Topping.GREEN_PEPPERS);
-        this.toppings.add(Topping.MOZZARELLA_CHEESE);
+        this.getToppings().add(Topping.BLACK_OLIVES);
+        this.getToppings().add(Topping.RED_ONIONS);
+        this.getToppings().add(Topping.GREEN_PEPPERS);
+        this.getToppings().add(Topping.MOZZARELLA_CHEESE);
     }
 
     public boolean addBacon() {
-        if (isValid) {
+        if (isValid()) {
             return false;
         }
-        this.toppings.add(Topping.BACON);
+        this.getToppings().add(Topping.BACON);
         ++this.meatCount;
         this.isValidMenu();
         return true;
     }
 
     public boolean removeBacon() {
-        boolean isRemoved = this.toppings.remove(Topping.BACON);
+        boolean isRemoved = this.getToppings().remove(Topping.BACON);
         if (isRemoved) {
             --this.meatCount;
         }
@@ -33,17 +33,17 @@ public class HousePizza extends Pizza {
     }
 
     public boolean addPeperoni() {
-        if (isValid) {
+        if (isValid()) {
             return false;
         }
-        this.toppings.add(Topping.PEPERONI);
+        this.getToppings().add(Topping.PEPERONI);
         ++this.meatCount;
         this.isValidMenu();
         return true;
     }
 
     public boolean removePeperoni() {
-        boolean isRemoved = this.toppings.remove(Topping.PEPERONI);
+        boolean isRemoved = this.getToppings().remove(Topping.PEPERONI);
         if (isRemoved) {
             --this.meatCount;
         }
@@ -52,17 +52,17 @@ public class HousePizza extends Pizza {
     }
 
     public boolean addSausages() {
-        if (isValid) {
+        if (isValid()) {
             return false;
         }
-        this.toppings.add(Topping.SAUSAGES);
+        this.getToppings().add(Topping.SAUSAGES);
         ++this.meatCount;
         this.isValidMenu();
         return true;
     }
 
     public boolean removeSausages() {
-        boolean isRemoved = this.toppings.remove(Topping.SAUSAGES);
+        boolean isRemoved = this.getToppings().remove(Topping.SAUSAGES);
 
         if (isRemoved) {
             --this.meatCount;
@@ -71,7 +71,8 @@ public class HousePizza extends Pizza {
         return isRemoved;
     }
 
-    private boolean isValidMenu() {
-        return isValid = this.meatCount == MAX_MEAT_COUNT;
+    private void isValidMenu() {
+        boolean isValid = this.meatCount == MAX_MEAT_COUNT;
+        setValid(isValid);
     }
 }
