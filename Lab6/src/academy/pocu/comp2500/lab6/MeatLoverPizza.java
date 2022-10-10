@@ -13,67 +13,64 @@ public class MeatLoverPizza extends Pizza {
         this.toppings.add(Topping.CHEDDAR_CHEESE);
     }
 
-    public boolean isValid() {
-        return this.isVeggieAdded;
-    }
-
     public boolean addBlackOlives() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.BLACK_OLIVES);
         this.isVeggieAdded = true;
+        this.isValidMenu();
         return true;
     }
 
     public boolean removeBlackOlives() {
         boolean isRemoved = this.toppings.remove(Topping.BLACK_OLIVES);
-
         if (isRemoved) {
             this.isVeggieAdded = false;
         }
-
+        this.isValidMenu();
         return isRemoved;
     }
 
     public boolean addRedOnions() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.RED_ONIONS);
         this.isVeggieAdded = true;
+        this.isValidMenu();
         return true;
     }
 
     public boolean removeRedOnions() {
         boolean isRemoved = this.toppings.remove(Topping.RED_ONIONS);
-
         if (isRemoved) {
             this.isVeggieAdded = false;
         }
-
+        this.isValidMenu();
         return isRemoved;
     }
 
     public boolean addGreenPeppers() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.GREEN_PEPPERS);
         this.isVeggieAdded = true;
+        this.isValidMenu();
         return true;
     }
 
     public boolean removeGreenPeppers() {
         boolean isRemoved = this.toppings.remove(Topping.GREEN_PEPPERS);
-
         if (isRemoved) {
             this.isVeggieAdded = false;
         }
-
+        this.isValidMenu();
         return isRemoved;
+    }
+
+    private boolean isValidMenu() {
+        return isValid = this.isVeggieAdded;
     }
 }

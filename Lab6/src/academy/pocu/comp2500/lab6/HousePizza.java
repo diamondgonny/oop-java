@@ -13,57 +13,51 @@ public class HousePizza extends Pizza {
         this.toppings.add(Topping.MOZZARELLA_CHEESE);
     }
 
-    public boolean isValid() {
-        return this.meatCount == MAX_MEAT_COUNT;
-    }
-
     public boolean addBacon() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.BACON);
         ++this.meatCount;
+        this.isValidMenu();
         return true;
     }
 
     public boolean removeBacon() {
         boolean isRemoved = this.toppings.remove(Topping.BACON);
-
         if (isRemoved) {
             --this.meatCount;
         }
-
+        this.isValidMenu();
         return isRemoved;
     }
 
     public boolean addPeperoni() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.PEPERONI);
         ++this.meatCount;
+        this.isValidMenu();
         return true;
     }
 
     public boolean removePeperoni() {
         boolean isRemoved = this.toppings.remove(Topping.PEPERONI);
-
         if (isRemoved) {
             --this.meatCount;
         }
-
+        this.isValidMenu();
         return isRemoved;
     }
 
     public boolean addSausages() {
-        if (isValid()) {
+        if (isValid) {
             return false;
         }
-
         this.toppings.add(Topping.SAUSAGES);
         ++this.meatCount;
+        this.isValidMenu();
         return true;
     }
 
@@ -73,7 +67,11 @@ public class HousePizza extends Pizza {
         if (isRemoved) {
             --this.meatCount;
         }
-
+        this.isValidMenu();
         return isRemoved;
+    }
+
+    private boolean isValidMenu() {
+        return isValid = this.meatCount == MAX_MEAT_COUNT;
     }
 }
