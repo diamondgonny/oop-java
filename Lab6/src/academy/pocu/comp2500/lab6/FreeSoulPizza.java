@@ -18,7 +18,7 @@ public class FreeSoulPizza extends Pizza {
                 || (isCheese(topping) && this.isCheeseAdded)) {
             return false;
         }
-        this.toppings.add(topping);
+        this.getToppings().add(topping);
         if (isMeat(topping)) {
             ++this.meatCount;
         }
@@ -33,7 +33,7 @@ public class FreeSoulPizza extends Pizza {
     }
 
     public boolean removeTopping(Topping topping) {
-        boolean isRemoved = this.toppings.remove(topping);
+        boolean isRemoved = this.getToppings().remove(topping);
         if (isRemoved) {
             if (isMeat(topping)) {
                 --this.meatCount;
@@ -69,9 +69,10 @@ public class FreeSoulPizza extends Pizza {
                 || topping == Topping.FETA_CHEESE;
     }
 
-    private boolean isValidMenu() {
-        return isValid = this.meatCount == MAX_MEAT_COUNT
+    private void isValidMenu() {
+        boolean isValid = this.meatCount == MAX_MEAT_COUNT
                 && this.veggieCount == MAX_VEGGIE_COUNT
                 && this.isCheeseAdded;
+        setValid(isValid);
     }
 }

@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab6;
 import java.util.ArrayList;
 
 public class Pizza extends MenuItems {
-    protected ArrayList<Topping> toppings;
+    private ArrayList<Topping> toppings;
 
     protected Pizza(int price) {
         super(price);
