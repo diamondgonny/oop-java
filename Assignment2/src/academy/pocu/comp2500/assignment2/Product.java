@@ -5,17 +5,30 @@ public class Product {
     private Size size;
     private Color color;
     private int price;
-    private ShippingMethod shippingMethod;
+    private Shipment shipment;
 
-    protected Product(String name, Size size, Color color, int price, ShippingMethod shippingMethod) {
+    protected Product(String name, Size size, Color color, Shipment shipment) {
         this.name = name;
         this.size = size;
         this.color = color;
+        this.shipment = shipment;
+    }
+
+    protected Product(String name, Size size, Color color, int price, Shipment shipment) {
+        this(name, size, color, shipment);
         this.price = price;
-        this.shippingMethod = shippingMethod;
     }
 
     // getter, setter
+
+    public Size getSize() {
+        return size;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     protected void setSize(Size size) {
         this.size = size;
     }
@@ -28,7 +41,11 @@ public class Product {
         this.price = price;
     }
 
-    protected void setShippingMethod(ShippingMethod shippingMethod) {
-        this.shippingMethod = shippingMethod;
+    protected void setShippingMethod(Shipment shipment) {
+        this.shipment = shipment;
+    }
+
+    protected void addPrice(int price) {
+        this.price += price;
     }
 }

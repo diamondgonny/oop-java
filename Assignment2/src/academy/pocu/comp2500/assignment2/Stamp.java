@@ -3,8 +3,8 @@ package academy.pocu.comp2500.assignment2;
 public class Stamp extends Product {
     private String text;
 
-    public Stamp(StampSize size, StampColor color, String text, ShippingMethod shippingMethod) {
-        super("Stamp", size.getSize(), color.getColor(), size.getPrice(), shippingMethod);
+    public Stamp(StampSize size, StampColor color, String text, Shipment shipment) {
+        super("Stamp", size.getSize(), color.getColor(), size.getPrice(), shipment);
         this.text = text;
     }
 
@@ -21,7 +21,7 @@ public class Stamp extends Product {
         this.text = text;
     }
 
-    public void setShippingMethod(ShippingMethod shippingMethod) {
-        this.setShippingMethod(shippingMethod);
+    public void setShippingMethod(Shipment shipment) {
+        this.setShippingMethod(shipment);
     }
 }

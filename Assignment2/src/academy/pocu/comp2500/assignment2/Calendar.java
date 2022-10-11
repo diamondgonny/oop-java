@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.assignment2;
 
-public class Calendar extends Product{
+public class Calendar extends Product {
     private CalendarType type;
 
-    public Calendar(CalendarType type, ShippingMethod shippingMethod) {
-        super("Calendar", type.getSize(), new Color(0xff, 0xff, 0xff), type.getPrice(), shippingMethod);
+    public Calendar(CalendarType type, Shipment shipment) {
+        super("Calendar", type.getSize(), new Color(0xff, 0xff, 0xff), type.getPrice(), shipment);
         this.type = type;
     }
 
@@ -14,7 +14,7 @@ public class Calendar extends Product{
         this.type = type;
     }
 
-    public void setShippingMethod(ShippingMethod shippingMethod) {
-        this.setShippingMethod(shippingMethod);
+    public void setShippingMethod(Shipment shipment) {
+        this.setShippingMethod(shipment);
     }
 }
