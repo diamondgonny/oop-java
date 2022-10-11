@@ -5,8 +5,8 @@ public class BusinessCard extends ProductAperture {
     private BusinessCardSides sides;
 
     // Aperture?
-    public BusinessCard(BusinessCardType type, Size size, BusinessCardColor color,
-                  BusinessCardSides sides, Orientation orientation, Shipment shipment) {
+    public BusinessCard(BusinessCardType type, BusinessCardColor color, BusinessCardSides sides,
+                        Orientation orientation, Shipment shipment) {
         super("BusinessCard", new Size(90, 50), color.getColor(), orientation, shipment);
 
         int price = 0;
