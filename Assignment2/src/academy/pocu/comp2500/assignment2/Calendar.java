@@ -13,8 +13,4 @@ public class Calendar extends Product {
         this.setPrice(type.getPrice());
         this.type = type;
     }
-
-    public void setShippingMethod(Shipment shipment) {
-        this.setShippingMethod(shipment);
-    }
 }
