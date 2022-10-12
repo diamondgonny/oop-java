@@ -6,7 +6,7 @@ public class ProductAperture extends Product {
     private Orientation orientation;
     private ArrayList<Aperture> apertures;
 
-    public ProductAperture(String name, Size size, Color color, Orientation orientation,
+    protected ProductAperture(String name, Size size, Color color, Orientation orientation,
                            ShippingMethod shippingMethod) {
         super(name, size, color, shippingMethod);
         this.orientation = orientation;
