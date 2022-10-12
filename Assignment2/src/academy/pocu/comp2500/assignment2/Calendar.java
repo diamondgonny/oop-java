@@ -10,7 +10,7 @@ public class Calendar extends Product {
         this.type = type;
     }
 
-    public CalendarType getCalendarType() {
+    public CalendarType getType() {
         return type;
     }
 }
