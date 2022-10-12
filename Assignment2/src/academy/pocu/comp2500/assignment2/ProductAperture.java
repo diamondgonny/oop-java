@@ -7,7 +7,7 @@ public class ProductAperture extends Product {
     private ArrayList<Aperture> apertures;
 
     protected ProductAperture(String name, Size size, Color color, Orientation orientation,
-                           ShippingMethod shippingMethod) {
+                              ShippingMethod shippingMethod) {
         super(name, size, color, shippingMethod);
         this.orientation = orientation;
         this.apertures = new ArrayList<Aperture>();
