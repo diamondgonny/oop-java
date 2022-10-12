@@ -20,6 +20,14 @@ public class Product {
 
     // getter, setter
 
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
     public Size getSize() {
         return size;
     }

@@ -11,14 +11,7 @@ public class Stamp extends Product {
         this.text = text;
     }
 
-    /*
-    public void setSize(StampSize size) {
-        this.setSize(size.getSize());
-        this.setPrice(size.getPrice());
-    }
-     */
-
-    public void setText(String text) {
-        this.text = text;
+    public String getText() {
+        return text;
     }
 }

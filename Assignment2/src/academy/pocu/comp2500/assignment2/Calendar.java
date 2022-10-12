@@ -10,9 +10,7 @@ public class Calendar extends Product {
         this.type = type;
     }
 
-    public void setCalendarType(CalendarType type) {
-        this.setSize(type.getSize());
-        this.setPrice(type.getPrice());
-        this.type = type;
+    public CalendarType getCalendarType() {
+        return type;
     }
 }
