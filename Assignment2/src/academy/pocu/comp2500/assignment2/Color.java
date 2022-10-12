@@ -13,4 +13,16 @@ public class Color {
         this.green = (short) Math.max(0, Math.min(green, 255));
         this.blue = (short) Math.max(0, Math.min(blue, 255));
     }
+
+    public short getRed() {
+        return red;
+    }
+
+    public short getGreen() {
+        return green;
+    }
+
+    public short getBlue() {
+        return blue;
+    }
 }
