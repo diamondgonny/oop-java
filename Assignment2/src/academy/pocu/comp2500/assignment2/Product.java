@@ -29,6 +29,10 @@ public class Product {
         return price;
     }
 
+    public ShippingMethod getShippingMethod() {
+        return shippingMethod;
+    }
+
     protected void setSize(Size size) {
         this.size = size;
     }
