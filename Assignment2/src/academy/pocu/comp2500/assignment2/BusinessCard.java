@@ -34,4 +34,12 @@ public class BusinessCard extends ProductAperture {
         this.type = type;
         this.sides = sides;
     }
+
+    public BusinessCardType getType() {
+        return type;
+    }
+
+    public BusinessCardSides getSides() {
+        return sides;
+    }
 }

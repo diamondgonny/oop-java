@@ -37,4 +37,7 @@ public class Banner extends ProductAperture {
         this.type = type;
     }
 
+    public BannerType getType() {
+        return type;
+    }
 }
