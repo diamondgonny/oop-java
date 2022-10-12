@@ -6,7 +6,10 @@ public class Banner extends ProductAperture {
     // Aperture?
     public Banner(BannerType type, BannerSize size, Color color,
                   Orientation orientation, ShippingMethod shippingMethod) {
-        super("Banner", size.getSize(), color, orientation, shippingMethod);
+        super(size.getSize(), color, orientation, shippingMethod);
+        String name = String.format("%s Banner (%d mm x %d mm)", type.getType(),
+                size.getSize().getWidth(), size.getSize().getHeight());
+        super.setName(name);
 
         int price = 0;
         switch (size) {

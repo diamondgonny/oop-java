@@ -7,15 +7,14 @@ public class Product {
     private int price;
     private ShippingMethod shippingMethod;
 
-    protected Product(String name, Size size, Color color, ShippingMethod shippingMethod) {
-        this.name = name;
+    protected Product(Size size, Color color, ShippingMethod shippingMethod) {
         this.size = size;
         this.color = color;
         this.shippingMethod = shippingMethod;
     }
 
-    protected Product(String name, Size size, Color color, int price, ShippingMethod shippingMethod) {
-        this(name, size, color, shippingMethod);
+    protected Product(Size size, Color color, int price, ShippingMethod shippingMethod) {
+        this(size, color, shippingMethod);
         this.price = price;
     }
 
@@ -35,6 +34,10 @@ public class Product {
 
     public void setShippingMethod(ShippingMethod shippingMethod) {
         this.shippingMethod = shippingMethod;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
     }
 
     protected void setSize(Size size) {
