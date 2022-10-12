@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Color {
-    private int red;
-    private int green;
-    private int blue;
+    private short red;
+    private short green;
+    private short blue;
 
     public Color(int red, int green, int blue) {
 //        assert(0 <= red && red <= 255);
