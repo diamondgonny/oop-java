@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public enum BusinessCardColor {
-    GRAY(new Color(0xe6, 0xe6, 0xe6)),
-    IVORY(new Color(0xff, 0xff, 0xf0)),
-    WHITE(new Color(0xff, 0xff, 0xff));
+    GRAY(new Color((short) 0xe6, (short) 0xe6, (short) 0xe6)),
+    IVORY(new Color((short) 0xff, (short) 0xff, (short) 0xf0)),
+    WHITE(new Color((short) 0xff, (short) 0xff, (short) 255));
 
     private final Color color;
 
