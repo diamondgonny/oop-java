@@ -15,7 +15,7 @@ public class ProductAperture extends Product {
 
     // *****************************************
     public void addAperture(Aperture aperture) {
-        if (!validateAperture(aperture)) {
+        if (!validateAperture(aperture) || apertures.contains(aperture)) {
             return;
         }
         apertures.add(aperture);
