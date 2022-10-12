@@ -13,6 +13,10 @@ public class ProductAperture extends Product {
         this.apertures = new ArrayList<Aperture>();
     }
 
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
     // *****************************************
     public void addAperture(Aperture aperture) {
         if (!validateAperture(aperture) || apertures.contains(aperture)) {
