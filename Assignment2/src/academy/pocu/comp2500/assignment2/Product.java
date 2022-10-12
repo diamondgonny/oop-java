@@ -33,6 +33,10 @@ public class Product {
         return shippingMethod;
     }
 
+    public void setShippingMethod(ShippingMethod shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
     protected void setSize(Size size) {
         this.size = size;
     }
@@ -43,10 +47,6 @@ public class Product {
 
     protected void setPrice(int price) {
         this.price = price;
-    }
-
-    protected void setShippingMethod(ShippingMethod shippingMethod) {
-        this.shippingMethod = shippingMethod;
     }
 
     protected void addPrice(int price) {
