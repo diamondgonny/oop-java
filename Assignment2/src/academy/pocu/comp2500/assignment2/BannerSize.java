@@ -8,7 +8,7 @@ public enum BannerSize {
 
     private final Size size;
 
-    private BannerSize(Size size) {
+    BannerSize(Size size) {
         this.size = size;
     }
 

@@ -7,7 +7,7 @@ public enum StampColor {
 
     private final Color color;
 
-    private StampColor(Color color) {
+    StampColor(Color color) {
         this.color = color;
     }
 

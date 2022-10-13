@@ -8,7 +8,7 @@ public enum StampSize {
     private final Size size;
     private final int price;
 
-    private StampSize(Size size, int price) {
+    StampSize(Size size, int price) {
         this.size = size;
         this.price = price;
     }
