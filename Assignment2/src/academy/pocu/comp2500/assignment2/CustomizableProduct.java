@@ -29,10 +29,6 @@ public class CustomizableProduct extends Product {
         super.addPrice(5);
     }
 
-    public int countAperture() {
-        return apertures.size();
-    }
-
     private boolean validateAperture(Aperture aperture) {
         int r1w = this.getSize().getWidth();
         int r1h = this.getSize().getHeight();
