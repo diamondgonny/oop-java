@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment2;
 
-public class Banner extends ProductAperture {
+public class Banner extends CustomizableProduct {
     private BannerType type;
 
     public Banner(BannerType type, BannerSize size, Color color,

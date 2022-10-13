@@ -2,12 +2,12 @@ package academy.pocu.comp2500.assignment2;
 
 import java.util.ArrayList;
 
-public class ProductAperture extends Product {
+public class CustomizableProduct extends Product {
     private Orientation orientation;
     private ArrayList<Aperture> apertures;
 
-    protected ProductAperture(Size size, Color color, Orientation orientation,
-                              ShippingMethod shippingMethod) {
+    protected CustomizableProduct(Size size, Color color, Orientation orientation,
+                                  ShippingMethod shippingMethod) {
         super(size, color, shippingMethod);
         this.orientation = orientation;
         this.apertures = new ArrayList<Aperture>();
