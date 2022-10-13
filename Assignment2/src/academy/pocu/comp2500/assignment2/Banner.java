@@ -11,7 +11,6 @@ public class Banner extends CustomizableProduct {
 
         if (type == BannerType.GLOSS) {
             bannerType = "Gloss";
-            bannerPrice -= 100;
         } else if (type == BannerType.SCRIM) {
             bannerType = "Scrim";
         } else if (type == BannerType.MESH) {
@@ -34,6 +33,10 @@ public class Banner extends CustomizableProduct {
             bannerPrice = 6100;
         } else {
             assert (false) : "unknown size";
+        }
+
+        if (type == BannerType.GLOSS) {
+            bannerPrice -= 100;
         }
 
         super.setName(String.format("%s Banner (%d mm x %d mm)", bannerType,
