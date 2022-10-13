@@ -19,11 +19,9 @@ public class ProductAperture extends Product {
 
     // *****************************************
     public void addAperture(Aperture aperture) {
-        /*
         if (!validateAperture(aperture) || apertures.contains(aperture)) {
             return;
         }
-         */
         apertures.add(aperture);
         super.addPrice(5);
         // Aperture (문자, 사진)
@@ -40,6 +38,6 @@ public class ProductAperture extends Product {
         int r2y = aperture.getY();
         int r2w = aperture.getWidth();
         int r2h = aperture.getHeight();
-        return (0 > r2x + r2w || r1w < r2x || 0 > r2y + r2h || r1h < r2y);
+        return (0 < r2x + r2w && r2x < r1w && 0 < r2y + r2h && r2y < r1h);
     }
 }
