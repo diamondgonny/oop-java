@@ -13,6 +13,7 @@ public class Product {
         this.shippingMethod = shippingMethod;
     }
 
+    // delete price
     protected Product(Size size, Color color, int price, ShippingMethod shippingMethod) {
         this(size, color, shippingMethod);
         this.price = price;
@@ -44,14 +45,6 @@ public class Product {
 
     protected void setName(String name) {
         this.name = name;
-    }
-
-    protected void setSize(Size size) {
-        this.size = size;
-    }
-
-    protected void setColor(Color color) {
-        this.color = color;
     }
 
     protected void setPrice(int price) {
