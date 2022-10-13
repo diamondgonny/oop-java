@@ -21,14 +21,6 @@ public class ShoppingCart {
         items.remove(product);
     }
 
-    public void checkShippingMethod(Product product, ShippingMethod shippingMethod) {
-        for (Product item : items) {
-            if (item.equals(product)) {
-                item.setShippingMethod(shippingMethod);
-            }
-        }
-    }
-
     public int getTotalPrice() {
         int total = 0;
         for (Product product : items) {
