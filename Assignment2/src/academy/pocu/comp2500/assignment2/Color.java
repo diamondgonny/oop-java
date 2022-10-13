@@ -11,15 +11,9 @@ public class Color {
         this.blue = (short) Math.max(0, Math.min(blue, 255));
     }
 
-    public short getRed() {
-        return red;
-    }
-
-    public short getGreen() {
-        return green;
-    }
-
-    public short getBlue() {
-        return blue;
+    public int getRgbColor() {
+        // System.out.format("0x%06x\n", item.getColor().getRgbColor());
+        int color = (int) red * 0x10000 + (int) green * 0x100 + (int) blue;
+        return color;
     }
 }
