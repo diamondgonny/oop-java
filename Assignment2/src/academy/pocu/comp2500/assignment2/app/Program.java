@@ -11,16 +11,17 @@ public class Program {
 //        businessCard.addAperture(new ImageAperture(0, 0, 3, 3, "hello"));
 //        System.out.println(businessCard.getPrice());
 
-//        ShoppingCart shoppingCart = new ShoppingCart();
-//        Stamp stamp = new Stamp(StampSize.W70H40, StampColor.GREEN, "ABC", ShippingMethod.PICKUP);
-//        shoppingCart.addItem(stamp);
-//        stamp.setShippingMethod(ShippingMethod.SHIP);
+        ShoppingCart shoppingCart1 = new ShoppingCart();
+        Stamp stamp1 = new Stamp(StampSize.W70H40, StampColor.GREEN, "ABC", ShippingMethod.PICKUP);
+        shoppingCart1.addItem(stamp1);
+        stamp1.setShippingMethod(ShippingMethod.SHIP);
+        System.out.format("0x%06x\n", stamp1.getColor().getRgbColor());
 
-//        ShoppingCart shoppingCart = new ShoppingCart();
-//        Stamp stamp = new Stamp(StampSize.W40H30, StampColor.RED, "ABC", ShippingMethod.PICKUP);
-//        shoppingCart.addItem(stamp);
-//        stamp.setShippingMethod(ShippingMethod.SHIP);
-//        System.out.println(stamp.getShippingMethod());
+        ShoppingCart shoppingCart2 = new ShoppingCart();
+        Stamp stamp2 = new Stamp(StampSize.W40H30, StampColor.RED, "ABC", ShippingMethod.PICKUP);
+        shoppingCart2.addItem(stamp2);
+        stamp2.setShippingMethod(ShippingMethod.SHIP);
+        System.out.format("0x%06x\n", stamp2.getColor().getRgbColor());
 //        ...
 
         BusinessCard businessCard = new BusinessCard(BusinessCardType.LAID, BusinessCardColor.GRAY,
