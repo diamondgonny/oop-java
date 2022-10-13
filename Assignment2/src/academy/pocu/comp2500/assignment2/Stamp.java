@@ -30,6 +30,7 @@ public class Stamp extends Product {
         } else {
             assert (false) : "unknown color";
         }
+
         super.setName(String.format("Stamp (%d mm x %d mm)",stampSize.getWidth(), stampSize.getHeight()));
         super.setSize(stampSize);
         super.setColor(stampColor);
