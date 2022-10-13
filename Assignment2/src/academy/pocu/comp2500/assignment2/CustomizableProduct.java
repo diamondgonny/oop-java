@@ -21,12 +21,13 @@ public class CustomizableProduct extends Product {
         return apertures;
     }
 
-    public void addAperture(Aperture aperture) {
+    public boolean addAperture(Aperture aperture) {
         if (!validateAperture(aperture) || apertures.contains(aperture)) {
-            return;
+            return false;
         }
         apertures.add(aperture);
         super.addPrice(5);
+        return true;
     }
 
     private boolean validateAperture(Aperture aperture) {
