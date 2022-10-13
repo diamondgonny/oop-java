@@ -6,10 +6,7 @@ public class CustomizableProduct extends Product {
     private Orientation orientation;
     private ArrayList<Aperture> apertures;
 
-    protected CustomizableProduct(Orientation orientation,
-                                  ShippingMethod shippingMethod) {
-        super.setShippingMethod(shippingMethod);
-        this.orientation = orientation;
+    protected CustomizableProduct() {
         this.apertures = new ArrayList<Aperture>();
     }
 
@@ -28,6 +25,10 @@ public class CustomizableProduct extends Product {
         apertures.add(aperture);
         super.addPrice(5);
         return true;
+    }
+
+    protected void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     private boolean validateAperture(Aperture aperture) {
