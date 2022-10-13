@@ -4,10 +4,37 @@ public class Stamp extends Product {
     private String text;
 
     public Stamp(StampSize size, StampColor color, String text, ShippingMethod shippingMethod) {
-        super(size.getSize(), color.getColor(), size.getPrice(), shippingMethod);
-        String name = String.format("Stamp (%d mm x %d mm)",
-                size.getSize().getWidth(), size.getSize().getHeight());
-        super.setName(name);
+        Size stampSize = null;
+        Color stampColor = null;
+        int stampPrice = 0;
+
+        if (size == StampSize.W40H30) {
+            stampSize = new Size(40, 30);
+            stampPrice = 2300;
+        } else if (size == StampSize.W50H20) {
+            stampSize = new Size(50, 20);
+            stampPrice = 2300;
+        } else if (size == StampSize.W70H40) {
+            stampSize = new Size(70, 40);
+            stampPrice = 2600;
+        } else {
+            assert (false) : "unknown size";
+        }
+
+        if (color == StampColor.RED) {
+            stampColor = new Color(0xff, 0, 0);
+        } else if (color == StampColor.BLUE) {
+            stampColor = new Color(0, 0, 0xff);
+        } else if (color == StampColor.GREEN) {
+            stampColor = new Color(0, 0x80, 0);
+        } else {
+            assert (false) : "unknown color";
+        }
+        super.setName(String.format("Stamp (%d mm x %d mm)",stampSize.getWidth(), stampSize.getHeight()));
+        super.setSize(stampSize);
+        super.setColor(stampColor);
+        super.setPrice(stampPrice);
+        super.setShippingMethod(shippingMethod);
         this.text = text;
     }
 

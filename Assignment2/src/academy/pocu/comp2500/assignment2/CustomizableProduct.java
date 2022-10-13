@@ -6,9 +6,9 @@ public class CustomizableProduct extends Product {
     private Orientation orientation;
     private ArrayList<Aperture> apertures;
 
-    protected CustomizableProduct(Size size, Color color, Orientation orientation,
+    protected CustomizableProduct(Orientation orientation,
                                   ShippingMethod shippingMethod) {
-        super(size, color, shippingMethod);
+        super.setShippingMethod(shippingMethod);
         this.orientation = orientation;
         this.apertures = new ArrayList<Aperture>();
     }

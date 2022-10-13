@@ -12,7 +12,7 @@ public class Color {
     }
 
     public int getRgbColor() {
-        // System.out.format("0x%06x\n", item.getColor().getRgbColor());
+        // How to use : System.out.format("0x%06x\n", item.getColor().getRgbColor());
         int color = (int) red * 0x10000 + (int) green * 0x100 + (int) blue;
         return color;
     }

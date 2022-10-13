@@ -6,30 +6,44 @@ public class BusinessCard extends CustomizableProduct {
 
     public BusinessCard(BusinessCardType type, BusinessCardColor color, BusinessCardSides sides,
                         Orientation orientation, ShippingMethod shippingMethod) {
-        super(new Size(90, 50), color.getColor(), orientation, shippingMethod);
-        String name = String.format("%s Business Card", type.getType());
-        super.setName(name);
+        super(orientation, shippingMethod);
 
-        int price = 0;
-        switch (type) {
-            case LINEN:
-                price = 140;
-                break;
-            case LAID:
-                price = 150;
-                break;
-            case SMOOTH:
-                price = 130;
-                break;
-            default:
-                assert (false) : "unknown type";
-                break;
+        String businessCardType = null;
+        Color businessCardColor = null;
+        int businessCardPrice = 0;
+
+        if (type == BusinessCardType.LINEN) {
+            businessCardType = "Linen";
+            businessCardPrice = 140;
+        } else if (type == BusinessCardType.LAID) {
+            businessCardType = "Laid";
+            businessCardPrice = 150;
+        } else if (type == BusinessCardType.SMOOTH) {
+            businessCardType = "Smooth";
+            businessCardPrice = 130;
+        } else {
+            assert (false) : "unknown type";
         }
+
         if (sides == BusinessCardSides.SINGLE) {
-            price -= 30;
+            businessCardPrice -= 30;
         }
-        super.setPrice(price);
 
+        if (color == BusinessCardColor.GRAY) {
+            businessCardColor = new Color(0xe6, 0xe6, 0xe6);
+        } else if (color == BusinessCardColor.IVORY) {
+            businessCardColor = new Color(0xff, 0xff, 0xf0);
+        } else if (color == BusinessCardColor.WHITE) {
+            businessCardColor = new Color(0xff, 0xff, 0xff);
+        } else {
+            assert (false) : "unknown color";
+        }
+
+        super.setName(String.format("%s Business Card", businessCardType));
+        super.setSize(new Size(90, 50));
+        super.setColor(businessCardColor);
+        super.setPrice(businessCardPrice);
+        super.setShippingMethod(shippingMethod);
         this.type = type;
         this.sides = sides;
     }
