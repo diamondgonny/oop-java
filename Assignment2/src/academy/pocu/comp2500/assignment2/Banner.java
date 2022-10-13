@@ -3,7 +3,6 @@ package academy.pocu.comp2500.assignment2;
 public class Banner extends ProductAperture {
     private BannerType type;
 
-    // Aperture?
     public Banner(BannerType type, BannerSize size, Color color,
                   Orientation orientation, ShippingMethod shippingMethod) {
         super(size.getSize(), color, orientation, shippingMethod);

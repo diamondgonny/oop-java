@@ -21,14 +21,12 @@ public class ProductAperture extends Product {
         return apertures;
     }
 
-    // *****************************************
     public void addAperture(Aperture aperture) {
         if (!validateAperture(aperture) || apertures.contains(aperture)) {
             return;
         }
         apertures.add(aperture);
         super.addPrice(5);
-        // Aperture (문자, 사진)
     }
 
     public int countAperture() {

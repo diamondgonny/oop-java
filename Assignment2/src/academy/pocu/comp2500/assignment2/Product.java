@@ -18,8 +18,6 @@ public class Product {
         this.price = price;
     }
 
-    // getter, setter
-
     public String getName() {
         return name;
     }
