@@ -19,7 +19,7 @@ public class CustomizableProduct extends Product {
     }
 
     public boolean addAperture(Aperture aperture) {
-        if (!validateAperture(aperture) || apertures.contains(aperture)) {
+        if (!isValidAperture(aperture) || apertures.contains(aperture)) {
             return false;
         }
         apertures.add(aperture);
@@ -31,7 +31,7 @@ public class CustomizableProduct extends Product {
         this.orientation = orientation;
     }
 
-    private boolean validateAperture(Aperture aperture) {
+    private boolean isValidAperture(Aperture aperture) {
         int r1w = this.getSize().getWidth();
         int r1h = this.getSize().getHeight();
         int r2x = aperture.getX();
