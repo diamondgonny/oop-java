@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Product {
+    private static int productIdCounter;
+    private int productId;
     private String name;
     private Size size;
     private Color color;
@@ -8,7 +10,13 @@ public class Product {
     private ShippingMethod shippingMethod;
 
     protected Product(ShippingMethod shippingMethod) {
+        ++productIdCounter;
+        this.productId = productIdCounter;
         this.shippingMethod = shippingMethod;
+    }
+
+    public int getProductId() {
+        return productId;
     }
 
     public String getName() {
