@@ -1,39 +1,31 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 public class ShoppingCart {
-    private final LinkedHashMap<Integer, Product> itemList;
+    private ArrayList<Product> items;
 
     public ShoppingCart() {
-        this.itemList = new LinkedHashMap<>();
+        this.items = new ArrayList<>();
     }
 
-    public LinkedHashMap<Integer, Product> getItemList() {
-        return itemList;
+    public ArrayList<Product> getItems() {
+        return items;
     }
 
     public void addItem(Product product) {
-        itemList.put(product.getProductId(), product);
+        items.add(product);
     }
 
-    public void removeItem(int productId) {
-        itemList.remove(productId);
+    public void removeItem(Product product) {
+        items.remove(product);
     }
 
     public int getTotalPrice() {
         int total = 0;
-        for (int itemId : itemList.keySet()) {
-            total += itemList.get(itemId).getPrice();
+        for (Product product : items) {
+            total += product.getPrice();
         }
         return total;
-    }
-
-    public void selectShippingMethod(int productId, ShippingMethod shippingMethod) {
-        for (int itemId : itemList.keySet()) {
-            if (productId == itemId) {
-                itemList.get(productId).setShippingMethod(shippingMethod);
-            }
-        }
     }
 }
