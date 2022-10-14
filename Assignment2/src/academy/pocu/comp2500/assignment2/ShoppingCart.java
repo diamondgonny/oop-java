@@ -13,12 +13,12 @@ public class ShoppingCart {
         return itemList;
     }
 
-    public void addItem(Product productId) {
-        itemList.add(productId);
+    public void addItem(Product product) {
+        itemList.add(product);
     }
 
-    public void removeItem(Product productId) {
-        itemList.remove(productId);
+    public void removeItem(Product product) {
+        itemList.remove(product);
     }
 
     public int getTotalPrice() {
@@ -29,10 +29,10 @@ public class ShoppingCart {
         return total;
     }
 
-    public void selectShippingMethod(Product productId, ShippingMethod shippingMethod) {
+    public void selectShippingMethod(Product product, ShippingMethod shippingMethod) {
         for (Product item : itemList) {
-            if (productId.equals(item)) {
-                productId.setShippingMethod(shippingMethod);
+            if (product.equals(item)) {
+                product.setShippingMethod(shippingMethod);
             }
         }
     }
