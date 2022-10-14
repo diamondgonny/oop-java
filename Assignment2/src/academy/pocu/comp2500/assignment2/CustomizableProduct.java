@@ -3,13 +3,14 @@ package academy.pocu.comp2500.assignment2;
 import java.util.ArrayList;
 
 public class CustomizableProduct extends Product {
+    private static final int APERTURE_PRICE = 5;
     private Orientation orientation;
-    private ArrayList<Aperture> apertures;
+    private final ArrayList<Aperture> apertures;
 
     protected CustomizableProduct(Orientation orientation, ShippingMethod shippingMethod) {
         super(shippingMethod);
         this.orientation = orientation;
-        this.apertures = new ArrayList<Aperture>();
+        this.apertures = new ArrayList<>();
     }
 
     public Orientation getOrientation() {
@@ -25,7 +26,7 @@ public class CustomizableProduct extends Product {
             return false;
         }
         apertures.add(aperture);
-        super.addPrice(5);
+        super.addPrice(APERTURE_PRICE);
         return true;
     }
 
