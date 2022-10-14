@@ -30,10 +30,6 @@ public class CustomizableProduct extends Product {
         return true;
     }
 
-    protected void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-    }
-
     private boolean isValidAperture(Aperture aperture) {
         int r1w = this.getSize().getWidth();
         int r1h = this.getSize().getHeight();
