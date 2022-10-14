@@ -4,6 +4,8 @@ public class Calendar extends Product {
     private CalendarType type;
 
     public Calendar(CalendarType type, ShippingMethod shippingMethod) {
+        super(shippingMethod);
+
         String calendarType = null;
         Size calendarSize = null;
         int calendarPrice = 0;
@@ -28,7 +30,6 @@ public class Calendar extends Product {
         super.setSize(calendarSize);
         super.setColor(new Color(0xff, 0xff, 0xff));
         super.setPrice(calendarPrice);
-        super.setShippingMethod(shippingMethod);
         this.type = type;
     }
 

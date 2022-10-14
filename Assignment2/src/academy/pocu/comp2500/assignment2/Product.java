@@ -7,7 +7,8 @@ public class Product {
     private int price;
     private ShippingMethod shippingMethod;
 
-    protected Product() {
+    protected Product(ShippingMethod shippingMethod) {
+        this.shippingMethod = shippingMethod;
     }
 
     public String getName() {

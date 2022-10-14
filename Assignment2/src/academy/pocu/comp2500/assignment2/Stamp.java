@@ -4,6 +4,8 @@ public class Stamp extends Product {
     private String text;
 
     public Stamp(StampSize size, StampColor color, String text, ShippingMethod shippingMethod) {
+        super(shippingMethod);
+
         Size stampSize = null;
         Color stampColor = null;
         int stampPrice = 0;
@@ -35,7 +37,6 @@ public class Stamp extends Product {
         super.setSize(stampSize);
         super.setColor(stampColor);
         super.setPrice(stampPrice);
-        super.setShippingMethod(shippingMethod);
         this.text = text;
     }
 

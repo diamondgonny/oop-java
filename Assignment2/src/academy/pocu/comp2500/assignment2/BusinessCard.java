@@ -6,6 +6,8 @@ public class BusinessCard extends CustomizableProduct {
 
     public BusinessCard(BusinessCardType type, BusinessCardColor color, BusinessCardSides sides,
                         Orientation orientation, ShippingMethod shippingMethod) {
+        super(orientation, shippingMethod);
+
         String businessCardType = null;
         Color businessCardColor = null;
         int businessCardPrice = 0;
@@ -41,8 +43,6 @@ public class BusinessCard extends CustomizableProduct {
         super.setSize(new Size(90, 50));
         super.setColor(businessCardColor);
         super.setPrice(businessCardPrice);
-        super.setShippingMethod(shippingMethod);
-        super.setOrientation(orientation);
         this.type = type;
         this.sides = sides;
     }

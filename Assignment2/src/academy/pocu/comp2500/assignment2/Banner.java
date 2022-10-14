@@ -5,6 +5,8 @@ public class Banner extends CustomizableProduct {
 
     public Banner(BannerType type, BannerSize size, Color color,
                   Orientation orientation, ShippingMethod shippingMethod) {
+        super(orientation, shippingMethod);
+
         String bannerType = null;
         Size bannerSize = null;
         int bannerPrice = 0;
@@ -44,8 +46,6 @@ public class Banner extends CustomizableProduct {
         super.setSize(bannerSize);
         super.setColor(color);
         super.setPrice(bannerPrice);
-        super.setShippingMethod(shippingMethod);
-        super.setOrientation(orientation);
         this.type = type;
     }
 
