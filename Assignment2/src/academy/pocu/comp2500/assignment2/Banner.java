@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Banner extends CustomizableProduct {
-    private BannerType type;
+    private final BannerType type;
 
     public Banner(BannerType type, BannerSize size, Color color,
                   Orientation orientation, ShippingMethod shippingMethod) {
@@ -41,11 +41,11 @@ public class Banner extends CustomizableProduct {
             bannerPrice -= 100;
         }
 
-        super.setName(String.format("%s Banner (%d mm x %d mm)", bannerType,
-                bannerSize.getWidth(), bannerSize.getHeight()));
-        super.setSize(bannerSize);
-        super.setColor(color);
-        super.setPrice(bannerPrice);
+        super.name = String.format("%s Banner (%d mm x %d mm)", bannerType,
+                bannerSize.getWidth(), bannerSize.getHeight());
+        super.size = bannerSize;
+        super.color = color;
+        super.price = bannerPrice;
         this.type = type;
     }
 

@@ -1,8 +1,8 @@
 package academy.pocu.comp2500.assignment2;
 
 public class BusinessCard extends CustomizableProduct {
-    private BusinessCardType type;
-    private BusinessCardSides sides;
+    private final BusinessCardType type;
+    private final BusinessCardSides sides;
 
     public BusinessCard(BusinessCardType type, BusinessCardColor color, BusinessCardSides sides,
                         Orientation orientation, ShippingMethod shippingMethod) {
@@ -39,10 +39,10 @@ public class BusinessCard extends CustomizableProduct {
             assert (false) : "unknown color";
         }
 
-        super.setName(String.format("%s Business Card", businessCardType));
-        super.setSize(new Size(90, 50));
-        super.setColor(businessCardColor);
-        super.setPrice(businessCardPrice);
+        super.name = String.format("%s Business Card", businessCardType);
+        super.size = new Size(90, 50);
+        super.color = businessCardColor;
+        super.price = businessCardPrice;
         this.type = type;
         this.sides = sides;
     }

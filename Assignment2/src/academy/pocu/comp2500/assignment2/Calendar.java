@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Calendar extends Product {
-    private CalendarType type;
+    private final CalendarType type;
 
     public Calendar(CalendarType type, ShippingMethod shippingMethod) {
         super(shippingMethod);
@@ -26,10 +26,10 @@ public class Calendar extends Product {
             assert (false) : "unknown type";
         }
 
-        super.setName(String.format("%s Calendar", calendarType));
-        super.setSize(calendarSize);
-        super.setColor(new Color(0xff, 0xff, 0xff));
-        super.setPrice(calendarPrice);
+        super.name = String.format("%s Calendar", calendarType);
+        super.size = calendarSize;
+        super.color = new Color(0xff, 0xff, 0xff);
+        super.price = calendarPrice;
         this.type = type;
     }
 

@@ -1,11 +1,11 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Product {
-    private String name;
-    private Size size;
-    private Color color;
-    private int price;
-    private ShippingMethod shippingMethod;
+    protected String name;
+    protected Size size;
+    protected Color color;
+    protected int price;
+    protected ShippingMethod shippingMethod;
 
     protected Product(ShippingMethod shippingMethod) {
         this.shippingMethod = shippingMethod;

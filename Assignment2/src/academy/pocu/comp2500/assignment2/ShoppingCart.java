@@ -3,7 +3,7 @@ package academy.pocu.comp2500.assignment2;
 import java.util.ArrayList;
 
 public class ShoppingCart {
-    private ArrayList<Product> itemList;
+    private final ArrayList<Product> itemList;
 
     public ShoppingCart() {
         this.itemList = new ArrayList<>();

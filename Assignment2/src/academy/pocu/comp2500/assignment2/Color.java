@@ -1,9 +1,9 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Color {
-    private short red;
-    private short green;
-    private short blue;
+    private final short red;
+    private final short green;
+    private final short blue;
 
     public Color(int red, int green, int blue) {
         this.red = (short) Math.max(0, Math.min(red, 255));

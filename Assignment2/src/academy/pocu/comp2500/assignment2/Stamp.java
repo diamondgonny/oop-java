@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Stamp extends Product {
-    private String text;
+    private final String text;
 
     public Stamp(StampSize size, StampColor color, String text, ShippingMethod shippingMethod) {
         super(shippingMethod);
@@ -33,10 +33,10 @@ public class Stamp extends Product {
             assert (false) : "unknown color";
         }
 
-        super.setName(String.format("Stamp (%d mm x %d mm)", stampSize.getWidth(), stampSize.getHeight()));
-        super.setSize(stampSize);
-        super.setColor(stampColor);
-        super.setPrice(stampPrice);
+        super.name = String.format("Stamp (%d mm x %d mm)", stampSize.getWidth(), stampSize.getHeight());
+        super.size = stampSize;
+        super.color = stampColor;
+        super.price = stampPrice;
         this.text = text;
     }
 

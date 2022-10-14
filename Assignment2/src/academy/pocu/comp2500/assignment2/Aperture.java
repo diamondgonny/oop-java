@@ -1,10 +1,10 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Aperture {
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
 
     protected Aperture(int x, int y, int width, int height) {
         this.x = x;
