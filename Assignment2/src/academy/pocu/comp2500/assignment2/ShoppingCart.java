@@ -1,15 +1,15 @@
 package academy.pocu.comp2500.assignment2;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class ShoppingCart {
-    private final ArrayList<Product> itemList;
+    private final LinkedHashSet<Product> itemList;
 
     public ShoppingCart() {
-        this.itemList = new ArrayList<>();
+        this.itemList = new LinkedHashSet<>();
     }
 
-    public ArrayList<Product> getItemList() {
+    public LinkedHashSet<Product> getItemList() {
         return itemList;
     }
 
