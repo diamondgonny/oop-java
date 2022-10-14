@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CustomizableProduct extends Product {
     protected Orientation orientation;
     protected final ArrayList<Aperture> apertures;
-    private final int aperturePrice = 5;
+    private final int APERTURE_PRICE = 5;
 
     protected CustomizableProduct(Orientation orientation, ShippingMethod shippingMethod) {
         super(shippingMethod);
@@ -26,7 +26,7 @@ public class CustomizableProduct extends Product {
             return false;
         }
         apertures.add(aperture);
-        super.addPrice(aperturePrice);
+        super.addPrice(APERTURE_PRICE);
         return true;
     }
 
