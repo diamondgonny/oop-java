@@ -15,6 +15,7 @@ public class MealPlan extends MenuItems {
     }
 
     public ArrayList<Appetizer> getAppetizers() {
+        assert (this.appetizers != null) : "call isValid() first!";
         return this.appetizers;
     }
 
@@ -23,6 +24,7 @@ public class MealPlan extends MenuItems {
     }
 
     public ArrayList<Dessert> getDesserts() {
+        assert (this.desserts != null) : "call isValid() first!";
         return this.desserts;
     }
 }
