@@ -1,8 +1,8 @@
 package academy.pocu.comp2500.lab6;
 
 public class MenuItems {
-    private int price;
-    private boolean isValid;
+    protected int price;
+    protected boolean isValid;
 
     protected MenuItems(int price) {
         this.price = price;
