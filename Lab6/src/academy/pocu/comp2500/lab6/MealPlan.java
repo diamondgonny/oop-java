@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MealPlan extends MenuItems {
     protected ArrayList<Appetizer> appetizers;
-    protected ArrayList <MainCourse> mainCourses;
+    protected ArrayList<MainCourse> mainCourses;
     protected ArrayList<Dessert> desserts;
 
     protected MealPlan(int price) {
