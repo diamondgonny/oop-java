@@ -14,8 +14,7 @@ public class ThreeCourseMeal extends MealPlan {
     }
 
     public void setMainCourse(MainCourse mainCourse) {
-        this.getMainCourses().clear();
-        this.getMainCourses().add(mainCourse);
+        this.mainCourse = mainCourse;
         this.isValidMenu();
     }
 
@@ -27,7 +26,7 @@ public class ThreeCourseMeal extends MealPlan {
 
     private void isValidMenu() {
         boolean isValid = this.getAppetizers().size() == 1
-                && this.getMainCourses().size() == 1
+                && this.getMainCourse() != null
                 && this.getDesserts().size() == 1;
         setValid(isValid);
     }
