@@ -1,14 +1,18 @@
 package academy.pocu.comp2500.assignment2;
 
 public class Color {
-    private final short red;
-    private final short green;
-    private final short blue;
+    private short red;
+    private short green;
+    private short blue;
 
     public Color(int red, int green, int blue) {
-        this.red = (short) Math.max(0, Math.min(red, 255));
-        this.green = (short) Math.max(0, Math.min(green, 255));
-        this.blue = (short) Math.max(0, Math.min(blue, 255));
+        if (0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255) {
+            this.red = (short) red;
+            this.green = (short) green;
+            this.blue = (short) blue;
+        } else {
+            assert (false) : "invalid color";
+        }
     }
 
     public int getRgbColor() {
