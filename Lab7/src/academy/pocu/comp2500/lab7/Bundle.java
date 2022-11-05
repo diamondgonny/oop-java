@@ -37,7 +37,7 @@ public class Bundle {
                 return false;
             }
         }
-        return this.bundle.equals(that.name);
+        return this.name.equals(that.name);
     }
 
     @Override
