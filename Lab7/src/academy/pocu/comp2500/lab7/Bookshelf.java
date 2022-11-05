@@ -33,4 +33,9 @@ public class Bookshelf {
         Bookshelf bookshelf = (Bookshelf) obj;
         return Objects.equals(this.bookShelf, bookshelf.bookShelf);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookShelf);
+    }
 }
