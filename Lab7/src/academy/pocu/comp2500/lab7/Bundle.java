@@ -32,7 +32,7 @@ public class Bundle {
             return false;
         }
         Bundle that = (Bundle) obj;
-        for(Book book : this.bundle) {
+        for (Book book : this.bundle) {
             if (!that.bundle.contains(book)) {
                 return false;
             }
