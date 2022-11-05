@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.lab7;
 
 import java.util.HashSet;
-import java.util.Objects;
 
 public class Bundle {
     private String name;
@@ -32,12 +31,21 @@ public class Bundle {
         if (obj == null || !(obj instanceof Bundle) || this.hashCode() != ((Bundle) obj).hashCode()) {
             return false;
         }
-        Bundle bundle = (Bundle) obj;
-        return Objects.equals(this.name, bundle.name) && Objects.equals(this.bundle, bundle.bundle);
+        Bundle that = (Bundle) obj;
+        for(Book book : this.bundle) {
+            if (!that.bundle.contains(book)) {
+                return false;
+            }
+        }
+        return this.bundle.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, bundle);
+        int result = name != null ? name.hashCode() : 0;
+        for (Book book : this.bundle) {
+            result = 31 * result + book.hashCode();
+        }
+        return result;
     }
 }

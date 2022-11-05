@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.lab7;
 
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class ReadingList {
     private String name;
@@ -35,15 +34,18 @@ public class ReadingList {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof ReadingList) || this.hashCode() != (((ReadingList) obj).hashCode())) {
+        if (obj == null || !(obj instanceof ReadingList) ||
+                this.hashCode() != (((ReadingList) obj).hashCode())) {
             return false;
         }
         ReadingList that = (ReadingList) obj;
-        return Objects.equals(this.name, that.name) && Objects.equals(this.toString(), that.toString());
+        return this.name.equals(that.name) && this.toString().equals(that.toString());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, toString());
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (toString() != null ? toString().hashCode() : 0);
+        return result;
     }
 }

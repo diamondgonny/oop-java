@@ -1,7 +1,5 @@
 package academy.pocu.comp2500.lab7;
 
-import java.util.Objects;
-
 public class Book {
     private final String title;
     private final Author author;
@@ -28,13 +26,17 @@ public class Book {
         if (obj == null || !(obj instanceof Book) || this.hashCode() != ((Book) obj).hashCode()) {
             return false;
         }
-        Book book = (Book) obj;
-        return Objects.equals(title, book.title) && Objects.equals(author, book.author) &&
-                publishedYear == book.publishedYear && genre == book.genre;
+        Book that = (Book) obj;
+        return this.title.equals(that.title) && this.author.equals(that.author) &&
+                this.publishedYear == that.publishedYear && this.genre == that.genre;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author, publishedYear, genre);
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + publishedYear;
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        return result;
     }
 }

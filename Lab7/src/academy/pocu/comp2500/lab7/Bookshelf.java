@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.lab7;
 
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class Bookshelf {
     private int maxBookAmount;
@@ -27,15 +26,15 @@ public class Bookshelf {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof Bookshelf)) {
+        if (obj == null || !(obj instanceof Bookshelf) || this.hashCode() != ((Bookshelf) obj).hashCode()) {
             return false;
         }
-        Bookshelf bookshelf = (Bookshelf) obj;
-        return Objects.equals(this.bookShelf, bookshelf.bookShelf);
+        Bookshelf that = (Bookshelf) obj;
+        return this.bookShelf.equals(that.bookShelf);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookShelf);
+        return bookShelf != null ? bookShelf.hashCode() : 0;
     }
 }
