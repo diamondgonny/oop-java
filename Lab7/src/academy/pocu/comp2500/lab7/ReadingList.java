@@ -3,8 +3,8 @@ package academy.pocu.comp2500.lab7;
 import java.util.LinkedList;
 
 public class ReadingList {
-    private String name;
-    private LinkedList<Book> readingList = new LinkedList<>();
+    private final String name;
+    private final LinkedList<Book> readingList = new LinkedList<>();
 
     public ReadingList(String name) {
         this.name = name;
@@ -34,8 +34,8 @@ public class ReadingList {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof ReadingList) ||
-                this.hashCode() != (((ReadingList) obj).hashCode())) {
+        if (!(obj instanceof ReadingList) ||
+                this.hashCode() != (obj.hashCode())) {
             return false;
         }
         ReadingList that = (ReadingList) obj;

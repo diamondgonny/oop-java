@@ -3,8 +3,8 @@ package academy.pocu.comp2500.lab7;
 import java.util.LinkedList;
 
 public class Bookshelf {
-    private int maxBookAmount;
-    private LinkedList<Book> bookShelf = new LinkedList<>();
+    private final int maxBookAmount;
+    private final LinkedList<Book> bookShelf = new LinkedList<>();
 
     public Bookshelf(int maxBookAmount) {
         this.maxBookAmount = maxBookAmount;
@@ -26,7 +26,7 @@ public class Bookshelf {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof Bookshelf) || this.hashCode() != ((Bookshelf) obj).hashCode()) {
+        if (!(obj instanceof Bookshelf) || this.hashCode() != obj.hashCode()) {
             return false;
         }
         Bookshelf that = (Bookshelf) obj;
@@ -35,6 +35,6 @@ public class Bookshelf {
 
     @Override
     public int hashCode() {
-        return bookShelf != null ? bookShelf.hashCode() : 0;
+        return bookShelf.hashCode();
     }
 }

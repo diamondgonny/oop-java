@@ -3,9 +3,9 @@ package academy.pocu.comp2500.lab7;
 import java.util.HashSet;
 
 public class Bundle {
-    private String name;
+    private final String name;
     private final int MAX_BOOK_AMOUNT;
-    private HashSet<Book> bundle = new HashSet<>();
+    private final HashSet<Book> bundle = new HashSet<>();
 
     public Bundle(String name) {
         this.name = name;
@@ -28,7 +28,7 @@ public class Bundle {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof Bundle) || this.hashCode() != ((Bundle) obj).hashCode()) {
+        if (!(obj instanceof Bundle) || this.hashCode() != obj.hashCode()) {
             return false;
         }
         Bundle that = (Bundle) obj;

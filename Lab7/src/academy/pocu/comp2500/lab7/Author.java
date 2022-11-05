@@ -19,7 +19,7 @@ public class Author {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof Author) || this.hashCode() != ((Book) obj).hashCode()) {
+        if (!(obj instanceof Author) || this.hashCode() != obj.hashCode()) {
             return false;
         }
         Author author = (Author) obj;

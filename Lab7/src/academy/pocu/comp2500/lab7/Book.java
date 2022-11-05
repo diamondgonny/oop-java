@@ -23,7 +23,7 @@ public class Book {
         if (obj == this) {
             return true;
         }
-        if (obj == null || !(obj instanceof Book) || this.hashCode() != ((Book) obj).hashCode()) {
+        if (!(obj instanceof Book) || this.hashCode() != obj.hashCode()) {
             return false;
         }
         Book that = (Book) obj;
