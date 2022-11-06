@@ -24,7 +24,7 @@ public class ReadingList {
         int num = 0;
         for (Book book : readingList) {
             ++num;
-            sb.append(String.format("%d. %s\n", num, book.toString()));
+            sb.append(String.format("%d. %s", num, book.toString()) + System.lineSeparator());
         }
         return sb.toString();
     }
@@ -34,8 +34,7 @@ public class ReadingList {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ReadingList) ||
-                this.hashCode() != (obj.hashCode())) {
+        if (!(obj instanceof ReadingList) || this.hashCode() != (obj.hashCode())) {
             return false;
         }
         ReadingList that = (ReadingList) obj;
