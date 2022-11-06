@@ -23,14 +23,7 @@ public class Bookshelf {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Bookshelf) || this.hashCode() != obj.hashCode()) {
-            return false;
-        }
-        Bookshelf that = (Bookshelf) obj;
-        return this.bookShelf.equals(that.bookShelf);
+        return obj == this;
     }
 
     @Override
