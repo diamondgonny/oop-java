@@ -23,8 +23,11 @@ public class ReadingList {
         StringBuilder sb = new StringBuilder();
         int num = 0;
         for (Book book : readingList) {
+            if (num != 0) {
+                sb.append(String.format("\n"));
+            }
             ++num;
-            sb.append(String.format("%d. %s\n", num, book.toString()));
+            sb.append(String.format("%d. %s", num, book.toString()));
         }
         return sb.toString();
     }
