@@ -24,7 +24,8 @@ public class ReadingList {
         int num = 0;
         for (Book book : readingList) {
             ++num;
-            sb.append(String.format("%d. %s", num, book.toString()) + System.lineSeparator());
+            sb.append(String.format("%d. %s", num, book.toString()));
+            sb.append(System.lineSeparator());
         }
         return sb.toString();
     }
