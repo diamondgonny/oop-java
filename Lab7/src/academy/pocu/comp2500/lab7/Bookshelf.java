@@ -35,6 +35,6 @@ public class Bookshelf {
 
     @Override
     public int hashCode() {
-        return bookShelf.hashCode();
+        return super.hashCode();
     }
 }
