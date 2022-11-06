@@ -11,7 +11,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return String.format("%s %s", firstName, lastName);
+        return String.format("%s %s", this.firstName, this.lastName);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("%s [%s]", title, author);
+        return String.format("%s [%s]", this.title, this.author.toString());
     }
 
     @Override
