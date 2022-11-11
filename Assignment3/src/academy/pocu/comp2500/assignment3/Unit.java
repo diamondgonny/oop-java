@@ -1,6 +1,10 @@
 package academy.pocu.comp2500.assignment3;
 
 public class Unit {
+    protected IntVector2D position;
+
+    // constructor
+
     public IntVector2D getPosition() {
         return null;
     }
