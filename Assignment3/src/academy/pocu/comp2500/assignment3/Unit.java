@@ -5,6 +5,9 @@ public abstract class Unit {
     protected char symbol;
     protected int hp;
 
+    protected EActionType actionType = EActionType.STANDBY;
+    // protected AttackIntent attackIntent;
+
     public Unit(IntVector2D position, char symbol, int hp) {
         this.position = position;
         this.symbol = symbol;

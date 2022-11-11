@@ -24,7 +24,11 @@ public class SmartMine extends Mine implements IThinkable {
 
     @Override
     public void think() {
-
+        if (searchPreyForAttack() != null) {
+            actionType = EActionType.ATTACK;
+        } else {
+            actionType = EActionType.STANDBY;
+        }
     }
 
     @Override
@@ -34,6 +38,7 @@ public class SmartMine extends Mine implements IThinkable {
 
     @Override
     public AttackIntent attack() {
+        // 만약 시야 안에서 몇 명 이상의 적 유닛이 감지되면, 스마트 지뢰가 폭발합니다.
         return super.attack();
     }
 
