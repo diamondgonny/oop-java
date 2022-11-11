@@ -15,7 +15,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             EUnitType.GROUND,
             EUnitType.AIR
     };
-
+    private boolean specialShield = false;
     // 망령은 공격을 받으면 즉시 가동되는 특수 방어막을 가지고 있습니다.
     // 한 번 가동된 방어막은 현재 프레임이 끝날 때까지 지속되어 망령은 피해를 입지 않습니다.
     // 다음 프레임부터는 공격을 받으면 피해를 입습니다.

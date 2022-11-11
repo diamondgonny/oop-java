@@ -13,6 +13,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
     private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
             EUnitType.GROUND
     };
+    private boolean siegeMode = false;
 
     public Tank(final IntVector2D position) {
         super(position, SYMBOL, HP);
