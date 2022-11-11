@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 public class Mine extends Unit implements IListener {
     private static final char SYMBOL = 'N';
-    private static final EUnitType UNIT_TYPE = EUnitType.GROUND;
+    private static final EUnitType UNIT_TYPE = EUnitType.UNDERGROUND;
     private static final int VISION = 0;
     private static final int AREA_OF_EFFECT = 0;
     private static final int AP = 10;

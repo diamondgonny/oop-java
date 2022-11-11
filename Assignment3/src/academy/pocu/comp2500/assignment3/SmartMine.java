@@ -2,7 +2,7 @@ package academy.pocu.comp2500.assignment3;
 
 public class SmartMine extends Mine implements IThinkable {
     private static final char SYMBOL = 'A';
-    private static final EUnitType UNIT_TYPE = EUnitType.GROUND;
+    private static final EUnitType UNIT_TYPE = EUnitType.UNDERGROUND;
     private static final int VISION = 1;
     private static final int AREA_OF_EFFECT = 1;
     private static final int AP = 15;
