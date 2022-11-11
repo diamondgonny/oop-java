@@ -35,6 +35,6 @@ public class Turret extends Unit implements IThinkable {
 
     @Override
     public void onSpawn() {
-        super.onSpawn();
+        SimulationManager.getInstance().registerThinkable(this);
     }
 }

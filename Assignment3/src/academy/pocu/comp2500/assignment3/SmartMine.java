@@ -42,6 +42,7 @@ public class SmartMine extends Mine implements IThinkable {
 
     @Override
     public void onSpawn() {
+        SimulationManager.getInstance().registerThinkable(this);
         super.onSpawn();
     }
 }

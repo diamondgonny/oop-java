@@ -32,6 +32,6 @@ public class Destroyer extends Unit {
 
     @Override
     public void onSpawn() {
-        super.onSpawn();
+        // ???
     }
 }

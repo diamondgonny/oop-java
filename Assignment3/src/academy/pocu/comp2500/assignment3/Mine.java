@@ -33,6 +33,6 @@ public class Mine extends Unit implements IListener {
 
     @Override
     public void onSpawn() {
-        super.onSpawn();
+        SimulationManager.getInstance().registerCollisionEventListener(this);
     }
 }

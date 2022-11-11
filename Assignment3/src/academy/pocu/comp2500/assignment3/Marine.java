@@ -42,6 +42,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
 
     @Override
     public void onSpawn() {
-        super.onSpawn();
+        SimulationManager.getInstance().registerThinkable(this);
+        SimulationManager.getInstance().registerMovable(this);
     }
 }
