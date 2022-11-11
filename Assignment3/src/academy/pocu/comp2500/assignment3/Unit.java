@@ -11,16 +11,16 @@ public abstract class Unit {
         this.hp = hp;
     }
 
+    public IntVector2D getPosition() {
+        return position;
+    }
+
     public char getSymbol() {
-        return ' ';
+        return symbol;
     }
 
     public int getHp() {
-        return -1;
-    }
-
-    public IntVector2D getPosition() {
-        return null;
+        return hp;
     }
 
     public AttackIntent attack() {
