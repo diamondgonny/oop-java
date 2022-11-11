@@ -17,6 +17,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
     };
 
     public Wraith(final IntVector2D position) {
+        super(position, SYMBOL, HP);
         // constructor
     }
 

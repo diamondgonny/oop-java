@@ -2,8 +2,14 @@ package academy.pocu.comp2500.assignment3;
 
 public abstract class Unit {
     protected IntVector2D position;
+    protected char symbol;
+    protected int hp;
 
-    // constructor
+    public Unit(IntVector2D position, char symbol, int hp) {
+        this.position = position;
+        this.symbol = symbol;
+        this.hp = hp;
+    }
 
     public char getSymbol() {
         return ' ';

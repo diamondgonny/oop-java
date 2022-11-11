@@ -17,6 +17,7 @@ public class Destroyer extends Unit {
     };
 
     public Destroyer(IntVector2D position) {
+        super(position, SYMBOL, HP);
         //constructor
     }
 

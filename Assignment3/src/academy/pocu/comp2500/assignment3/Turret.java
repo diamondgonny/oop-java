@@ -15,6 +15,7 @@ public class Turret extends Unit implements IThinkable {
     };
 
     public Turret(final IntVector2D position) {
+        super(position, SYMBOL, HP);
         // constructor
     }
 

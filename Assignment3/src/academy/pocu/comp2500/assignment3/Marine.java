@@ -17,6 +17,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
     };
 
     public Marine(final IntVector2D position) {
+       super(position, SYMBOL, HP);
        // constructor
     }
 

@@ -15,6 +15,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
     };
 
     public Tank(final IntVector2D position) {
+        super(position, SYMBOL, HP);
         // constructor
     }
 

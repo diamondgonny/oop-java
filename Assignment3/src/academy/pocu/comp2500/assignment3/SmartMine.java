@@ -13,10 +13,12 @@ public class SmartMine extends Mine implements IThinkable {
     private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
             EUnitType.GROUND
     };
+    private int bombRemainedbyDetect;
 
     public SmartMine(final IntVector2D position, final int bombRemainedbyStep,
                      final int bombRemainedByDetect) {
-        super(position, bombRemainedbyStep);
+        super(position, SYMBOL, HP, bombRemainedbyStep);
+        this.bombRemainedbyDetect = bombRemainedbyDetect;
         // constructor
     }
 

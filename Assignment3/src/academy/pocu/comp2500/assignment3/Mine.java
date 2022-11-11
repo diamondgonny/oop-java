@@ -10,9 +10,18 @@ public class Mine extends Unit implements IListener {
     private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {
             EUnitType.GROUND
     };
-    private int bombRemainedCount;
+    protected int bombRemainedByStep;
 
     public Mine(final IntVector2D position, final int bombRemainedByStep) {
+        super(position, SYMBOL, HP);
+        this.bombRemainedByStep = bombRemainedByStep;
+        // constructor
+    }
+
+    protected Mine(final IntVector2D position, final char symbol, final int hp,
+                   final int bombRemainedByStep) {
+        super(position, symbol, hp);
+        this.bombRemainedByStep = bombRemainedByStep;
         // constructor
     }
 
