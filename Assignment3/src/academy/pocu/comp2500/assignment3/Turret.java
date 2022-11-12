@@ -1,5 +1,7 @@
 package academy.pocu.comp2500.assignment3;
 
+import java.util.ArrayList;
+
 public class Turret extends Unit implements IThinkable {
     private static final char SYMBOL = 'U';
     private static final EUnitType UNIT_TYPE = EUnitType.GROUND;
@@ -12,6 +14,17 @@ public class Turret extends Unit implements IThinkable {
     };
     private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
             EUnitType.AIR
+    };
+    private static final IntVector2D[] ATTACK_RANGE = {
+            new IntVector2D(0, 0),
+            new IntVector2D(0, -1),
+            new IntVector2D(1, -1),
+            new IntVector2D(1, 0),
+            new IntVector2D(1, 1),
+            new IntVector2D(0, 1),
+            new IntVector2D(-1, 1),
+            new IntVector2D(-1, 0),
+            new IntVector2D(-1, -1)
     };
 
     public Turret(final IntVector2D position) {

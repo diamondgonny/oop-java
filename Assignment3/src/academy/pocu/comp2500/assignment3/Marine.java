@@ -15,6 +15,13 @@ public class Marine extends Unit implements IThinkable, IMovable {
             EUnitType.GROUND,
             EUnitType.AIR
     };
+    private static final IntVector2D[] ATTACK_RANGE = {
+            new IntVector2D(0, 0),
+            new IntVector2D(0, -1),
+            new IntVector2D(1, 0),
+            new IntVector2D(0, 1),
+            new IntVector2D(-1, 0)
+    };
 
     public Marine(final IntVector2D position) {
         super(position, SYMBOL, HP);
