@@ -1,14 +1,16 @@
 package academy.pocu.comp2500.assignment3;
 
 public abstract class Unit {
+    protected final UnitPositionManager unitPositionManager;
     protected IntVector2D position;
     protected char symbol;
     protected int hp;
 
     protected EActionType actionType = EActionType.STANDBY;
-    // protected AttackIntent attackIntent;
+    protected IntVector2D attackTargetOrNull;
 
     public Unit(IntVector2D position, char symbol, int hp) {
+        this.unitPositionManager = UnitPositionManager.getInstance();
         this.position = position;
         this.symbol = symbol;
         this.hp = hp;
@@ -37,5 +39,4 @@ public abstract class Unit {
     }
 
     public abstract void onSpawn();
-    // 유닛이 월드에 추가될 때(spawn) SimulationManager가 이 메서드를 호출해야 합니다.
 }
