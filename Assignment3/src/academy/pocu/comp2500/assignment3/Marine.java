@@ -40,14 +40,14 @@ public class Marine extends Unit implements IThinkable, IMovable {
 
     @Override
     public void move() {
+        if (actionType != EActionType.MOVE) {
+            return;
+        }
         int targetX = movePositionOrNull.getX();
         int targetY = movePositionOrNull.getY();
         int thisX = this.position.getX();
         int thisY = this.position.getY();
 
-        if (actionType != EActionType.MOVE) {
-            return;
-        }
         if (targetY < thisY) {
             this.position.setY(this.position.getY() - 1);
         } else if (targetY > thisY) {

@@ -52,14 +52,14 @@ public class Wraith extends Unit implements IThinkable, IMovable {
 
     @Override
     public void move() {
+        if (actionType != EActionType.MOVE) {
+            return;
+        }
         int targetX;
         int targetY;
         int thisX = this.position.getX();
         int thisY = this.position.getY();
-
-        if (actionType != EActionType.MOVE) {
-            return;
-        }
+        
         if (detectTargetOrNull != null) {
             targetX = movePositionOrNull.getX();
             targetY = movePositionOrNull.getY();

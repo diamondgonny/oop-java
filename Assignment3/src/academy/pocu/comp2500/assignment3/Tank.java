@@ -61,12 +61,12 @@ public class Tank extends Unit implements IThinkable, IMovable {
         // 1 이동하던 방향 끝까지 이동. 한번도 이동한 적이 없다면 오른쪽으로 이동
         // 2 반대 방향 끝까지 이동
         // (시야 안에서 적을 발견할 때까지 1 - 2를 반복)
-        int thisX = this.position.getX();
-        int thisY = this.position.getY();
-
         if (actionType != EActionType.MOVE) {
             return;
         }
+        int thisX = this.position.getX();
+        int thisY = this.position.getY();
+
         if (patrolRightDirection == true) {
             if (this.position.getX() == simulationManager.getNumRows() - 1) {
                 patrolRightDirection = false;
