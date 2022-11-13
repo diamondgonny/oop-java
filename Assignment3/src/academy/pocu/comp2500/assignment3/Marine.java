@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class Marine extends Unit implements IThinkable, IMovable {
     private static final char SYMBOL = 'M';
@@ -141,7 +141,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             if (!simulationManager.isValidPosition(x, y)) {
                 continue;
             }
-            ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+            LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
 
             // 1 가장 약한 유닛이 있는 타일을 공격
             // 2 자신의 위치에 유닛이 있다면 그 타일을 공격

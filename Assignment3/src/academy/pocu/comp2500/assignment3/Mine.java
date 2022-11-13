@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class Mine extends Unit implements IListener {
     private static final char SYMBOL = 'N';
@@ -32,7 +32,7 @@ public class Mine extends Unit implements IListener {
     public void listenCollisionEvent() {
         int x = this.position.getX();
         int y = this.position.getY();
-        ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+        LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
 
         if (candidates.size() == 0) {
             return;

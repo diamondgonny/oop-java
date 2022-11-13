@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class SmartMine extends Mine implements IThinkable {
     private static final char SYMBOL = 'A';
@@ -64,7 +64,7 @@ public class SmartMine extends Mine implements IThinkable {
                 if (!simulationManager.isValidPosition(x, y)) {
                     continue;
                 }
-                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+                LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 if (candidates.size() == 0) {
                     continue;
                 }

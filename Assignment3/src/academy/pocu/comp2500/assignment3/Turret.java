@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class Turret extends Unit implements IThinkable {
     private static final char SYMBOL = 'U';
@@ -73,7 +73,7 @@ public class Turret extends Unit implements IThinkable {
             if (!simulationManager.isValidPosition(x, y)) {
                 continue;
             }
-            ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+            LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
             // 1 가장 약한 유닛이 있는 타일을 공격
             // 2 자신의 위치에 유닛이 있다면 그 타일을 공격
             //  ㄴ 그렇지 않을 경우 북쪽(위쪽)에 유닛이 있다면 그 타일을 공격

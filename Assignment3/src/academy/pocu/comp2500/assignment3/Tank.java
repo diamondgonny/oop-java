@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class Tank extends Unit implements IThinkable, IMovable {
     private static final char SYMBOL = 'T';
@@ -125,7 +125,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
                 if (!simulationManager.isValidPosition(x, y)) {
                     continue;
                 }
-                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+                LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 for (Unit candidate : candidates) {
                     if (!(!candidate.getUnitType().equals(EUnitType.GROUND) || candidate == this)) {
                         // 시야 안에서 적 발견됨
@@ -144,7 +144,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
             if (!simulationManager.isValidPosition(x, y)) {
                 continue;
             }
-            ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+            LinkedHashSet<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
 
             // 다음은 전차의 교전규칙입니다. (우선순위 순)
             // 1-1 현재 공성 모드가 아닌 경우 공성 모드로 변경************************
