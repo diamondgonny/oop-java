@@ -59,7 +59,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         int targetY;
         int thisX = this.position.getX();
         int thisY = this.position.getY();
-        
+
         if (detectTargetOrNull != null) {
             targetX = movePositionOrNull.getX();
             targetY = movePositionOrNull.getY();
