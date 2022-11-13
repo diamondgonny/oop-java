@@ -20,6 +20,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
     };
     private Unit detectTargetOrNull;
     private IntVector2D attackPositionOrNull;
+    private IntVector2D movePositionOrNull;
 
     public Marine(final IntVector2D position) {
         super(position, SYMBOL, UNIT_TYPE, HP);
@@ -39,8 +40,8 @@ public class Marine extends Unit implements IThinkable, IMovable {
 
     @Override
     public void move() {
-        int targetX = detectTargetOrNull.position.getX();
-        int targetY = detectTargetOrNull.position.getY();
+        int targetX = movePositionOrNull.getX();
+        int targetY = movePositionOrNull.getY();
         int thisX = this.position.getX();
         int thisY = this.position.getY();
 
@@ -61,6 +62,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
         }
         simulationManager.moveUnitPosition(this, thisX, thisY, this.position.getX(), this.position.getY());
         detectTargetOrNull = null;
+        movePositionOrNull = null;
     }
 
     @Override
@@ -132,7 +134,11 @@ public class Marine extends Unit implements IThinkable, IMovable {
                 detectTargetOrNull = candidate;
             }
         }
-        return detectTargetOrNull != null;
+        if (detectTargetOrNull != null) {
+            movePositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(), detectTargetOrNull.position.getY());
+            return true;
+        }
+        return false;
     }
 
     private boolean searchTargetForAttack() {
@@ -162,7 +168,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(),detectTargetOrNull.position.getY());
+            attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(), detectTargetOrNull.position.getY());
             // attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }

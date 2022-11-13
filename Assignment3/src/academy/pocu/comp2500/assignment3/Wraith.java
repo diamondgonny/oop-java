@@ -21,6 +21,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
     private final IntVector2D initialPosition;
     private Unit detectTargetOrNull;
     private IntVector2D attackPositionOrNull;
+    private IntVector2D movePositionOrNull;
     private boolean unusedShield = true;
     private boolean activateShield = false;
     // 망령은 공격을 받으면 즉시 가동되는 특수 방어막을 가지고 있습니다.
@@ -60,8 +61,8 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             return;
         }
         if (detectTargetOrNull != null) {
-            targetX = detectTargetOrNull.position.getX();
-            targetY = detectTargetOrNull.position.getY();
+            targetX = movePositionOrNull.getX();
+            targetY = movePositionOrNull.getY();
         } else {
             targetX = initialPosition.getX();
             targetY = initialPosition.getY();
@@ -79,6 +80,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         }
         simulationManager.moveUnitPosition(this, thisX, thisY, this.position.getX(), this.position.getY());
         detectTargetOrNull = null;
+        movePositionOrNull = null;
     }
 
     @Override
@@ -154,7 +156,11 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 detectTargetOrNull = candidate;
             }
         }
-        return detectTargetOrNull != null;
+        if (detectTargetOrNull != null) {
+            movePositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(), detectTargetOrNull.position.getY());
+            return true;
+        }
+        return false;
     }
 
     private boolean searchTargetForAttack(EUnitType attackTargetUnitType) {
@@ -184,7 +190,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(),detectTargetOrNull.position.getY());
+            attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(), detectTargetOrNull.position.getY());
             // attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
