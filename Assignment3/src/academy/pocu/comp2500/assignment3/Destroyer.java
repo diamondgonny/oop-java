@@ -29,4 +29,9 @@ public class Destroyer extends Unit {
     public void onSpawn() {
         // ???
     }
+
+    @Override
+    public void onRemove() {
+        // ???
+    }
 }

@@ -59,4 +59,9 @@ public class Mine extends Unit implements IListener {
     public void onSpawn() {
         SimulationManager.getInstance().registerCollisionEventListener(this);
     }
+
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterCollisionEventListener(this);
+    }
 }

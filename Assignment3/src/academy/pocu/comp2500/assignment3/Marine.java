@@ -19,7 +19,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             new IntVector2D(-1, 0)
     };
     private Unit detectTargetOrNull;
-    private IntVector2D attackPointOrNull;
+    private IntVector2D attackPositionOrNull;
 
     public Marine(final IntVector2D position) {
         super(position, SYMBOL, UNIT_TYPE, HP);
@@ -76,6 +76,12 @@ public class Marine extends Unit implements IThinkable, IMovable {
     public void onSpawn() {
         SimulationManager.getInstance().registerThinkable(this);
         SimulationManager.getInstance().registerMovable(this);
+    }
+
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterThinkable(this);
+        SimulationManager.getInstance().unregisterMovable(this);
     }
 
     private boolean searchTargetForMove() {
@@ -145,7 +151,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPointOrNull = detectTargetOrNull.position;
+            attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
         return false;

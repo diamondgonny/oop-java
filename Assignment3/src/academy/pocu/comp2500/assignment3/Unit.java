@@ -43,4 +43,6 @@ public abstract class Unit {
     }
 
     public abstract void onSpawn();
+
+    public abstract void onRemove();
 }

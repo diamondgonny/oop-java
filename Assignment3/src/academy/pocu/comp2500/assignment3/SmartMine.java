@@ -44,6 +44,12 @@ public class SmartMine extends Mine implements IThinkable {
         super.onSpawn();
     }
 
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterThinkable(this);
+        super.onRemove();
+    }
+
     private boolean searchTargetForAttack() {
         // 만약 시야 안에서 몇 명 이상의 적 유닛이 감지되면, 스마트 지뢰가 폭발합니다.
         int minX = this.position.getX() - VISION;

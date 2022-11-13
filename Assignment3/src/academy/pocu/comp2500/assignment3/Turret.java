@@ -23,7 +23,7 @@ public class Turret extends Unit implements IThinkable {
             new IntVector2D(-1, -1)
     };
     private Unit detectTargetOrNull;
-    private IntVector2D attackPointOrNull;
+    private IntVector2D attackPositionOrNull;
 
     public Turret(final IntVector2D position) {
         super(position, SYMBOL, UNIT_TYPE, HP);
@@ -54,6 +54,11 @@ public class Turret extends Unit implements IThinkable {
         SimulationManager.getInstance().registerThinkable(this);
     }
 
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterThinkable(this);
+    }
+
     private boolean searchTargetForAttack() {
         for (IntVector2D attackRange : ATTACK_RANGE) {
             int x = this.position.getX() + attackRange.getX();
@@ -77,7 +82,7 @@ public class Turret extends Unit implements IThinkable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPointOrNull = detectTargetOrNull.position;
+            attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
         return false;

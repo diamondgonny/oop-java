@@ -20,7 +20,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
     };
     private final IntVector2D initialPosition;
     private Unit detectTargetOrNull;
-    private IntVector2D attackPointOrNull;
+    private IntVector2D attackPositionOrNull;
     private boolean specialShield = false;
     // 망령은 공격을 받으면 즉시 가동되는 특수 방어막을 가지고 있습니다.
     // 한 번 가동된 방어막은 현재 프레임이 끝날 때까지 지속되어 망령은 피해를 입지 않습니다.
@@ -91,6 +91,12 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         SimulationManager.getInstance().registerMovable(this);
     }
 
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterThinkable(this);
+        SimulationManager.getInstance().unregisterMovable(this);
+    }
+
     private boolean searchTargetForMove(EUnitType visionTargetUnitType) {
         // 1) 다음은 망령이 시야 안에서 적을 발견할 경우, 따르는 이동 규칙입니다. (역시 우선순위 순)
         // 1 공중 유닛들을 따라갈 후보로 선택. 선택할 공중 유닛이 없다면 지상 유닛들을 선택
@@ -158,7 +164,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPointOrNull = detectTargetOrNull.position;
+            attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
         return false;

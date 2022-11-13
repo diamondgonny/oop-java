@@ -26,7 +26,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
             new IntVector2D(-1, -2)
     };
     private Unit detectTargetOrNull;
-    private IntVector2D attackPointOrNull;
+    private IntVector2D attackPositionOrNull;
     private boolean siegeMode = false;
     private boolean patrolRightDirection = true;
 
@@ -102,6 +102,12 @@ public class Tank extends Unit implements IThinkable, IMovable {
         SimulationManager.getInstance().registerMovable(this);
     }
 
+    @Override
+    public void onRemove() {
+        SimulationManager.getInstance().unregisterThinkable(this);
+        SimulationManager.getInstance().unregisterMovable(this);
+    }
+
     private boolean scanTarget() {
         int minX = this.position.getX() - VISION;
         int minY = this.position.getY() - VISION;
@@ -145,7 +151,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
             }
         }
         if (detectTargetOrNull != null) {
-            attackPointOrNull = detectTargetOrNull.position;
+            attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
         return false;
