@@ -40,7 +40,11 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             unusedShield = false;
             activateShield = false;
         }
-        if (searchTargetForAttack(EUnitType.AIR) || searchTargetForAttack(EUnitType.GROUND)) {
+        if (searchTargetForAttack(EUnitType.AIR)) {
+            actionType = EActionType.ATTACK;
+            return;
+        }
+        if (searchTargetForAttack(EUnitType.GROUND)) {
             actionType = EActionType.ATTACK;
             return;
         }

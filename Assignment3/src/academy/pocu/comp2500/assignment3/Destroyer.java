@@ -3,8 +3,8 @@ package academy.pocu.comp2500.assignment3;
 public class Destroyer extends Unit {
     private static final char SYMBOL = 'D';
     private static final EUnitType UNIT_TYPE = EUnitType.AIR;
-    private static final int VISION = Math.max(SimulationManager.getInstance().getNumRows(),
-            SimulationManager.getInstance().getNumColumns());
+    private static final int VISION = Math.max(SimulationManager.getInstance().getNumRows() * 3,
+            SimulationManager.getInstance().getNumColumns() * 3);
     private static final int AREA_OF_EFFECT = VISION;
     private static final int AP = 99999;
     private static final int HP = 99999;
