@@ -97,7 +97,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             activateShield = true;
             return;
         }
-        cutHp(damage);
+        cutHpAbs(damage);
     }
 
     @Override

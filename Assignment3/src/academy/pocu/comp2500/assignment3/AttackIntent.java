@@ -62,8 +62,8 @@ public class AttackIntent {
         int strikeX = this.attackPosition.getX();
         int strikeY = this.attackPosition.getY();
         int distance = Math.max(Math.abs(unitY - strikeY), Math.abs(unitX - strikeX));
-//      int damage = (int) ((double) this.ap * (1.0 - (distance / (double) this.areaOfEffect + 1.0)));
         int damage = (int) ((double) this.ap * (1.0 - distance / ((double) this.areaOfEffect + 1.0)));
+//      int damage = (int) ((double) this.ap * (1.0 - (distance / (double) this.areaOfEffect + 1.0)));
         damage *= -1;
         return damage;
     }

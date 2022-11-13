@@ -99,7 +99,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
         if (siegeMode) {
             damage *= 2;
         }
-        cutHp(damage);
+        cutHpAbs(damage);
     }
 
     @Override

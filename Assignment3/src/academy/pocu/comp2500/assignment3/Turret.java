@@ -53,7 +53,7 @@ public class Turret extends Unit implements IThinkable {
 
     @Override
     public void onAttacked(int damage) {
-        cutHp(damage);
+        cutHpAbs(damage);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class Mine extends Unit implements IListener {
 
     @Override
     public void onAttacked(int damage) {
-        cutHp(damage);
+        cutHpAbs(damage);
     }
 
     @Override

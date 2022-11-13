@@ -32,7 +32,7 @@ public abstract class Unit {
         return hp;
     }
 
-    protected void cutHp(final int damage) {
+    protected void cutHpAbs(final int damage) {
         this.hp = Math.max(0, this.hp - damage);
     }
 

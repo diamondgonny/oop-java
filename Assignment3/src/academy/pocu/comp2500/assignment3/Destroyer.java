@@ -23,7 +23,7 @@ public class Destroyer extends Unit {
 
     @Override
     public void onAttacked(int damage) {
-        cutHp(-1);
+        cutHpAbs(1);
     }
 
     @Override

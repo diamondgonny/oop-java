@@ -76,7 +76,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
 
     @Override
     public void onAttacked(int damage) {
-        cutHp(damage);
+        cutHpAbs(damage);
     }
 
     @Override
