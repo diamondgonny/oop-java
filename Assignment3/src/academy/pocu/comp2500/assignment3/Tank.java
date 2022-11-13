@@ -91,10 +91,8 @@ public class Tank extends Unit implements IThinkable, IMovable {
         if (actionType != EActionType.ATTACK || attackPositionOrNull == null) {
             return new AttackIntent(this, simulationManager.invalidPositionGenerator());
         }
-        System.out.println(attackPositionOrNull.getX() + " " + attackPositionOrNull.getY());
         AttackIntent attackIntent = new AttackIntent(this, attackPositionOrNull, AP,
                 AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, false);
-        // System.out.println(attackPositionOrNull.getX() + " " + attackPositionOrNull.getY());
         detectTargetOrNull = null;
         attackPositionOrNull = null;
         return attackIntent;
@@ -171,9 +169,6 @@ public class Tank extends Unit implements IThinkable, IMovable {
         if (detectTargetOrNull != null) {
             attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(),detectTargetOrNull.position.getY());
             // attackPositionOrNull.getX() = detectTargetOrNull.position;
-            System.out.println(attackPositionOrNull.getX() + " " + attackPositionOrNull.getY());
-            System.out.println(attackPositionOrNull.getX() + " " + attackPositionOrNull.getY());
-            System.out.println(attackPositionOrNull.getX() + " " + attackPositionOrNull.getY());
             return true;
         }
         return false;
