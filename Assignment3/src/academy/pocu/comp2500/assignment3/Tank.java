@@ -168,7 +168,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
         }
         if (detectTargetOrNull != null) {
             attackPositionOrNull = new IntVector2D(detectTargetOrNull.position.getX(),detectTargetOrNull.position.getY());
-            // attackPositionOrNull.getX() = detectTargetOrNull.position;
+            // attackPositionOrNull = detectTargetOrNull.position;
             return true;
         }
         return false;
