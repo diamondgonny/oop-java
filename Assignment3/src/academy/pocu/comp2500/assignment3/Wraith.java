@@ -19,6 +19,8 @@ public class Wraith extends Unit implements IThinkable, IMovable {
             new IntVector2D(-1, 0)
     };
     private final IntVector2D initialPosition;
+    private Unit detectTargetOrNull;
+    private IntVector2D attackPointOrNull;
     private boolean specialShield = false;
     // 망령은 공격을 받으면 즉시 가동되는 특수 방어막을 가지고 있습니다.
     // 한 번 가동된 방어막은 현재 프레임이 끝날 때까지 지속되어 망령은 피해를 입지 않습니다.
@@ -51,9 +53,9 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         if (actionType != EActionType.MOVE) {
             return;
         }
-        if (targetOrNull != null) {
-            targetX = targetOrNull.position.getX();
-            targetY = targetOrNull.position.getY();
+        if (detectTargetOrNull != null) {
+            targetX = detectTargetOrNull.position.getX();
+            targetY = detectTargetOrNull.position.getY();
         } else {
             targetX = initialPosition.getX();
             targetY = initialPosition.getY();
@@ -69,6 +71,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 this.position.setX(this.position.getX() + 1);
             }
         }
+        detectTargetOrNull = null;
     }
 
     @Override
@@ -110,12 +113,12 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 continue;
             }
             // 타겟이 비었는가?
-            if (targetOrNull == null) {
-                targetOrNull = candidate;
+            if (detectTargetOrNull == null) {
+                detectTargetOrNull = candidate;
                 continue;
             }
-            int targetX = targetOrNull.position.getX();
-            int targetY = targetOrNull.position.getY();
+            int targetX = detectTargetOrNull.position.getX();
+            int targetY = detectTargetOrNull.position.getY();
             int candidateDistance = Math.abs(thisX - candidateX) + Math.abs(thisY - candidateY);
             int targetDistance = Math.abs(thisX - targetX) + Math.abs(thisY - targetY);
             // 1 후보유닛이 더 먼가? ㅂㅇ
@@ -123,12 +126,12 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 continue;
             }
             // 1 더 가까운가? 2 더 약한가? 3 시계방향?
-            if (targetDistance > candidateDistance || targetOrNull.getHp() > candidate.getHp() ||
-                    simulationManager.compareClockwiseOrder(this.position, targetOrNull.position, candidate.position)) {
-                targetOrNull = candidate;
+            if (targetDistance > candidateDistance || detectTargetOrNull.getHp() > candidate.getHp() ||
+                    simulationManager.compareClockwiseOrder(this.position, detectTargetOrNull.position, candidate.position)) {
+                detectTargetOrNull = candidate;
             }
         }
-        return targetOrNull != null;
+        return detectTargetOrNull != null;
     }
 
     private boolean searchTargetForAttack(EUnitType attackTargetUnitType) {
@@ -149,11 +152,15 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 if (!candidate.getUnitType().equals(attackTargetUnitType) || candidate == this) {
                     continue;
                 }
-                if (targetOrNull == null || targetOrNull.getHp() > candidate.getHp()) {
-                    targetOrNull = candidate;
+                if (detectTargetOrNull == null || detectTargetOrNull.getHp() > candidate.getHp()) {
+                    detectTargetOrNull = candidate;
                 }
             }
         }
-        return targetOrNull != null;
+        if (detectTargetOrNull != null) {
+            attackPointOrNull = detectTargetOrNull.position;
+            return true;
+        }
+        return false;
     }
 }

@@ -18,6 +18,8 @@ public class Marine extends Unit implements IThinkable, IMovable {
             new IntVector2D(0, 1),
             new IntVector2D(-1, 0)
     };
+    private Unit detectTargetOrNull;
+    private IntVector2D attackPointOrNull;
 
     public Marine(final IntVector2D position) {
         super(position, SYMBOL, UNIT_TYPE, HP);
@@ -37,8 +39,8 @@ public class Marine extends Unit implements IThinkable, IMovable {
 
     @Override
     public void move() {
-        int targetX = targetOrNull.position.getX();
-        int targetY = targetOrNull.position.getY();
+        int targetX = detectTargetOrNull.position.getX();
+        int targetY = detectTargetOrNull.position.getY();
         int thisX = this.position.getX();
         int thisY = this.position.getY();
 
@@ -57,6 +59,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             }
             // move()에서 위치가 동일할 일은 없음
         }
+        detectTargetOrNull = null;
     }
 
     @Override
@@ -96,12 +99,12 @@ public class Marine extends Unit implements IThinkable, IMovable {
                 continue;
             }
             // 타겟이 비었는가?
-            if (targetOrNull == null) {
-                targetOrNull = candidate;
+            if (detectTargetOrNull == null) {
+                detectTargetOrNull = candidate;
                 continue;
             }
-            int targetX = targetOrNull.position.getX();
-            int targetY = targetOrNull.position.getY();
+            int targetX = detectTargetOrNull.position.getX();
+            int targetY = detectTargetOrNull.position.getY();
             int candidateDistance = Math.abs(thisX - candidateX) + Math.abs(thisY - candidateY);
             int targetDistance = Math.abs(thisX - targetX) + Math.abs(thisY - targetY);
 
@@ -110,12 +113,12 @@ public class Marine extends Unit implements IThinkable, IMovable {
                 continue;
             }
             // 1 더 가까운가? 2 더 약한가? 3 시계방향?
-            if (targetDistance > candidateDistance || targetOrNull.getHp() > candidate.getHp() ||
-                    simulationManager.compareClockwiseOrder(this.position, targetOrNull.position, candidate.position)) {
-                targetOrNull = candidate;
+            if (targetDistance > candidateDistance || detectTargetOrNull.getHp() > candidate.getHp() ||
+                    simulationManager.compareClockwiseOrder(this.position, detectTargetOrNull.position, candidate.position)) {
+                detectTargetOrNull = candidate;
             }
         }
-        return targetOrNull != null;
+        return detectTargetOrNull != null;
     }
 
     private boolean searchTargetForAttack() {
@@ -136,11 +139,15 @@ public class Marine extends Unit implements IThinkable, IMovable {
                         !candidate.getUnitType().equals(EUnitType.GROUND) || candidate == this) {
                     continue;
                 }
-                if (targetOrNull == null || targetOrNull.getHp() > candidate.getHp()) {
-                    targetOrNull = candidate;
+                if (detectTargetOrNull == null || detectTargetOrNull.getHp() > candidate.getHp()) {
+                    detectTargetOrNull = candidate;
                 }
             }
         }
-        return targetOrNull != null;
+        if (detectTargetOrNull != null) {
+            attackPointOrNull = detectTargetOrNull.position;
+            return true;
+        }
+        return false;
     }
 }

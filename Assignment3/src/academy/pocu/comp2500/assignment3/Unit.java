@@ -6,9 +6,7 @@ public abstract class Unit {
     protected char symbol;
     protected EUnitType unitType;
     protected int hp;
-
     protected EActionType actionType = EActionType.STANDBY;
-    protected Unit targetOrNull;
 
     public Unit(IntVector2D position, char symbol, EUnitType unitType, int hp) {
         this.simulationManager = SimulationManager.getInstance();

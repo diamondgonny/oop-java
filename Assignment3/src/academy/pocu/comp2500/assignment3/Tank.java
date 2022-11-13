@@ -25,6 +25,8 @@ public class Tank extends Unit implements IThinkable, IMovable {
             new IntVector2D(-2, -1),
             new IntVector2D(-1, -2)
     };
+    private Unit detectTargetOrNull;
+    private IntVector2D attackPointOrNull;
     private boolean siegeMode = false;
     private boolean patrolRightDirection = true;
 
@@ -35,11 +37,21 @@ public class Tank extends Unit implements IThinkable, IMovable {
 
     @Override
     public void think() {
-        if (scanTarget()) {
-            searchTargetForAttack();
-            actionType = EActionType.ATTACK;
+        if (!this.siegeMode) {
+            // 탱크모드
+            if (scanTarget()) {
+                this.siegeMode = true;
+                actionType = EActionType.STANDBY;
+            } else {
+                actionType = EActionType.MOVE;
+            }
         } else {
-            actionType = EActionType.MOVE;
+            // 공성모드
+            if (searchTargetForAttack()) {
+                actionType = EActionType.ATTACK;
+            } else {
+                actionType = EActionType.STANDBY;
+            }
         }
     }
 
@@ -52,7 +64,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
         if (actionType != EActionType.MOVE) {
             return;
         }
-        if (patrolRightDirection = true) {
+        if (patrolRightDirection == true) {
             if (this.position.getX() == simulationManager.getNumRows() - 1) {
                 patrolRightDirection = false;
                 this.position.setX(this.position.getX() - 1);
@@ -67,10 +79,14 @@ public class Tank extends Unit implements IThinkable, IMovable {
                 this.position.setX(this.position.getX() - 1);
             }
         }
+        detectTargetOrNull = null;
     }
 
     @Override
     public AttackIntent attack() {
+        // 1) 전차가 시야 안에서 적을 찾았는가?
+        // 탱크모드 : 공성 모드(1 프레임 소모)로 변경하여 공격할 준비 (끝) -> attack
+        // 공성모드 : 다음 단계로... -> attack
         return super.attack();
     }
 
@@ -87,16 +103,14 @@ public class Tank extends Unit implements IThinkable, IMovable {
     }
 
     private boolean scanTarget() {
-        // 1) 전차가 시야 안에서 적을 찾았는가?
-        // 탱크모드 : 공성 모드(1 프레임 소모)로 변경하여 공격할 준비 (끝) -> attack
-        // 공성모드 : 다음 단계로... -> attack
-        // out of bounds?
-        int x = this.position.getX() - VISION;
-        int y = this.position.getY() - VISION;
+        int minX = this.position.getX() - VISION;
+        int minY = this.position.getY() - VISION;
+        int maxX = minX + 2 * VISION;
+        int maxY = minY + 2 * VISION;
 
-        for (int i = 0; i < 2 * VISION + 1; ++i) {
-            for (int j = 0; j < 2 * VISION + 1; ++j) {
-                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x + i, y + j);
+        for (int y = minY; y <= maxY; ++y) {
+            for (int x = minX; x <= maxX; ++x) {
+                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 for (Unit candidate : candidates) {
                     if (!(!candidate.getUnitType().equals(EUnitType.GROUND) || candidate == this)) {
                         // 시야 안에서 적 발견됨
@@ -125,11 +139,15 @@ public class Tank extends Unit implements IThinkable, IMovable {
                 if (!candidate.unitType.equals(EUnitType.GROUND)) {
                     continue;
                 }
-                if (targetOrNull == null || targetOrNull.getHp() > candidate.getHp()) {
-                    targetOrNull = candidate;
+                if (detectTargetOrNull == null || detectTargetOrNull.getHp() > candidate.getHp()) {
+                    detectTargetOrNull = candidate;
                 }
             }
         }
-        return targetOrNull != null;
+        if (detectTargetOrNull != null) {
+            attackPointOrNull = detectTargetOrNull.position;
+            return true;
+        }
+        return false;
     }
 }
