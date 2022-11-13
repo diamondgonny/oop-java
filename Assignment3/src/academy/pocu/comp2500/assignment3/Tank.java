@@ -1,6 +1,9 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 public class Tank extends Unit implements IThinkable, IMovable {
     private static final char SYMBOL = 'T';
@@ -84,16 +87,22 @@ public class Tank extends Unit implements IThinkable, IMovable {
 
     @Override
     public AttackIntent attack() {
-        // 1) 전차가 시야 안에서 적을 찾았는가?
-        // 탱크모드 : 공성 모드(1 프레임 소모)로 변경하여 공격할 준비 (끝) -> attack
-        // 공성모드 : 다음 단계로... -> attack
-        return super.attack();
+        if (actionType != EActionType.ATTACK || attackPositionOrNull == null) {
+            return new AttackIntent(this, simulationManager.invalidPositionGenerator());
+        }
+        AttackIntent attackIntent = new AttackIntent(this, attackPositionOrNull, AP,
+                AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, false);
+        detectTargetOrNull = null;
+        attackPositionOrNull = null;
+        return attackIntent;
     }
 
     @Override
     public void onAttacked(int damage) {
-        // 공성모드일 때 2배 피해 받음
-        super.onAttacked(damage);
+        if (siegeMode) {
+            damage *= 2;
+        }
+        cutHp(damage);
     }
 
     @Override
@@ -116,6 +125,9 @@ public class Tank extends Unit implements IThinkable, IMovable {
 
         for (int y = minY; y <= maxY; ++y) {
             for (int x = minX; x <= maxX; ++x) {
+                if (!simulationManager.isValidPosition(x, y)) {
+                    continue;
+                }
                 ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 for (Unit candidate : candidates) {
                     if (!(!candidate.getUnitType().equals(EUnitType.GROUND) || candidate == this)) {
@@ -132,6 +144,9 @@ public class Tank extends Unit implements IThinkable, IMovable {
         for (IntVector2D attackRange : ATTACK_RANGE) {
             int x = this.position.getX() + attackRange.getX();
             int y = this.position.getY() + attackRange.getY();
+            if (!simulationManager.isValidPosition(x, y)) {
+                continue;
+            }
             ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
 
             // 다음은 전차의 교전규칙입니다. (우선순위 순)

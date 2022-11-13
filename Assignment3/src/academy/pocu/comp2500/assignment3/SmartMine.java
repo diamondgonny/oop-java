@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class SmartMine extends Mine implements IThinkable {
     private static final char SYMBOL = 'A';
@@ -30,12 +32,14 @@ public class SmartMine extends Mine implements IThinkable {
 
     @Override
     public AttackIntent attack() {
-        return super.attack();
-    }
-
-    @Override
-    public void onAttacked(int damage) {
-        super.onAttacked(damage);
+        if (super.attack().isValid()) {
+            return super.attack();
+        }
+        if (actionType != EActionType.ATTACK) {
+            return new AttackIntent(this, simulationManager.invalidPositionGenerator());
+        }
+        return new AttackIntent(this, this.position, AP,
+                AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, true);
     }
 
     @Override
@@ -59,6 +63,9 @@ public class SmartMine extends Mine implements IThinkable {
 
         for (int y = minY; y <= maxY; ++y) {
             for (int x = minX; x <= maxX; ++x) {
+                if (!simulationManager.isValidPosition(x, y)) {
+                    continue;
+                }
                 ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 if (candidates.size() == 0) {
                     continue;

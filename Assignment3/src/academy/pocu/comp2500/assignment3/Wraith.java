@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Wraith extends Unit implements IThinkable, IMovable {
     private static final char SYMBOL = 'W';
@@ -21,7 +23,8 @@ public class Wraith extends Unit implements IThinkable, IMovable {
     private final IntVector2D initialPosition;
     private Unit detectTargetOrNull;
     private IntVector2D attackPositionOrNull;
-    private boolean specialShield = false;
+    private boolean unusedShield = true;
+    private boolean activateShield = false;
     // 망령은 공격을 받으면 즉시 가동되는 특수 방어막을 가지고 있습니다.
     // 한 번 가동된 방어막은 현재 프레임이 끝날 때까지 지속되어 망령은 피해를 입지 않습니다.
     // 다음 프레임부터는 공격을 받으면 피해를 입습니다.
@@ -34,6 +37,10 @@ public class Wraith extends Unit implements IThinkable, IMovable {
 
     @Override
     public void think() {
+        if (activateShield) {
+            unusedShield = false;
+            activateShield = false;
+        }
         if (searchTargetForAttack(EUnitType.AIR) || searchTargetForAttack(EUnitType.GROUND)) {
             actionType = EActionType.ATTACK;
         }
@@ -76,13 +83,23 @@ public class Wraith extends Unit implements IThinkable, IMovable {
 
     @Override
     public AttackIntent attack() {
-        return super.attack();
+        if (actionType != EActionType.ATTACK || attackPositionOrNull == null) {
+            return new AttackIntent(this, simulationManager.invalidPositionGenerator());
+        }
+        AttackIntent attackIntent = new AttackIntent(this, attackPositionOrNull, AP,
+                AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, false);
+        detectTargetOrNull = null;
+        attackPositionOrNull = null;
+        return attackIntent;
     }
 
     @Override
     public void onAttacked(int damage) {
-        // special shield
-        super.onAttacked(damage);
+        if (unusedShield) {
+            activateShield = true;
+            return;
+        }
+        cutHp(damage);
     }
 
     @Override
@@ -145,6 +162,9 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         for (IntVector2D attackRange : ATTACK_RANGE) {
             int x = this.position.getX() + attackRange.getX();
             int y = this.position.getY() + attackRange.getY();
+            if (!simulationManager.isValidPosition(x, y)) {
+                continue;
+            }
             ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
 
             // 1 가장 약한 유닛이 있는 타일을 공격

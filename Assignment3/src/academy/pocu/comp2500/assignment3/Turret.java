@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Turret extends Unit implements IThinkable {
     private static final char SYMBOL = 'U';
@@ -41,12 +43,19 @@ public class Turret extends Unit implements IThinkable {
 
     @Override
     public AttackIntent attack() {
-        return super.attack();
+        if (actionType != EActionType.ATTACK || attackPositionOrNull == null) {
+            return new AttackIntent(this, simulationManager.invalidPositionGenerator());
+        }
+        AttackIntent attackIntent = new AttackIntent(this, attackPositionOrNull, AP,
+                AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, false);
+        detectTargetOrNull = null;
+        attackPositionOrNull = null;
+        return attackIntent;
     }
 
     @Override
     public void onAttacked(int damage) {
-        super.onAttacked(damage);
+        cutHp(damage);
     }
 
     @Override
@@ -63,7 +72,9 @@ public class Turret extends Unit implements IThinkable {
         for (IntVector2D attackRange : ATTACK_RANGE) {
             int x = this.position.getX() + attackRange.getX();
             int y = this.position.getY() + attackRange.getY();
-
+            if (!simulationManager.isValidPosition(x, y)) {
+                continue;
+            }
             ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
             // 1 가장 약한 유닛이 있는 타일을 공격
             // 2 자신의 위치에 유닛이 있다면 그 타일을 공격

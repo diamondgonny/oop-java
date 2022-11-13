@@ -1,6 +1,8 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Mine extends Unit implements IListener {
     private static final char SYMBOL = 'N';
@@ -47,12 +49,16 @@ public class Mine extends Unit implements IListener {
 
     @Override
     public AttackIntent attack() {
-        return super.attack();
+        if (mineThreshold != 0) {
+            return new AttackIntent(this, simulationManager.invalidPositionGenerator());
+        }
+        return new AttackIntent(this, this.position, AP,
+                AREA_OF_EFFECT, ATTACK_TARGET_UNIT_TYPES, true);
     }
 
     @Override
     public void onAttacked(int damage) {
-        super.onAttacked(damage);
+        cutHp(damage);
     }
 
     @Override

@@ -32,15 +32,16 @@ public abstract class Unit {
         return hp;
     }
 
-    public AttackIntent attack() {
-        // 공격 의도(AttackIntent) 개체를 반환합니다.
-        // AttackIntent 안에는 공격 위치, 피해치, 공격자 등 공격에 필요한 정보가 담겨 있어야 합니다.
-        return null;
+    protected void cutHp(final int damage) {
+        this.hp = Math.max(0, this.hp - damage);
     }
 
-    public void onAttacked(int damage) {
-        // 유닛에 피해치(damage)를 적용합니다.
-    }
+    public abstract AttackIntent attack();
+    // 공격 의도(AttackIntent) 개체를 반환합니다.
+    // AttackIntent 안에는 공격 위치, 피해치, 공격자 등 공격에 필요한 정보가 담겨 있어야 합니다.
+
+    public abstract void onAttacked(int damage);
+    // 유닛에 피해치(damage)를 적용합니다.
 
     public abstract void onSpawn();
 
