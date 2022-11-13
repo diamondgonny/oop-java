@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 
 public class AttackIntent {
     private final SimulationManager simulationManager;

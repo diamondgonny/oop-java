@@ -1,9 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 
 public final class SimulationManager {
     private static SimulationManager instance;
@@ -89,7 +86,7 @@ public final class SimulationManager {
         for (IListener listener : this.listeners) {
             listener.listenCollisionEvent();
         }
-        for(Unit unit : this.units) {
+        for (Unit unit : this.units) {
             AttackIntent attackIntent = unit.attack();
             if (attackIntent.isValid()) {
                 attackIntents.add(attackIntent);

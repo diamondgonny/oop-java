@@ -1,7 +1,6 @@
 package academy.pocu.comp2500.assignment3.app;
 
 import academy.pocu.comp2500.assignment3.*;
-import academy.pocu.comp2500.assignment3.registry.Registry;
 
 import java.io.BufferedReader;
 import java.io.IOException;

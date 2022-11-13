@@ -1,8 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 
 public class SmartMine extends Mine implements IThinkable {
     private static final char SYMBOL = 'A';
