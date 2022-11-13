@@ -1,6 +1,7 @@
 package academy.pocu.comp2500.assignment3;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public final class SimulationManager {
     private static SimulationManager instance;
@@ -10,15 +11,15 @@ public final class SimulationManager {
     private final ArrayList<IMovable> movables = new ArrayList<>();
     private final ArrayList<IListener> listeners = new ArrayList<>();
     private final ArrayList<Unit> units = new ArrayList<>();
-    private final ArrayList<ArrayList<ArrayList<Unit>>> unitPositions;
+    private final ArrayList<ArrayList<LinkedHashSet<Unit>>> unitPositions;
     private ArrayList<AttackIntent> attackIntents = new ArrayList<>();
 
     private SimulationManager() {
-        this.unitPositions = new ArrayList<ArrayList<ArrayList<Unit>>>();
+        this.unitPositions = new ArrayList<ArrayList<LinkedHashSet<Unit>>>();
         for (int y = 0; y < NUM_COLUMNS; ++y) {
-            this.unitPositions.add(new ArrayList<ArrayList<Unit>>());
+            this.unitPositions.add(new ArrayList<LinkedHashSet<Unit>>());
             for (int x = 0; x < NUM_ROWS; ++x) {
-                this.unitPositions.get(y).add(new ArrayList<>());
+                this.unitPositions.get(y).add(new LinkedHashSet<>());
             }
         }
     }
@@ -105,7 +106,7 @@ public final class SimulationManager {
         attackIntents.clear();
     }
 
-    public ArrayList<Unit> getUnitsOnPosition(final int x, final int y) {
+    public LinkedHashSet<Unit> getUnitsOnPosition(final int x, final int y) {
         return this.unitPositions.get(y).get(x);
     }
 
