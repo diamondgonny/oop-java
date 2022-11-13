@@ -41,6 +41,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
         }
         if (searchTargetForAttack(EUnitType.AIR) || searchTargetForAttack(EUnitType.GROUND)) {
             actionType = EActionType.ATTACK;
+            return;
         }
         if (!searchTargetForMove(EUnitType.AIR)) {
             searchTargetForMove(EUnitType.GROUND);
@@ -76,6 +77,7 @@ public class Wraith extends Unit implements IThinkable, IMovable {
                 this.position.setX(this.position.getX() + 1);
             }
         }
+        simulationManager.moveUnitPosition(this, thisX, thisY, this.position.getX(), this.position.getY());
         detectTargetOrNull = null;
     }
 

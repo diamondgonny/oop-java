@@ -13,6 +13,8 @@ public final class SimulationManager {
     private final ArrayList<Unit> units = new ArrayList<>();
     private final ArrayList<ArrayList<LinkedHashSet<Unit>>> unitPositions;
     private ArrayList<AttackIntent> attackIntents = new ArrayList<>();
+    private final LinkedHashSet<Unit> attackedUnits = new LinkedHashSet<>();
+
 
     private SimulationManager() {
         this.unitPositions = new ArrayList<ArrayList<LinkedHashSet<Unit>>>();
@@ -98,9 +100,9 @@ public final class SimulationManager {
             }
         }
         for (final AttackIntent attackIntent : attackIntents) {
-            attackIntent.strike();
+            attackIntent.strike(attackedUnits);
         }
-        for (Unit unit : this.units) {
+        for (Unit unit : this.attackedUnits) {
             if (unit.getHp() == 0) {
                 this.units.remove(unit);
                 this.removeUnitPosition(unit);
@@ -108,6 +110,7 @@ public final class SimulationManager {
             }
         }
         attackIntents.clear();
+        attackedUnits.clear();
     }
 
     public LinkedHashSet<Unit> getUnitsOnPosition(final int x, final int y) {
@@ -128,18 +131,21 @@ public final class SimulationManager {
         this.addUnitPosition(unit, x, y);
     }
 
+    public void removeUnitPosition(final Unit unit, final int x, final int y) {
+        this.unitPositions.get(y).get(x).remove(unit);
+    }
+
     public void removeUnitPosition(final Unit unit) {
         int x = unit.getPosition().getX();
         int y = unit.getPosition().getY();
         this.unitPositions.get(y).get(x).remove(unit);
     }
 
-/*    public void moveUnitPosition(final Unit unit, final int moveX, final int moveY) {
-        int x = unit.getPosition().getX();
-        int y = unit.getPosition().getY();
-        this.removeUnitPosition(unit);
-        this.addUnitPosition(unit, x + moveX, y + moveY);
-    }*/
+    public void moveUnitPosition(final Unit unit, final int fromX, final int fromY,
+                                 final int toX, final int toY) {
+        this.removeUnitPosition(unit, fromX, fromY);
+        this.addUnitPosition(unit, toX, toY);
+    }
 
     public boolean compareClockwiseOrder(IntVector2D origin, IntVector2D target, IntVector2D candidate) {
         double x1 = target.getX() - origin.getX();

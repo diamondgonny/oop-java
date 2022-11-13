@@ -59,6 +59,7 @@ public class Marine extends Unit implements IThinkable, IMovable {
             }
             // move()에서 위치가 동일할 일은 없음
         }
+        simulationManager.moveUnitPosition(this, thisX, thisY, this.position.getX(), this.position.getY());
         detectTargetOrNull = null;
     }
 
