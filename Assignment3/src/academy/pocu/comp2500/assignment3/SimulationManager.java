@@ -35,6 +35,10 @@ public final class SimulationManager {
         return NUM_ROWS;
     }
 
+    public int getNumColumns() {
+        return NUM_COLUMNS;
+    }
+
     public ArrayList<Unit> getUnits() {
         // SimulationManager.units 불러오기 vs 실시간으로 보드 덤프하기
         return units;
