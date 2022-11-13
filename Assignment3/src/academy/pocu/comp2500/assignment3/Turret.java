@@ -28,13 +28,13 @@ public class Turret extends Unit implements IThinkable {
     };
 
     public Turret(final IntVector2D position) {
-        super(position, SYMBOL, HP);
+        super(position, SYMBOL, UNIT_TYPE, HP);
         // constructor
     }
 
     @Override
     public void think() {
-        if (searchPreyForAttack() != null) {
+        if (searchTargetForAttack()) {
             actionType = EActionType.ATTACK;
         } else {
             actionType = EActionType.STANDBY;
@@ -43,11 +43,6 @@ public class Turret extends Unit implements IThinkable {
 
     @Override
     public AttackIntent attack() {
-        // 다음은 미사일 포탑의 교전규칙입니다. (우선순위 순)
-        // 1 가장 약한 유닛이 있는 타일을 공격
-        // 2 자신의 위치에 유닛이 있다면 그 타일을 공격
-        //  ㄴ 그렇지 않을 경우 북쪽(위쪽)에 유닛이 있다면 그 타일을 공격
-        //  ㄴ 그렇지 않을 경우 시계 방향으로 검색하다 찾은 유닛의 타일을 공격
         return super.attack();
     }
 
@@ -59,5 +54,29 @@ public class Turret extends Unit implements IThinkable {
     @Override
     public void onSpawn() {
         SimulationManager.getInstance().registerThinkable(this);
+    }
+
+    private boolean searchTargetForAttack() {
+        for (IntVector2D attackRange : ATTACK_RANGE) {
+            int x = this.position.getX() + attackRange.getX();
+            int y = this.position.getY() + attackRange.getY();
+            ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+            // 1 가장 약한 유닛이 있는 타일을 공격
+            // 2 자신의 위치에 유닛이 있다면 그 타일을 공격
+            //  ㄴ 그렇지 않을 경우 북쪽(위쪽)에 유닛이 있다면 그 타일을 공격
+            //  ㄴ 그렇지 않을 경우 시계 방향으로 검색하다 찾은 유닛의 타일을 공격
+            if (candidates.size() == 0) {
+                continue;
+            }
+            for (Unit candidate : candidates) {
+                if (!candidate.unitType.equals(EUnitType.AIR) || candidate == this) {
+                    continue;
+                }
+                if (targetOrNull == null || targetOrNull.getHp() > candidate.getHp()) {
+                    targetOrNull = candidate;
+                }
+            }
+        }
+        return targetOrNull != null;
     }
 }

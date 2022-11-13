@@ -1,5 +1,5 @@
 package academy.pocu.comp2500.assignment3;
 
 public interface IListener {
-    void listenCollisionEvent();
+    void listenCollisionEvent(Unit unit);
 }

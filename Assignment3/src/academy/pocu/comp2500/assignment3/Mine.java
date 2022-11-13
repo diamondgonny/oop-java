@@ -16,21 +16,23 @@ public class Mine extends Unit implements IListener {
     // ㄴ 이 횟수는 지뢰마다 다르게 지정할 수 있습니다. ㄴ 터진 지뢰는 파괴됩니다.
 
     public Mine(final IntVector2D position, final int bombRemainedByStep) {
-        super(position, SYMBOL, HP);
+        super(position, SYMBOL, UNIT_TYPE, HP);
         this.bombRemainedByStep = bombRemainedByStep;
         // constructor
     }
 
     protected Mine(final IntVector2D position, final char symbol, final int hp,
-                   final int bombRemainedByStep) {
-        super(position, symbol, hp);
+                   final EUnitType unitType, final int bombRemainedByStep) {
+        super(position, symbol, unitType, hp);
         this.bombRemainedByStep = bombRemainedByStep;
         // constructor
     }
 
     @Override
-    public void listenCollisionEvent() {
-        (위 참조)
+    public void listenCollisionEvent(Unit unit) {
+        if (unit == this || unit.unitType == EUnitType.AIR) {
+            return;
+        }
     }
 
     @Override

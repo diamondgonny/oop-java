@@ -1,18 +1,20 @@
 package academy.pocu.comp2500.assignment3;
 
 public abstract class Unit {
-    protected final UnitPositionManager unitPositionManager;
+    protected final SimulationManager simulationManager;
     protected IntVector2D position;
     protected char symbol;
+    protected EUnitType unitType;
     protected int hp;
 
     protected EActionType actionType = EActionType.STANDBY;
-    protected IntVector2D attackTargetOrNull;
+    protected Unit targetOrNull;
 
-    public Unit(IntVector2D position, char symbol, int hp) {
-        this.unitPositionManager = UnitPositionManager.getInstance();
+    public Unit(IntVector2D position, char symbol, EUnitType unitType, int hp) {
+        this.simulationManager = SimulationManager.getInstance();
         this.position = position;
         this.symbol = symbol;
+        this.unitType = unitType;
         this.hp = hp;
     }
 
@@ -22,6 +24,10 @@ public abstract class Unit {
 
     public char getSymbol() {
         return symbol;
+    }
+
+    public EUnitType getUnitType() {
+        return unitType;
     }
 
     public int getHp() {

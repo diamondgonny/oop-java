@@ -4,15 +4,23 @@ import java.util.ArrayList;
 
 public final class SimulationManager {
     private static SimulationManager instance;
-    private final UnitPositionManager unitPositionManager;
     private final ArrayList<Unit> units = new ArrayList<>();
     private final ArrayList<IThinkable> thinkables = new ArrayList<>();
     private final ArrayList<IMovable> movables = new ArrayList<>();
     private final ArrayList<IListener> listeners = new ArrayList<>();
 
+    private static final int NUM_COLUMNS = 16;
+    private static final int NUM_ROWS = 8;
+    private ArrayList<ArrayList<ArrayList<Unit>>> unitPositions;    // Review
+
     private SimulationManager() {
-        UnitPositionManager.createInstance();
-        this.unitPositionManager = UnitPositionManager.getInstance();
+        this.unitPositions = new ArrayList<>();
+        for (int i = 0; i < NUM_ROWS; ++i) {
+            unitPositions.add(new ArrayList<>());
+            for (int j = 0; j < NUM_COLUMNS; ++j) {
+                unitPositions.get(i).add(new ArrayList<>());
+            }
+        }
     }
 
     public static SimulationManager getInstance() {
@@ -28,7 +36,7 @@ public final class SimulationManager {
 
     public void spawn(Unit unit) {
         this.units.add(unit);
-        unitPositionManager.add(unit);
+        this.addUnitPosition(unit);
         unit.onSpawn(); // for register interfaces
     }
 
@@ -68,7 +76,7 @@ public final class SimulationManager {
         for (Unit unit : this.units) {
             if (unit.getHp() == 0) {
                 this.units.remove(unit);
-                unitPositionManager.remove(unit);
+                this.removeUnitPosition(unit);
                 if (unit.getSymbol() != 'N' && unit.getSymbol() != 'A') {
                     this.thinkables.remove(unit);
                 }
@@ -81,4 +89,49 @@ public final class SimulationManager {
             }
         }
     }
+
+    public ArrayList<Unit> getUnitsOnPosition(final int x, final int y) {
+        return this.unitPositions.get(y).get(x);
+    }
+
+    public void addUnitPosition(final Unit unit, final int x, final int y) {
+        this.unitPositions.get(y).get(x).add(unit);
+    }
+
+    public void addUnitPosition(final Unit unit) {
+        int x = unit.getPosition().getX();
+        int y = unit.getPosition().getY();
+        this.addUnitPosition(unit, x, y);
+    }
+
+    public void removeUnitPosition(final Unit unit) {
+        int x = unit.getPosition().getX();
+        int y = unit.getPosition().getY();
+        this.unitPositions.get(y).get(x).remove(unit);
+    }
+
+    public void moveUnitPosition(final Unit unit, final int moveX, final int moveY) {
+        int x = unit.getPosition().getX();
+        int y = unit.getPosition().getY();
+        this.removeUnitPosition(unit);
+        this.addUnitPosition(unit, x + moveX, y + moveY);
+    }
+
+    public boolean compareClockwiseOrder(IntVector2D origin, IntVector2D target, IntVector2D candidate) {
+        double x1 = target.getX() - origin.getX();
+        double y1 = target.getY() - origin.getY();
+        double x2 = candidate.getX() - origin.getX();
+        double y2 = candidate.getY() - origin.getY();
+        double angleTarget = (Math.atan2(y1, x1) - Math.atan2(-1, 0)) * (180.0 / Math.PI);
+        double angleCandidate = (Math.atan2(y2, x2) - Math.atan2(-1, 0)) * (180.0 / Math.PI);
+        if (angleTarget < 0) {
+            angleTarget += 360;
+        }
+        if (angleCandidate < 0) {
+            angleCandidate += 360;
+        }
+        return angleTarget > angleCandidate;
+    }
+
+    // Out of bounds check?
 }
