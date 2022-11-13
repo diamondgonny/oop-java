@@ -9,18 +9,13 @@ public class SmartMine extends Mine implements IThinkable {
     private static final int AREA_OF_EFFECT = 1;
     private static final int AP = 15;
     private static final int HP = 1;
-    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {
-            EUnitType.GROUND
-    };
-    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
-            EUnitType.GROUND
-    };
-    private int bombRemainedByDetect;
+    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {EUnitType.GROUND, EUnitType.UNDERGROUND};
+    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {EUnitType.GROUND};
+    private int smartMineThreshold;
 
-    public SmartMine(final IntVector2D position, final int bombRemainedbyStep,
-                     final int bombRemainedByDetect) {
-        super(position, SYMBOL, HP, UNIT_TYPE, bombRemainedbyStep);
-        this.bombRemainedByDetect = bombRemainedByDetect;
+    public SmartMine(final IntVector2D position, final int mineThreshold, final int smartMineThreshold) {
+        super(position, SYMBOL, HP, UNIT_TYPE, mineThreshold);
+        this.smartMineThreshold = smartMineThreshold;
         // constructor
     }
 
@@ -51,23 +46,25 @@ public class SmartMine extends Mine implements IThinkable {
 
     private boolean searchTargetForAttack() {
         // 만약 시야 안에서 몇 명 이상의 적 유닛이 감지되면, 스마트 지뢰가 폭발합니다.
-        // out of bounds?
-        int x = this.position.getX() - 1;
-        int y = this.position.getY() - 1;
-        for (int i = 0; i < 2 * VISION + 1; ++i) {
-            for (int j = 0; j < 2 * VISION + 1; ++j) {
-                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x + i, y + j);
+        int minX = this.position.getX() - VISION;
+        int minY = this.position.getY() - VISION;
+        int maxX = minX + 2 * VISION;
+        int maxY = minY + 2 * VISION;
+
+        for (int y = minY; y <= maxY; ++y) {
+            for (int x = minX; x <= maxX; ++x) {
+                ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
                 if (candidates.size() == 0) {
                     continue;
                 }
                 for (Unit candidate : candidates) {
                     if (candidate.getUnitType().equals(EUnitType.GROUND)) {
-                        --bombRemainedByDetect;
+                        --smartMineThreshold;
                     }
                 }
             }
         }
-        bombRemainedByDetect = Math.max(bombRemainedByDetect, 0);
-        return bombRemainedByDetect == 0;
+        smartMineThreshold = Math.max(smartMineThreshold, 0);
+        return smartMineThreshold == 0;
     }
 }

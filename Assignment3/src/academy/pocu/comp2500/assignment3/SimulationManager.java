@@ -4,13 +4,12 @@ import java.util.ArrayList;
 
 public final class SimulationManager {
     private static SimulationManager instance;
+    private static final int NUM_COLUMNS = 16;
+    private static final int NUM_ROWS = 8;
     private final ArrayList<Unit> units = new ArrayList<>();
     private final ArrayList<IThinkable> thinkables = new ArrayList<>();
     private final ArrayList<IMovable> movables = new ArrayList<>();
     private final ArrayList<IListener> listeners = new ArrayList<>();
-
-    private static final int NUM_COLUMNS = 16;
-    private static final int NUM_ROWS = 8;
     private ArrayList<ArrayList<ArrayList<Unit>>> unitPositions;    // Review
 
     private SimulationManager() {
@@ -28,6 +27,10 @@ public final class SimulationManager {
             instance = new SimulationManager();
         }
         return instance;
+    }
+
+    public int getNumRows() {
+        return NUM_ROWS;
     }
 
     public ArrayList<Unit> getUnits() {

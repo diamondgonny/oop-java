@@ -9,12 +9,8 @@ public class Tank extends Unit implements IThinkable, IMovable {
     private static final int AREA_OF_EFFECT = 1;
     private static final int AP = 8;
     private static final int HP = 85;
-    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {
-            EUnitType.GROUND
-    };
-    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
-            EUnitType.GROUND
-    };
+    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {EUnitType.GROUND};
+    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {EUnitType.GROUND};
     private static final IntVector2D[] ATTACK_RANGE = {
             new IntVector2D(0, -2),
             new IntVector2D(1, -2),
@@ -30,6 +26,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
             new IntVector2D(-1, -2)
     };
     private boolean siegeMode = false;
+    private boolean patrolRightDirection = true;
 
     public Tank(final IntVector2D position) {
         super(position, SYMBOL, UNIT_TYPE, HP);
@@ -52,6 +49,24 @@ public class Tank extends Unit implements IThinkable, IMovable {
         // 1 이동하던 방향 끝까지 이동. 한번도 이동한 적이 없다면 오른쪽으로 이동
         // 2 반대 방향 끝까지 이동
         // (시야 안에서 적을 발견할 때까지 1 - 2를 반복)
+        if (actionType != EActionType.MOVE) {
+            return;
+        }
+        if (patrolRightDirection = true) {
+            if (this.position.getX() == simulationManager.getNumRows() - 1) {
+                patrolRightDirection = false;
+                this.position.setX(this.position.getX() - 1);
+            } else {
+                this.position.setX(this.position.getX() + 1);
+            }
+        } else {
+            if (this.position.getX() == 0) {
+                patrolRightDirection = true;
+                this.position.setX(this.position.getX() + 1);
+            } else {
+                this.position.setX(this.position.getX() - 1);
+            }
+        }
     }
 
     @Override
@@ -78,6 +93,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
         // out of bounds?
         int x = this.position.getX() - VISION;
         int y = this.position.getY() - VISION;
+
         for (int i = 0; i < 2 * VISION + 1; ++i) {
             for (int j = 0; j < 2 * VISION + 1; ++j) {
                 ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x + i, y + j);
@@ -97,6 +113,7 @@ public class Tank extends Unit implements IThinkable, IMovable {
             int x = this.position.getX() + attackRange.getX();
             int y = this.position.getY() + attackRange.getY();
             ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
+
             // 다음은 전차의 교전규칙입니다. (우선순위 순)
             // 1-1 현재 공성 모드가 아닌 경우 공성 모드로 변경************************
             // 2-1 가장 약한 유닛이 있는 타일을 공격

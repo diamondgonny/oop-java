@@ -9,12 +9,8 @@ public class Turret extends Unit implements IThinkable {
     private static final int AREA_OF_EFFECT = 0;
     private static final int AP = 7;
     private static final int HP = 99;
-    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {
-            EUnitType.AIR
-    };
-    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {
-            EUnitType.AIR
-    };
+    private static final EUnitType[] ATTACK_TARGET_UNIT_TYPES = {EUnitType.AIR};
+    private static final EUnitType[] VISION_TARGET_UNIT_TYPES = {EUnitType.AIR};
     private static final IntVector2D[] ATTACK_RANGE = {
             new IntVector2D(0, 0),
             new IntVector2D(0, -1),
@@ -60,6 +56,7 @@ public class Turret extends Unit implements IThinkable {
         for (IntVector2D attackRange : ATTACK_RANGE) {
             int x = this.position.getX() + attackRange.getX();
             int y = this.position.getY() + attackRange.getY();
+
             ArrayList<Unit> candidates = simulationManager.getUnitsOnPosition(x, y);
             // 1 가장 약한 유닛이 있는 타일을 공격
             // 2 자신의 위치에 유닛이 있다면 그 타일을 공격
