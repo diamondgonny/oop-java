@@ -1,6 +1,6 @@
 package academy.pocu.comp2500.assignment3;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class AttackIntent {
     private final SimulationManager simulationManager;
@@ -42,7 +42,7 @@ public class AttackIntent {
                 if (!simulationManager.isValidPosition(x, y)) {
                     continue;
                 }
-                ArrayList<Unit> units = simulationManager.getUnitsOnPosition(x, y);
+                LinkedHashSet<Unit> units = simulationManager.getUnitsOnPosition(x, y);
                 for (Unit unit : units) {
                     if (unit == this.attacker && this.canSelfAttack == false) {
                         continue;
@@ -61,7 +61,10 @@ public class AttackIntent {
     private int calculateDamage(final int unitY, final int unitX) {
         int strikeX = this.attackPosition.getX();
         int strikeY = this.attackPosition.getY();
-        int distance = Math.max(Math.abs(unitY - strikeY), Math.abs(unitX - strikeY));
-        return (int) ((double) this.ap * (1 - distance / ((double) this.areaOfEffect + 1)));
+        int distance = Math.max(Math.abs(unitY - strikeY), Math.abs(unitX - strikeX));
+//      int damage = (int) ((double) this.ap * (1.0 - (distance / (double) this.areaOfEffect + 1.0)));
+        int damage = (int) ((double) this.ap * (1.0 - distance / ((double) this.areaOfEffect + 1.0)));
+        damage *= -1;
+        return damage;
     }
 }
