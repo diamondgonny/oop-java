@@ -21,9 +21,10 @@ public class BuyOneGetOneFree implements ITotalPriceable {
         for (UUID sku : skus) {
             int skuBookAmount = 0;
             for (Book book : books) {
-                if (book.getSku().equals(sku)) {
-                    ++skuBookAmount;
+                if (!book.getSku().equals(sku)) {
+                    continue;
                 }
+                ++skuBookAmount;
                 if (skuBookAmount % 2 == 0) {
                     discount += book.getPrice();
                 }
