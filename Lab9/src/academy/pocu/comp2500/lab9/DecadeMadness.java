@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class DecadeMadness implements ITotalPriceable {
+    private static final double DISCOUNT_ADJUSTMENT = 0.8;
 
+    @Override
     public int getTotalPrice(final ArrayList<Book> books) {
         int nonDiscountSum = 0;
         int discountSum = 0;
@@ -29,7 +31,7 @@ public class DecadeMadness implements ITotalPriceable {
                     discountTargets += book.getPrice();
                 }
             }
-            discountSum += (int) (0.8 * discountTargets);
+            discountSum += (int) (DISCOUNT_ADJUSTMENT * discountTargets);
         }
 
         return nonDiscountSum + discountSum;

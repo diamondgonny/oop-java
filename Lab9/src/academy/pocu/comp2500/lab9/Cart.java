@@ -3,7 +3,7 @@ package academy.pocu.comp2500.lab9;
 import java.util.ArrayList;
 
 public final class Cart {
-    private ArrayList<Book> books = new ArrayList<>();
+    private final ArrayList<Book> books = new ArrayList<>();
 
     public Book getBookOrNull(final int index) {
         if (this.books.size() <= index) {
@@ -22,7 +22,7 @@ public final class Cart {
         }
     }
 
-    public void addBook(Book book) {
+    public void addBook(final Book book) {
         this.books.add(book);
     }
 

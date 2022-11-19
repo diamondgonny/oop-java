@@ -11,6 +11,7 @@ public class BuyOneGetOneFree implements ITotalPriceable {
         this.skus = skus;
     }
 
+    @Override
     public int getTotalPrice(final ArrayList<Book> books) {
         int sum = 0;
         int discount = 0;
