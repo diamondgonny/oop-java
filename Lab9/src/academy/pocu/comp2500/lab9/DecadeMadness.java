@@ -3,37 +3,35 @@ package academy.pocu.comp2500.lab9;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class DecadeMadness {
+public class DecadeMadness implements ITotalPriceable {
 
-    public int getTotalPrice(ArrayList<Book> books) {
-        int sum = 0;
-        for (Book book : books) {
-            sum += book.getPrice();
-        }
-        return sum - calculateDiscount(books);
-    }
-
-    private int calculateDiscount(ArrayList<Book> books) {
-        int discount = 0;
+    public int getTotalPrice(final ArrayList<Book> books) {
+        int nonDiscountSum = 0;
+        int discountSum = 0;
         HashSet<Integer> decadeTotalSet = new HashSet<>();
         HashSet<Integer> decadeDiscountSet = new HashSet<>();
+
         for (Book book : books) {
-            int bookPublishedDecade = (book.getPublishedYear() / 10) * 10;
-            if (!decadeTotalSet.contains(bookPublishedDecade)) {
-                decadeTotalSet.add(bookPublishedDecade);
+            nonDiscountSum += book.getPrice();
+            if (!decadeTotalSet.contains((book.getPublishedYear() / 10) * 10)) {
+                decadeTotalSet.add((book.getPublishedYear() / 10) * 10);
             } else {
-                decadeDiscountSet.add(bookPublishedDecade);
+                decadeDiscountSet.add((book.getPublishedYear() / 10) * 10);
             }
         }
-        for (Book book : books) {
-            int bookPublishedDecade = (book.getPublishedYear() / 10) * 10;
-            for (int decade : decadeDiscountSet) {
-                if (decade == bookPublishedDecade) {
-                    discount += 0.2 * book.getPrice();
-                    break;
+
+        for (int decade : decadeDiscountSet) {
+            double discountTargets = 0;
+            for (Book book : books) {
+                // 이 책은 할인 대상인가?
+                if (decade == ((book.getPublishedYear() / 10) * 10)) {
+                    nonDiscountSum -= book.getPrice();
+                    discountTargets += book.getPrice();
                 }
             }
+            discountSum += (int) (0.8 * discountTargets);
         }
-        return discount;
+
+        return nonDiscountSum + discountSum;
     }
 }

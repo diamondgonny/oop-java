@@ -16,16 +16,11 @@ public final class Cart {
         return this.books.size();
     }
 
-/*    public void addBooks(final UUID[] skus, final String[] titles, final int[] prices, final int[] publishedYears) {
-        if (skus.length != titles.length || skus.length != prices.length || skus.length != publishedYears.length) {
-            return;
-        }
-
-        for (int i = 0; i < skus.length; ++i) {
-            Book book = new Book(skus[i], titles[i], prices[i], publishedYears[i]);
+    public void addBooks(final ArrayList<Book> books) {
+        for (Book book : books) {
             this.books.add(book);
         }
-    }*/
+    }
 
     public void addBook(Book book) {
         this.books.add(book);
@@ -45,5 +40,9 @@ public final class Cart {
             sum += book.getPrice();
         }
         return sum;
+    }
+
+    public int getTotalPrice(final ITotalPriceable iTotalPriceable) {
+        return iTotalPriceable.getTotalPrice(this.books);
     }
 }

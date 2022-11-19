@@ -2,33 +2,29 @@ package academy.pocu.comp2500.lab9;
 
 import java.util.ArrayList;
 
-public class SkyIsTheLimit {
-    private final int limit;
+public class SkyIsTheLimit implements ITotalPriceable {
+    private final int price;
 
-    public SkyIsTheLimit(int limit) {
-        this.limit = limit;
+    public SkyIsTheLimit(final int price) {
+        this.price = price;
     }
 
-    public int getTotalPrice(ArrayList<Book> books) {
+    public int getTotalPrice(final ArrayList<Book> books) {
         int sum = 0;
+        double dcBook1 = 0;
+        double dcBook2 = 0;
+
         for (Book book : books) {
             sum += book.getPrice();
-        }
-        if (sum < limit) {
-            return sum;
-        }
-        return sum - calculateDiscount(books);
-    }
-
-    private int calculateDiscount(ArrayList<Book> books) {
-        int discountableBook1 = 0;
-        int discountableBook2 = 0;
-        for (Book book : books) {
-            if (book.getPrice() >= discountableBook1) {
-                discountableBook2 = discountableBook1;
-                discountableBook1 = book.getPrice();
+            if (book.getPrice() >= dcBook1) {
+                dcBook2 = dcBook1;
+                dcBook1 = book.getPrice();
             }
         }
-        return (int) 0.5 * (discountableBook1 + discountableBook2);
+        if (sum >= price && books.size() >= 5) {
+            sum = sum - (int) (dcBook1 + dcBook2) + (int) (0.5 * dcBook1) + (int) (0.5 * dcBook2);
+        }
+
+        return sum;
     }
 }
