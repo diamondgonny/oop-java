@@ -10,7 +10,7 @@ public class SkyIsTheLimit implements ITotalPriceable {
     }
 
     public int getTotalPrice(final ArrayList<Book> books) {
-        int sum = 0;
+        double sum = 0;
         double dcBook1 = 0;
         double dcBook2 = 0;
 
@@ -19,12 +19,14 @@ public class SkyIsTheLimit implements ITotalPriceable {
             if (book.getPrice() >= dcBook1) {
                 dcBook2 = dcBook1;
                 dcBook1 = book.getPrice();
+            } else if (book.getPrice() >= dcBook2) {
+                dcBook2 = book.getPrice();
             }
         }
         if (sum >= price && books.size() >= 5) {
-            sum = sum - (int) (dcBook1 + dcBook2) + (int) (0.5 * dcBook1) + (int) (0.5 * dcBook2);
+            sum = sum - (dcBook1 + dcBook2) + 0.5 * (dcBook1 + dcBook2);
         }
 
-        return sum;
+        return (int) sum;
     }
 }
