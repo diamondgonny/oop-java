@@ -1,15 +1,17 @@
 package academy.pocu.comp2500.lab10;
 
+import academy.pocu.comp2500.lab10.pocuflix.ResultBase;
 import academy.pocu.comp2500.lab10.pocuflix.ResultCode;
 
-public class UnauthorizedResult {
-    private ResultCode code;
+public class UnauthorizedResult extends ResultBase {
+    private String errorMessage;
 
     public UnauthorizedResult() {
-        this.code = ResultCode.UNAUTHORIZED;
+        super(ResultCode.UNAUTHORIZED);
+        this.errorMessage = "Unauthorized access";
     }
 
     public String getErrorMessage() {
-        return "Unauthorized access";
+        return errorMessage;
     }
 }
