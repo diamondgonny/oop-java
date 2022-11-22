@@ -13,11 +13,10 @@ public class ResultValidator {
     }
 
     public boolean isValid(ResultCode resultCode) {
-        // 생성자에 전달한 결과 개체가 ResultCode 인자로 특정된 올바른 유효한 결과라면 true, 아니라면 false
         if (this.resultBase.getCode() != resultCode) {
             return false;
         }
-
+        // validation
         switch (resultCode) {
             case OK:
                 return this.resultBase instanceof OkResult;
@@ -32,7 +31,6 @@ public class ResultValidator {
             default:
                 assert (false) : "Unknown type";
         }
-
         return false;
     }
 }
