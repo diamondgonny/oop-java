@@ -8,10 +8,10 @@ public class DrawPixelCommand implements ICommand {
     private Canvas canvas;
     private boolean isExecuted;
 
-    public DrawPixelCommand(int x, int y, char postSavedAscii) {
+    public DrawPixelCommand(int x, int y, char character) {
         this.x = x;
         this.y = y;
-        this.postSavedAscii = postSavedAscii;
+        this.postSavedAscii = character;
     }
 
     @Override

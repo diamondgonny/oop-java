@@ -8,7 +8,7 @@ public class OverdrawAnalyzer extends Canvas {
     }
 
     @Override
-    public void drawPixel(final int x, final int y, final char ascii) {
+    public void drawPixel(final int x, final int y, final char character) {
     }
 
     public LinkedList<Character> getPixelHistory(final int x, final int y) {

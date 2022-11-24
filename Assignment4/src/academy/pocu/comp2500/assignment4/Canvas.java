@@ -27,8 +27,8 @@ public class Canvas {
         return height;
     }
 
-    public void drawPixel(final int x, final int y, final char ascii) {
-        pixels[y][x] = ascii;
+    public void drawPixel(final int x, final int y, final char character) {
+        pixels[y][x] = character;
         assert (MINIMUM_ASCII_RANGE <= pixels[y][x] &&
                 pixels[y][x] <= MAXIMUM_ASCII_RANGE) : "Invalid ASCII Code Range";
     }
@@ -61,15 +61,15 @@ public class Canvas {
         drawPixel(x, y, (char) (getPixel(x, y) + 32));
     }
 
-    public void fillHorizontalLine(final int y, final char ascii) {
+    public void fillHorizontalLine(final int y, final char character) {
         for (int x = 0; x < width; x++) {
-            drawPixel(x, y, ascii);
+            drawPixel(x, y, character);
         }
     }
 
-    public void fillVerticalLine(final int x, final char ascii) {
+    public void fillVerticalLine(final int x, final char character) {
         for (int y = 0; y < height; y++) {
-            drawPixel(x, y, ascii);
+            drawPixel(x, y, character);
         }
     }
 
