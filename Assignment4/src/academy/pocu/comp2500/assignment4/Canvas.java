@@ -1,22 +1,34 @@
 package academy.pocu.comp2500.assignment4;
 
+import java.util.ArrayList;
+
 public class Canvas {
     private static final char MINIMUM_ASCII_RANGE = 32;
     private static final char MAXIMUM_ASCII_RANGE = 126;
 
+    // 용량을 한정시킬 것인가?
+    private ArrayList<ArrayList<Character>> pixels;
     private final int width;
     private final int height;
-    private char[][] pixels;
 
     public Canvas(final int width, final int height) {
         this.width = width;
         this.height = height;
+        pixels = new ArrayList<>();
+        for (int y = 0; y < height; y++) {
+            pixels.add(new ArrayList<>());
+            for (int x = 0; x < width; x++) {
+                pixels.get(y).add(' ');
+            }
+        }
+/*
         pixels = new char[width][height];
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 pixels[y][x] = ' ';
             }
         }
+*/
     }
 
     public int getWidth() {
@@ -28,17 +40,17 @@ public class Canvas {
     }
 
     public void drawPixel(final int x, final int y, final char character) {
-        pixels[y][x] = character;
-        assert (MINIMUM_ASCII_RANGE <= pixels[y][x] &&
-                pixels[y][x] <= MAXIMUM_ASCII_RANGE) : "Invalid ASCII Code Range";
+        pixels.get(y).set(x, character);
+        assert (MINIMUM_ASCII_RANGE <= pixels.get(y).get(x) &&
+                pixels.get(y).get(x) <= MAXIMUM_ASCII_RANGE) : "Invalid ASCII Code Range";
     }
 
     public char getPixel(final int x, final int y) {
-        return pixels[y][x];
+        return pixels.get(y).get(x);
     }
 
     public boolean increasePixel(final int x, final int y) {
-        if (pixels[y][x] < MAXIMUM_ASCII_RANGE) {
+        if (pixels.get(y).get(x) < MAXIMUM_ASCII_RANGE) {
             drawPixel(x, y, (char) (getPixel(x, y) + 1));
             return true;
         }
@@ -46,7 +58,7 @@ public class Canvas {
     }
 
     public boolean decreasePixel(final int x, final int y) {
-        if (pixels[y][x] > MINIMUM_ASCII_RANGE) {
+        if (pixels.get(y).get(x) > MINIMUM_ASCII_RANGE) {
             drawPixel(x, y, (char) (getPixel(x, y) - 1));
             return true;
         }
