@@ -16,10 +16,12 @@ public class CommandHistoryManager {
         // 만약에 redo()를 호출하기 전에 완전히 새로운 커맨드가 캔버스에 적용되었다면, redo를 할 수 없음
 
         // execute fail?
-        command.execute(canvas);
-        canUndoCommands.add(command);
-        canRedoCommands.clear();
-        return true;
+        if (command.execute(canvas)) {
+            canUndoCommands.add(command);
+            canRedoCommands.clear();
+            return true;
+        }
+        return false;
     }
 
     public boolean canUndo() {
