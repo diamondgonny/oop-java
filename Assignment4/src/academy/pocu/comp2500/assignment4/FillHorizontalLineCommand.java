@@ -9,9 +9,9 @@ public class FillHorizontalLineCommand implements ICommand {
     private Canvas canvas;
     private boolean isExecuted;
 
-    public FillHorizontalLineCommand(int y, char postSavedAscii) {
+    public FillHorizontalLineCommand(int y, char character) {
         this.y = y;
-        this.postSavedAscii = postSavedAscii;
+        this.postSavedAscii = character;
     }
 
     @Override

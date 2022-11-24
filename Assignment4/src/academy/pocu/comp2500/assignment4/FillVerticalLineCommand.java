@@ -9,9 +9,9 @@ public class FillVerticalLineCommand implements ICommand {
     private Canvas canvas;
     private boolean isExecuted;
 
-    public FillVerticalLineCommand(int x, char postSavedAscii) {
+    public FillVerticalLineCommand(int x, char character) {
         this.x = x;
-        this.postSavedAscii = postSavedAscii;
+        this.postSavedAscii = character;
     }
 
     @Override
