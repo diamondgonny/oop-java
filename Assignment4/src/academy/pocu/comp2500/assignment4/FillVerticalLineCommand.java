@@ -19,6 +19,7 @@ public class FillVerticalLineCommand implements ICommand {
         if (!(0 <= x && x < canvas.getWidth()) || this.canvas != null) {
             return false;
         }
+
         this.canvas = canvas;
         for (int y = 0; y < canvas.getHeight(); y++) {
             anteSavedAsciis.add(canvas.getPixel(x, y));

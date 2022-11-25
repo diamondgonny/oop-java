@@ -15,6 +15,7 @@ public class ClearCommand implements ICommand {
         if (this.canvas != null) {
             return false;
         }
+
         this.canvas = canvas;
         anteSavedAsciis = new ArrayList<>();
         for (int y = 0; y < canvas.getHeight(); y++) {

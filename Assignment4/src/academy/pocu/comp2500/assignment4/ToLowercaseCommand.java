@@ -27,7 +27,6 @@ public class ToLowercaseCommand implements ICommand {
         } else {
             postSavedAscii = anteSavedAscii;
         }
-
         return true;
     }
 

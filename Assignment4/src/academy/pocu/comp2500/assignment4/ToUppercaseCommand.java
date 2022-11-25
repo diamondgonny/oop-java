@@ -27,7 +27,6 @@ public class ToUppercaseCommand implements ICommand {
         } else {
             postSavedAscii = anteSavedAscii;
         }
-
         return true;
     }
 
