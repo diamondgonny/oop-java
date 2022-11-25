@@ -16,8 +16,7 @@ public class FillHorizontalLineCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        // execute fail?
-        if (this.canvas != null) {
+        if (!(0 <= y && y < canvas.getHeight()) || this.canvas != null) {
             return false;
         }
         this.canvas = canvas;

@@ -14,8 +14,8 @@ public class DecreasePixelCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        // execute fail?
-        if (this.canvas != null) {
+        if (!(0 <= x && x < canvas.getWidth()) || !(0 <= y && y < canvas.getHeight()) ||
+                this.canvas != null) {
             return false;
         }
         this.canvas = canvas;

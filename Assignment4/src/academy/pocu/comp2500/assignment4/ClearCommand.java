@@ -12,7 +12,6 @@ public class ClearCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        // execute fail?
         if (this.canvas != null) {
             return false;
         }

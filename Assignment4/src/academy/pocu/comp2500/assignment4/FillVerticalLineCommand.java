@@ -16,8 +16,7 @@ public class FillVerticalLineCommand implements ICommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        // execute fail?
-        if (this.canvas != null) {
+        if (!(0 <= x && x < canvas.getWidth()) || this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
