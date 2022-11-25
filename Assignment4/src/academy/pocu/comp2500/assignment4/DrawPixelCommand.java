@@ -9,7 +9,7 @@ public class DrawPixelCommand extends BaseCommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (isAlreadyExecuted() || !isValidRangeOfX(cmdX) || !isValidRangeOfY(cmdY)) {
+        if (!isValidRangeOfX(canvas, cmdX) || !isValidRangeOfY(canvas, cmdY) || isAlreadyExecuted()) {
             return false;
         }
 

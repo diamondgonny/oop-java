@@ -35,11 +35,11 @@ public abstract class BaseCommand implements ICommand {
         return this.canvas != null;
     }
 
-    protected boolean isValidRangeOfX(int x) {
+    protected boolean isValidRangeOfX(Canvas canvas, int x) {
         return 0 <= x && x < canvas.getWidth();
     }
 
-    protected boolean isValidRangeOfY(int y) {
+    protected boolean isValidRangeOfY(Canvas canvas, int y) {
         return 0 <= y && y < canvas.getHeight();
     }
 }

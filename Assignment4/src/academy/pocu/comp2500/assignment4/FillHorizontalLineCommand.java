@@ -13,7 +13,7 @@ public class FillHorizontalLineCommand extends BaseCommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (isAlreadyExecuted() || !isValidRangeOfY(cmdY)) {
+        if (!isValidRangeOfY(canvas, cmdY) || isAlreadyExecuted()) {
             return false;
         }
 
