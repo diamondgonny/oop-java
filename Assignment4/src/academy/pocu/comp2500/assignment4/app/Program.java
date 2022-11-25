@@ -1,17 +1,19 @@
 package academy.pocu.comp2500.assignment4.app;
 
-import academy.pocu.comp2500.assignment4.Canvas;
+import academy.pocu.comp2500.assignment4.*;
 
 public class Program {
 
     public static void main(String[] args) {
 	    // write your code here
-        Canvas canvas = new Canvas(10, 10);
-
-        canvas.drawPixel(0, 0, '*');
-        canvas.drawPixel(1, 2, '$');
-        canvas.drawPixel(0, 1, '&');
-
-        System.out.println(canvas.getDrawing());
+        Test.testUpperLowerUndo();
+        Test.testOverdrawCount();
+        Test.overdrawCount();
+        Test.testOverdrawCountXY();
+        Test.testPixelHistory();
+        Test.overdrawCount2();
+        Test.overdrawCount3();
+        Test.sampleTest();
+        Test.sampleTest2();
     }
 }

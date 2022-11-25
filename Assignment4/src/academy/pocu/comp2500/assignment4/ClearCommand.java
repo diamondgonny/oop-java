@@ -2,16 +2,17 @@ package academy.pocu.comp2500.assignment4;
 
 import java.util.ArrayList;
 
-public class ClearCommand implements ICommand {
+public class ClearCommand extends BaseCommand {
     private ArrayList<ArrayList<Character>> anteSavedAsciis;
-    private char postSavedAscii = ' ';
-    private Canvas canvas;
-    private boolean undoable;
-    private boolean redoable;
+    private char postSavedAscii;
+
+    public ClearCommand() {
+        this.postSavedAscii = ' ';
+    }
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (this.canvas != null) {
+        if (isAlreadyExecuted()) {
             return false;
         }
 
@@ -24,12 +25,12 @@ public class ClearCommand implements ICommand {
                 canvas.drawPixel(x, y, postSavedAscii);
             }
         }
-        return undoable = true;
+        return undoableOrder = true;
     }
 
     @Override
     public boolean undo() {
-        if (!undoable) {
+        if (!undoableOrder) {
             return false;
         }
         for (int y = 0; y < canvas.getHeight(); y++) {
@@ -45,13 +46,13 @@ public class ClearCommand implements ICommand {
                 canvas.drawPixel(x, y, anteSavedAsciis.get(y).get(x));
             }
         }
-        undoable = false;
-        return redoable = true;
+        undoableOrder = false;
+        return redoableOrder = true;
     }
 
     @Override
     public boolean redo() {
-        if (!redoable) {
+        if (!redoableOrder) {
             return false;
         }
         for (int y = 0; y < canvas.getHeight(); y++) {
@@ -67,7 +68,7 @@ public class ClearCommand implements ICommand {
                 canvas.drawPixel(x, y, postSavedAscii);
             }
         }
-        redoable = false;
-        return undoable = true;
+        redoableOrder = false;
+        return undoableOrder = true;
     }
 }

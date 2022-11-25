@@ -2,67 +2,62 @@ package academy.pocu.comp2500.assignment4;
 
 import java.util.ArrayList;
 
-public class FillHorizontalLineCommand implements ICommand {
-    private int y;
+public class FillHorizontalLineCommand extends BaseCommand {
     private ArrayList<Character> anteSavedAsciis;
-    private char postSavedAscii;
-    private Canvas canvas;
-    private boolean undoable;
-    private boolean redoable;
 
     public FillHorizontalLineCommand(int y, char character) {
-        this.y = y;
+        this.cmdY = y;
         this.anteSavedAsciis = new ArrayList<>();
         this.postSavedAscii = character;
     }
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!(0 <= y && y < canvas.getHeight()) || this.canvas != null) {
+        if (isAlreadyExecuted() || !isValidRangeOfY(cmdY)) {
             return false;
         }
 
         this.canvas = canvas;
         for (int x = 0; x < canvas.getWidth(); x++) {
-            anteSavedAsciis.add(canvas.getPixel(x, y));
+            anteSavedAsciis.add(canvas.getPixel(x, cmdY));
+            canvas.drawPixel(x, cmdY, postSavedAscii);
         }
-        canvas.fillHorizontalLine(y, postSavedAscii);
-        return undoable = true;
+        return undoableOrder = true;
     }
 
     @Override
     public boolean undo() {
-        if (!undoable) {
+        if (!undoableOrder) {
             return false;
         }
         for (int x = 0; x < canvas.getWidth(); x++) {
-            if (canvas.getPixel(x, y) != postSavedAscii) {
+            if (canvas.getPixel(x, cmdY) != postSavedAscii) {
                 return false;
             }
         }
 
         for (int x = 0; x < canvas.getWidth(); x++) {
-            canvas.drawPixel(x, y, anteSavedAsciis.get(x));
+            canvas.drawPixel(x, cmdY, anteSavedAsciis.get(x));
         }
-        undoable = false;
-        return redoable = true;
+        undoableOrder = false;
+        return redoableOrder = true;
     }
 
     @Override
     public boolean redo() {
-        if (!redoable) {
+        if (!redoableOrder) {
             return false;
         }
         for (int x = 0; x < canvas.getWidth(); x++) {
-            if (canvas.getPixel(x, y) != anteSavedAsciis.get(x)) {
+            if (canvas.getPixel(x, cmdY) != anteSavedAsciis.get(x)) {
                 return false;
             }
         }
 
         for (int x = 0; x < canvas.getWidth(); x++) {
-            canvas.drawPixel(x, y, postSavedAscii);
+            canvas.drawPixel(x, cmdY, postSavedAscii);
         }
-        redoable = false;
-        return undoable = true;
+        redoableOrder = false;
+        return undoableOrder = true;
     }
 }
