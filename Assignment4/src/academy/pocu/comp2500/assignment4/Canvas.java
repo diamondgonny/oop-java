@@ -58,11 +58,15 @@ public class Canvas {
     }
 
     public void toUpper(final int x, final int y) {
-        drawPixel(x, y, (char) (getPixel(x, y) - 32));
+        if (97 <= getPixel(x, y) && getPixel(x, y) <= 122) {
+            drawPixel(x, y, (char) (getPixel(x, y) - 32));
+        }
     }
 
     public void toLower(final int x, final int y) {
-        drawPixel(x, y, (char) (getPixel(x, y) + 32));
+        if (65 <= getPixel(x, y) && getPixel(x, y) <= 90) {
+            drawPixel(x, y, (char) (getPixel(x, y) + 32));
+        }
     }
 
     public void fillHorizontalLine(final int y, final char character) {
