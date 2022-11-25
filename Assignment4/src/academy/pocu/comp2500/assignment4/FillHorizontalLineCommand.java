@@ -24,8 +24,8 @@ public class FillHorizontalLineCommand implements ICommand {
         this.canvas = canvas;
         for (int x = 0; x < canvas.getWidth(); x++) {
             anteSavedAsciis.add(canvas.getPixel(x, y));
-            canvas.drawPixel(x, y, postSavedAscii);
         }
+        canvas.fillHorizontalLine(y, postSavedAscii);
         return isExecuted = true;
     }
 

@@ -24,10 +24,9 @@ public class ToLowercaseCommand implements ICommand {
         anteSavedAscii = canvas.getPixel(x, y);
         if (65 <= canvas.getPixel(x, y) && canvas.getPixel(x, y) <= 90) {
             postSavedAscii = (char) (anteSavedAscii + 32);
-            canvas.drawPixel(x, y, postSavedAscii);
+            canvas.toLower(x, y);
         } else {
             postSavedAscii = anteSavedAscii;
-            canvas.drawPixel(x, y, postSavedAscii);
         }
 
         return isExecuted = true;

@@ -24,10 +24,9 @@ public class ToUppercaseCommand implements ICommand {
         anteSavedAscii = canvas.getPixel(x, y);
         if (97 <= canvas.getPixel(x, y) && canvas.getPixel(x, y) <= 122) {
             postSavedAscii = (char) (anteSavedAscii - 32);
-            canvas.drawPixel(x, y, postSavedAscii);
+            canvas.toUpper(x, y);
         } else {
             postSavedAscii = anteSavedAscii;
-            canvas.drawPixel(x, y, postSavedAscii);
         }
 
         return isExecuted = true;
