@@ -22,8 +22,8 @@ public class DecreasePixelCommand implements ICommand {
         }
 
         this.canvas = canvas;
+        anteSavedAscii = canvas.getPixel(x, y);
         if (canvas.decreasePixel(x, y)) {
-            anteSavedAscii = canvas.getPixel(x, y);
             postSavedAscii = (char) (anteSavedAscii - 1);
             return undoable = true;
         }

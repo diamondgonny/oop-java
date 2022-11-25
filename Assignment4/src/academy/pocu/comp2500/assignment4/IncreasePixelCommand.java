@@ -22,8 +22,8 @@ public class IncreasePixelCommand implements ICommand {
         }
 
         this.canvas = canvas;
+        anteSavedAscii = canvas.getPixel(x, y);
         if (canvas.increasePixel(x, y)) {
-            anteSavedAscii = canvas.getPixel(x, y);
             postSavedAscii = (char) (anteSavedAscii + 1);
             return undoable = true;
         }
