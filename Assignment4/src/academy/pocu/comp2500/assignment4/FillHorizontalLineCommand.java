@@ -7,6 +7,8 @@ public class FillHorizontalLineCommand implements ICommand {
     private ArrayList<Character> anteSavedAsciis;
     private char postSavedAscii;
     private Canvas canvas;
+    private boolean undoable;
+    private boolean redoable;
 
     public FillHorizontalLineCommand(int y, char character) {
         this.y = y;
@@ -25,24 +27,30 @@ public class FillHorizontalLineCommand implements ICommand {
             anteSavedAsciis.add(canvas.getPixel(x, y));
         }
         canvas.fillHorizontalLine(y, postSavedAscii);
-        return true;
+        return undoable = true;
     }
 
     @Override
     public boolean undo() {
-        //undo fail?
+        if (!undoable) {
+            return false;
+        }
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, y, anteSavedAsciis.get(x));
         }
-        return true;
+        undoable = false;
+        return redoable = true;
     }
 
     @Override
     public boolean redo() {
-        //redo fail?
+        if (!redoable) {
+            return false;
+        }
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, y, postSavedAscii);
         }
-        return true;
+        redoable = false;
+        return undoable = true;
     }
 }

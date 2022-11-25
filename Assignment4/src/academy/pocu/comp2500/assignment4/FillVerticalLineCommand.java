@@ -7,6 +7,8 @@ public class FillVerticalLineCommand implements ICommand {
     private ArrayList<Character> anteSavedAsciis;
     private char postSavedAscii;
     private Canvas canvas;
+    private boolean undoable;
+    private boolean redoable;
 
     public FillVerticalLineCommand(int x, char character) {
         this.x = x;
@@ -25,24 +27,30 @@ public class FillVerticalLineCommand implements ICommand {
             anteSavedAsciis.add(canvas.getPixel(x, y));
         }
         canvas.fillVerticalLine(x, postSavedAscii);
-        return true;
+        return undoable = true;
     }
 
     @Override
     public boolean undo() {
-        //undo fail?
+        if (!undoable) {
+            return false;
+        }
         for (int y = 0; y < canvas.getHeight(); y++) {
             canvas.drawPixel(x, y, anteSavedAsciis.get(y));
         }
-        return true;
+        undoable = false;
+        return redoable = true;
     }
 
     @Override
     public boolean redo() {
-        //redo fail?
+        if (!redoable) {
+            return false;
+        }
         for (int y = 0; y < canvas.getHeight(); y++) {
             canvas.drawPixel(x, y, postSavedAscii);
         }
-        return true;
+        redoable = false;
+        return undoable = true;
     }
 }

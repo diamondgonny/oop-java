@@ -6,7 +6,9 @@ public class DrawPixelCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
-    // undo, redo checker?
+    private boolean undoable;
+    private boolean redoable;
+    // undo, redo check? how?
 
     public DrawPixelCommand(int x, int y, char character) {
         this.x = x;
@@ -24,20 +26,26 @@ public class DrawPixelCommand implements ICommand {
         this.canvas = canvas;
         anteSavedAscii = canvas.getPixel(x, y);
         canvas.drawPixel(x, y, postSavedAscii);
-        return true;
+        return undoable = true;
     }
 
     @Override
     public boolean undo() {
-        //undo fail?
+        if (!undoable) {
+            return false;
+        }
         canvas.drawPixel(x, y, anteSavedAscii);
-        return true;
+        undoable = false;
+        return redoable = true;
     }
 
     @Override
     public boolean redo() {
-        //redo fail?
+        if (!redoable) {
+            return false;
+        }
         canvas.drawPixel(x, y, postSavedAscii);
-        return true;
+        redoable = false;
+        return undoable = true;
     }
 }

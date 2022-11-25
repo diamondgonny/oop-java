@@ -6,6 +6,8 @@ public class ToUppercaseCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
+    private boolean undoable;
+    private boolean redoable;
 
     public ToUppercaseCommand(int x, int y) {
         this.x = x;
@@ -27,20 +29,26 @@ public class ToUppercaseCommand implements ICommand {
         } else {
             postSavedAscii = anteSavedAscii;
         }
-        return true;
+        return undoable = true;
     }
 
     @Override
     public boolean undo() {
-        //undo fail?
+        if (!undoable) {
+            return false;
+        }
         canvas.drawPixel(x, y, anteSavedAscii);
-        return true;
+        undoable = false;
+        return redoable = true;
     }
 
     @Override
     public boolean redo() {
-        //redo fail?
+        if (!redoable) {
+            return false;
+        }
         canvas.drawPixel(x, y, postSavedAscii);
-        return true;
+        redoable = false;
+        return undoable = true;
     }
 }
