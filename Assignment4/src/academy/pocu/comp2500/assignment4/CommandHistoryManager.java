@@ -33,10 +33,12 @@ public class CommandHistoryManager {
             return false;
         }
         ICommand command = canUndoCommands.get(canUndoCommands.size() - 1);
-        command.undo();
-        canRedoCommands.add(command);
-        canUndoCommands.remove(canUndoCommands.size() - 1);
-        return true;
+        if (command.undo()) {
+            canRedoCommands.add(command);
+            canUndoCommands.remove(canUndoCommands.size() - 1);
+            return true;
+        }
+        return false;
     }
 
     public boolean redo() {
@@ -44,9 +46,11 @@ public class CommandHistoryManager {
             return false;
         }
         ICommand command = canRedoCommands.get(canRedoCommands.size() - 1);
-        command.redo();
-        canUndoCommands.add(command);
-        canRedoCommands.remove(canRedoCommands.size() - 1);
-        return true;
+        if (command.redo()) {
+            canUndoCommands.add(command);
+            canRedoCommands.remove(canRedoCommands.size() - 1);
+            return true;
+        }
+        return false;
     }
 }
