@@ -4,19 +4,11 @@ import java.util.ArrayList;
 
 public class ClearCommand implements ICommand {
     private ArrayList<ArrayList<Character>> anteSavedAsciis;
-    private char postSavedAscii;
+    private char postSavedAscii = ' ';
     private Canvas canvas;
     private boolean isExecuted;
 
     public ClearCommand() {
-        anteSavedAsciis = new ArrayList<>();
-        postSavedAscii = ' ';
-        for (int y = 0; y < canvas.getHeight(); y++) {
-            anteSavedAsciis.add(new ArrayList<>());
-            for (int x = 0; x < canvas.getWidth(); x++) {
-                anteSavedAsciis.get(y).add(' ');
-            }
-        }
     }
 
     @Override
@@ -26,7 +18,9 @@ public class ClearCommand implements ICommand {
             return false;
         }
         this.canvas = canvas;
+        anteSavedAsciis = new ArrayList<>();
         for (int y = 0; y < canvas.getHeight(); y++) {
+            anteSavedAsciis.add(new ArrayList<>());
             for (int x = 0; x < canvas.getWidth(); x++) {
                 anteSavedAsciis.get(y).add(canvas.getPixel(x, y));
                 canvas.drawPixel(x, y, postSavedAscii);

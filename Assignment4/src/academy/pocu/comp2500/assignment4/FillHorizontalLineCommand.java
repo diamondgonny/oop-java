@@ -11,6 +11,7 @@ public class FillHorizontalLineCommand implements ICommand {
 
     public FillHorizontalLineCommand(int y, char character) {
         this.y = y;
+        this.anteSavedAsciis = new ArrayList<>();
         this.postSavedAscii = character;
     }
 

@@ -11,6 +11,7 @@ public class FillVerticalLineCommand implements ICommand {
 
     public FillVerticalLineCommand(int x, char character) {
         this.x = x;
+        this.anteSavedAsciis = new ArrayList<>();
         this.postSavedAscii = character;
     }
 
