@@ -23,7 +23,6 @@ public class OverdrawAnalyzer extends Canvas {
             return;
         }
         super.drawPixel(x, y, character);
-        // set history (executeV, undo, redo)
         pixelsHistory.get(y).get(x).add(character);
     }
 

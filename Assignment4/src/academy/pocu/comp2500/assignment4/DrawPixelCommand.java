@@ -8,7 +8,6 @@ public class DrawPixelCommand implements ICommand {
     private Canvas canvas;
     private boolean undoable;
     private boolean redoable;
-    // undo, redo check? how?
 
     public DrawPixelCommand(int x, int y, char character) {
         this.x = x;

@@ -6,7 +6,6 @@ public class Canvas {
     private static final char MINIMUM_ASCII_RANGE = 32;
     private static final char MAXIMUM_ASCII_RANGE = 126;
 
-    // 용량을 한정시킬 것인가?
     private ArrayList<ArrayList<Character>> pixels;
     private final int width;
     private final int height;
