@@ -21,14 +21,6 @@ public class Canvas {
                 pixels.get(y).add(' ');
             }
         }
-/*
-        pixels = new char[width][height];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                pixels[y][x] = ' ';
-            }
-        }
-*/
     }
 
     public int getWidth() {
@@ -101,7 +93,6 @@ public class Canvas {
             sb.append('|');
             for (int x = 0; x < width; x++) {
                 sb.append(getPixel(x, y));
-
             }
             sb.append('|');
             sb.append(System.lineSeparator());
