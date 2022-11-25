@@ -30,7 +30,7 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean undo() {
-        if (!undoable) {
+        if (!undoable || canvas.getPixel(x, y) != postSavedAscii) {
             return false;
         }
         canvas.drawPixel(x, y, anteSavedAscii);
@@ -40,7 +40,7 @@ public class ToLowercaseCommand implements ICommand {
 
     @Override
     public boolean redo() {
-        if (!redoable) {
+        if (!redoable || canvas.getPixel(x, y) != anteSavedAscii) {
             return false;
         }
         canvas.drawPixel(x, y, postSavedAscii);
