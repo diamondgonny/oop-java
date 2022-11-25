@@ -6,7 +6,8 @@ public class DrawPixelCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted;
+    private boolean isExecuted; // null of Canvas?
+    // undo, redo checker?
 
     public DrawPixelCommand(int x, int y, char character) {
         this.x = x;
