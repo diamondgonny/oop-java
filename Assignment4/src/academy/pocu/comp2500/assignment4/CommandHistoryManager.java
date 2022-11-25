@@ -12,10 +12,6 @@ public class CommandHistoryManager {
     }
 
     public boolean execute(ICommand command) {
-        // 지정된 커맨드를 캔버스에 적용합니다.
-        // 만약에 redo()를 호출하기 전에 완전히 새로운 커맨드가 캔버스에 적용되었다면, redo를 할 수 없음
-
-        // execute fail?
         if (command.execute(canvas)) {
             canUndoCommands.add(command);
             canRedoCommands.clear();
@@ -33,7 +29,6 @@ public class CommandHistoryManager {
     }
 
     public boolean undo() {
-        // 가장 최근에 캔버스에 적용했던 커맨드 undo
         if (!canUndo()) {
             return false;
         }
@@ -45,7 +40,6 @@ public class CommandHistoryManager {
     }
 
     public boolean redo() {
-        // 가장 최근에 실행 취소된 커맨드 redo
         if (!canRedo()) {
             return false;
         }
