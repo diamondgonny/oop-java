@@ -20,11 +20,12 @@ public class IncreasePixelCommand implements ICommand {
         }
 
         this.canvas = canvas;
-        anteSavedAscii = canvas.getPixel(x, y);
-        postSavedAscii = (char) (anteSavedAscii + 1);
-//        canvas.drawPixel(x, y, postSavedAscii);
-        canvas.increasePixel(x, y);
-        return true;
+        if (canvas.increasePixel(x, y)) {
+            anteSavedAscii = canvas.getPixel(x, y);
+            postSavedAscii = (char) (anteSavedAscii + 1);
+            return true;
+        }
+        return false;
     }
 
     @Override
