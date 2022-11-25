@@ -36,6 +36,12 @@ public class FillVerticalLineCommand implements ICommand {
             return false;
         }
         for (int y = 0; y < canvas.getHeight(); y++) {
+            if (canvas.getPixel(x, y) != postSavedAscii) {
+                return false;
+            }
+        }
+
+        for (int y = 0; y < canvas.getHeight(); y++) {
             canvas.drawPixel(x, y, anteSavedAsciis.get(y));
         }
         undoable = false;
@@ -47,6 +53,12 @@ public class FillVerticalLineCommand implements ICommand {
         if (!redoable) {
             return false;
         }
+        for (int y = 0; y < canvas.getHeight(); y++) {
+            if (canvas.getPixel(x, y) != anteSavedAsciis.get(y)) {
+                return false;
+            }
+        }
+
         for (int y = 0; y < canvas.getHeight(); y++) {
             canvas.drawPixel(x, y, postSavedAscii);
         }

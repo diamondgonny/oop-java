@@ -36,6 +36,12 @@ public class FillHorizontalLineCommand implements ICommand {
             return false;
         }
         for (int x = 0; x < canvas.getWidth(); x++) {
+            if (canvas.getPixel(x, y) != postSavedAscii) {
+                return false;
+            }
+        }
+
+        for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, y, anteSavedAsciis.get(x));
         }
         undoable = false;
@@ -47,6 +53,12 @@ public class FillHorizontalLineCommand implements ICommand {
         if (!redoable) {
             return false;
         }
+        for (int x = 0; x < canvas.getWidth(); x++) {
+            if (canvas.getPixel(x, y) != anteSavedAsciis.get(x)) {
+                return false;
+            }
+        }
+
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, y, postSavedAscii);
         }
