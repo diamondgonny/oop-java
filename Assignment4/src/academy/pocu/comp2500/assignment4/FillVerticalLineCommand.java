@@ -7,7 +7,6 @@ public class FillVerticalLineCommand implements ICommand {
     private ArrayList<Character> anteSavedAsciis;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted;
 
     public FillVerticalLineCommand(int x, char character) {
         this.x = x;
@@ -18,7 +17,7 @@ public class FillVerticalLineCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail?
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
@@ -26,7 +25,7 @@ public class FillVerticalLineCommand implements ICommand {
             anteSavedAsciis.add(canvas.getPixel(x, y));
         }
         canvas.fillVerticalLine(x, postSavedAscii);
-        return isExecuted = true;
+        return true;
     }
 
     @Override

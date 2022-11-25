@@ -7,7 +7,6 @@ public class FillHorizontalLineCommand implements ICommand {
     private ArrayList<Character> anteSavedAsciis;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted;
 
     public FillHorizontalLineCommand(int y, char character) {
         this.y = y;
@@ -18,7 +17,7 @@ public class FillHorizontalLineCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail?
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
@@ -26,7 +25,7 @@ public class FillHorizontalLineCommand implements ICommand {
             anteSavedAsciis.add(canvas.getPixel(x, y));
         }
         canvas.fillHorizontalLine(y, postSavedAscii);
-        return isExecuted = true;
+        return true;
     }
 
     @Override

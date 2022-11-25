@@ -6,7 +6,6 @@ public class ToLowercaseCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted;
 
     public ToLowercaseCommand(int x, int y) {
         this.x = x;
@@ -16,7 +15,7 @@ public class ToLowercaseCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail?
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
 
@@ -29,7 +28,7 @@ public class ToLowercaseCommand implements ICommand {
             postSavedAscii = anteSavedAscii;
         }
 
-        return isExecuted = true;
+        return true;
     }
 
     @Override

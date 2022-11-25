@@ -6,7 +6,6 @@ public class DecreasePixelCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted;
 
     public DecreasePixelCommand(int x, int y) {
         this.x = x;
@@ -16,7 +15,7 @@ public class DecreasePixelCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail?
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
@@ -24,7 +23,7 @@ public class DecreasePixelCommand implements ICommand {
         postSavedAscii = (char) (anteSavedAscii - 1);
 //        canvas.drawPixel(x, y, postSavedAscii);
         canvas.decreasePixel(x, y);
-        return isExecuted = true;
+        return true;
     }
 
     @Override

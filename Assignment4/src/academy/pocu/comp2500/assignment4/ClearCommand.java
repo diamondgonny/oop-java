@@ -6,7 +6,6 @@ public class ClearCommand implements ICommand {
     private ArrayList<ArrayList<Character>> anteSavedAsciis;
     private char postSavedAscii = ' ';
     private Canvas canvas;
-    private boolean isExecuted;
 
     public ClearCommand() {
     }
@@ -14,7 +13,7 @@ public class ClearCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail?
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
@@ -26,7 +25,7 @@ public class ClearCommand implements ICommand {
                 canvas.drawPixel(x, y, postSavedAscii);
             }
         }
-        return isExecuted = true;
+        return true;
     }
 
     @Override

@@ -6,7 +6,6 @@ public class DrawPixelCommand implements ICommand {
     private char anteSavedAscii;
     private char postSavedAscii;
     private Canvas canvas;
-    private boolean isExecuted; // null of Canvas?
     // undo, redo checker?
 
     public DrawPixelCommand(int x, int y, char character) {
@@ -18,13 +17,13 @@ public class DrawPixelCommand implements ICommand {
     @Override
     public boolean execute(Canvas canvas) {
         // execute fail? (out of bounds)
-        if (isExecuted) {
+        if (this.canvas != null) {
             return false;
         }
         this.canvas = canvas;
         anteSavedAscii = canvas.getPixel(x, y);
         canvas.drawPixel(x, y, postSavedAscii);
-        return isExecuted = true;
+        return true;
     }
 
     @Override
