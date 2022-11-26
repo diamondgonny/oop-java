@@ -22,12 +22,12 @@ public class FillHorizontalLineCommand extends BaseCommand {
             anteSavedAsciis.add(canvas.getPixel(x, cmdY));
             canvas.drawPixel(x, cmdY, postSavedAscii);
         }
-        return undoableOrder = true;
+        return canUndo = true;
     }
 
     @Override
     public boolean undo() {
-        if (!undoableOrder) {
+        if (!canUndo) {
             return false;
         }
         for (int x = 0; x < canvas.getWidth(); x++) {
@@ -39,13 +39,13 @@ public class FillHorizontalLineCommand extends BaseCommand {
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, cmdY, anteSavedAsciis.get(x));
         }
-        undoableOrder = false;
-        return redoableOrder = true;
+        canUndo = false;
+        return canRedo = true;
     }
 
     @Override
     public boolean redo() {
-        if (!redoableOrder) {
+        if (!canRedo) {
             return false;
         }
         for (int x = 0; x < canvas.getWidth(); x++) {
@@ -57,7 +57,7 @@ public class FillHorizontalLineCommand extends BaseCommand {
         for (int x = 0; x < canvas.getWidth(); x++) {
             canvas.drawPixel(x, cmdY, postSavedAscii);
         }
-        redoableOrder = false;
-        return undoableOrder = true;
+        canRedo = false;
+        return canUndo = true;
     }
 }

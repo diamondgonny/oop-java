@@ -16,7 +16,7 @@ public class DecreasePixelCommand extends BaseCommand {
         anteSavedAscii = canvas.getPixel(cmdX, cmdY);
         if (canvas.decreasePixel(cmdX, cmdY)) {
             postSavedAscii = (char) (anteSavedAscii - 1);
-            return undoableOrder = true;
+            return canUndo = true;
         }
         return false;
     }

@@ -16,6 +16,6 @@ public class ToLowercaseCommand extends BaseCommand {
         anteSavedAscii = canvas.getPixel(cmdX, cmdY);
         canvas.toLower(cmdX, cmdY);
         postSavedAscii = canvas.getPixel(cmdX, cmdY);
-        return undoableOrder = true;
+        return canUndo = true;
     }
 }

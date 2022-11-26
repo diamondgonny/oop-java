@@ -16,6 +16,6 @@ public class DrawPixelCommand extends BaseCommand {
         this.canvas = canvas;
         anteSavedAscii = canvas.getPixel(cmdX, cmdY);
         canvas.drawPixel(cmdX, cmdY, postSavedAscii);
-        return undoableOrder = true;
+        return canUndo = true;
     }
 }

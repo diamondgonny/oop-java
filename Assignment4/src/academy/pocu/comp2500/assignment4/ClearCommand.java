@@ -25,12 +25,12 @@ public class ClearCommand extends BaseCommand {
                 canvas.drawPixel(x, y, postSavedAscii);
             }
         }
-        return undoableOrder = true;
+        return canUndo = true;
     }
 
     @Override
     public boolean undo() {
-        if (!undoableOrder) {
+        if (!canUndo) {
             return false;
         }
         for (int y = 0; y < canvas.getHeight(); y++) {
@@ -46,13 +46,13 @@ public class ClearCommand extends BaseCommand {
                 canvas.drawPixel(x, y, anteSavedAsciis.get(y).get(x));
             }
         }
-        undoableOrder = false;
-        return redoableOrder = true;
+        canUndo = false;
+        return canRedo = true;
     }
 
     @Override
     public boolean redo() {
-        if (!redoableOrder) {
+        if (!canRedo) {
             return false;
         }
         for (int y = 0; y < canvas.getHeight(); y++) {
@@ -68,7 +68,7 @@ public class ClearCommand extends BaseCommand {
                 canvas.drawPixel(x, y, postSavedAscii);
             }
         }
-        redoableOrder = false;
-        return undoableOrder = true;
+        canRedo = false;
+        return canUndo = true;
     }
 }

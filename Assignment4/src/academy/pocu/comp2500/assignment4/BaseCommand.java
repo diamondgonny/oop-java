@@ -3,32 +3,32 @@ package academy.pocu.comp2500.assignment4;
 public abstract class BaseCommand implements ICommand {
     protected int cmdX;
     protected int cmdY;
+    protected boolean canUndo;
+    protected boolean canRedo;
     protected char anteSavedAscii;
     protected char postSavedAscii;
     protected Canvas canvas;
-    protected boolean undoableOrder;
-    protected boolean redoableOrder;
 
     public abstract boolean execute(Canvas canvas);
 
     public boolean undo() {
-        if (!undoableOrder || canvas.getPixel(cmdX, cmdY) != postSavedAscii) {
+        if (!canUndo || canvas.getPixel(cmdX, cmdY) != postSavedAscii) {
             return false;
         }
 
         canvas.drawPixel(cmdX, cmdY, anteSavedAscii);
-        undoableOrder = false;
-        return redoableOrder = true;
+        canUndo = false;
+        return canRedo = true;
     }
 
     public boolean redo() {
-        if (!redoableOrder || canvas.getPixel(cmdX, cmdY) != anteSavedAscii) {
+        if (!canRedo || canvas.getPixel(cmdX, cmdY) != anteSavedAscii) {
             return false;
         }
 
         canvas.drawPixel(cmdX, cmdY, postSavedAscii);
-        redoableOrder = false;
-        return undoableOrder = true;
+        canRedo = false;
+        return canUndo = true;
     }
 
     protected boolean isAlreadyExecuted() {
