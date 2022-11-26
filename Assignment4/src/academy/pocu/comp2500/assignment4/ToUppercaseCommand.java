@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment4;
 
 public class ToUppercaseCommand extends BaseCommand {
-    public ToUppercaseCommand(int x, int y) {
+    public ToUppercaseCommand(final int x, final int y) {
         this.cmdX = x;
         this.cmdY = y;
     }

@@ -3,9 +3,9 @@ package academy.pocu.comp2500.assignment4;
 import java.util.ArrayList;
 
 public class FillVerticalLineCommand extends BaseCommand {
-    private ArrayList<Character> anteSavedAsciis;
+    private final ArrayList<Character> anteSavedAsciis;
 
-    public FillVerticalLineCommand(int x, char character) {
+    public FillVerticalLineCommand(final int x, final char character) {
         this.cmdX = x;
         this.anteSavedAsciis = new ArrayList<>();
         this.postSavedAscii = character;

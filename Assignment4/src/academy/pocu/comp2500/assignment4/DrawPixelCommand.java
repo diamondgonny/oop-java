@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment4;
 
 public class DrawPixelCommand extends BaseCommand {
-    public DrawPixelCommand(int x, int y, char character) {
+    public DrawPixelCommand(final int x, final int y, final char character) {
         this.cmdX = x;
         this.cmdY = y;
         this.postSavedAscii = character;

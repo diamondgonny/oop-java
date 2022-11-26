@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class OverdrawAnalyzer extends Canvas {
-    private ArrayList<ArrayList<LinkedList<Character>>> pixelsHistory;
+    private final ArrayList<ArrayList<LinkedList<Character>>> pixelsHistory;
 
     public OverdrawAnalyzer(final int width, final int height) {
         super(width, height);

@@ -3,9 +3,9 @@ package academy.pocu.comp2500.assignment4;
 import java.util.ArrayList;
 
 public class FillHorizontalLineCommand extends BaseCommand {
-    private ArrayList<Character> anteSavedAsciis;
+    private final ArrayList<Character> anteSavedAsciis;
 
-    public FillHorizontalLineCommand(int y, char character) {
+    public FillHorizontalLineCommand(final int y, final char character) {
         this.cmdY = y;
         this.anteSavedAsciis = new ArrayList<>();
         this.postSavedAscii = character;

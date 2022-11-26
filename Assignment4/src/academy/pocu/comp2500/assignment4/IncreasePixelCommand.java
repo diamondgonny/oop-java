@@ -1,7 +1,7 @@
 package academy.pocu.comp2500.assignment4;
 
 public class IncreasePixelCommand extends BaseCommand {
-    public IncreasePixelCommand(int x, int y) {
+    public IncreasePixelCommand(final int x, final int y) {
         this.cmdX = x;
         this.cmdY = y;
     }

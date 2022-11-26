@@ -6,7 +6,7 @@ public class Canvas {
     private static final char MINIMUM_ASCII_RANGE = 32;
     private static final char MAXIMUM_ASCII_RANGE = 126;
 
-    private ArrayList<ArrayList<Character>> pixels;
+    private final ArrayList<ArrayList<Character>> pixels;
     private final int width;
     private final int height;
 
@@ -105,7 +105,7 @@ public class Canvas {
         return sb.toString();
     }
 
-    private void addHorizontalBorder(StringBuilder sb) {
+    private void addHorizontalBorder(final StringBuilder sb) {
         sb.append('+');
         for (int i = 0; i < width; ++i) {
             sb.append('-');

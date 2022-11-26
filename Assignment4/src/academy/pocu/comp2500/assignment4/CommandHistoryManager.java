@@ -3,11 +3,11 @@ package academy.pocu.comp2500.assignment4;
 import java.util.ArrayList;
 
 public class CommandHistoryManager {
-    private Canvas canvas;
-    private ArrayList<ICommand> canUndoCommands = new ArrayList<>();
-    private ArrayList<ICommand> canRedoCommands = new ArrayList<>();
+    private final Canvas canvas;
+    private final ArrayList<ICommand> canUndoCommands = new ArrayList<>();
+    private final ArrayList<ICommand> canRedoCommands = new ArrayList<>();
 
-    public CommandHistoryManager(Canvas canvas) {
+    public CommandHistoryManager(final Canvas canvas) {
         this.canvas = canvas;
     }
 

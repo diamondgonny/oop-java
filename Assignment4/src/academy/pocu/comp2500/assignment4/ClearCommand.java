@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ClearCommand extends BaseCommand {
     private ArrayList<ArrayList<Character>> anteSavedAsciis;
-    private char postSavedAscii;
+    private final char postSavedAscii;
 
     public ClearCommand() {
         this.postSavedAscii = ' ';
