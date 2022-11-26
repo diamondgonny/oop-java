@@ -8,7 +8,7 @@ public class ToUppercaseCommand extends BaseCommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isValidRangeOfX(canvas, cmdX) || !isValidRangeOfY(canvas, cmdY) || isAlreadyExecuted()) {
+        if (isAlreadyExecuted() || !isValidRangeOfX(canvas, cmdX) || !isValidRangeOfY(canvas, cmdY)) {
             return false;
         }
 

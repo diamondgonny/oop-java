@@ -13,7 +13,7 @@ public class FillVerticalLineCommand extends BaseCommand {
 
     @Override
     public boolean execute(Canvas canvas) {
-        if (!isValidRangeOfX(canvas, cmdX) || isAlreadyExecuted()) {
+        if (isAlreadyExecuted() || !isValidRangeOfX(canvas, cmdX)) {
             return false;
         }
 
