@@ -133,6 +133,21 @@ public class App {
             }
 
 
+            if (!wallet.withdraw(product.getPrice())) {
+                try {
+                    throw new IllegalAccessException("no money, work harder!!!");
+                } catch (IllegalAccessException e) {
+                    continue;
+                }
+            }
+
+            try {
+                warehouse.removeProduct(product.getId());
+            } catch (ProductNotFoundException e) {
+                // OverflowException should be crashed
+                wallet.deposit(product.getPrice());
+                continue;
+            }
 
 
 
@@ -176,23 +191,6 @@ public class App {
 
 
 
-
-            if (!wallet.withdraw(product.getPrice())) {
-                try {
-                    throw new IllegalAccessException("no money, work harder!!!");
-                } catch (IllegalAccessException e) {
-                    continue;
-                }
-            }
-
-            try {
-                warehouse.removeProduct(product.getId());
-            } catch (ProductNotFoundException e) {
-                // OverflowException should be crashed
-                wallet.deposit(product.getPrice());
-                err.println("TOO_LATE!!!");
-                continue;
-            }
 
 /*
             try {
