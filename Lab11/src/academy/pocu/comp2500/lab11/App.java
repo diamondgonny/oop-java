@@ -178,17 +178,17 @@ public class App {
 
 
 
-            if (wallet.withdraw(product.getPrice())) {
-                try {
-                    warehouse.removeProduct(product.getId());
-                } catch (ProductNotFoundException e) {
-                    // OverflowException should be crashed
-                    wallet.deposit(product.getPrice());
-                    err.println("TOO_LATE!!!");
-                    continue;
-                }
-            } else {
+            if (!wallet.withdraw(product.getPrice())) {
                 err.println("no money, work harder!!!");
+                continue;
+            }
+
+            try {
+                warehouse.removeProduct(product.getId());
+            } catch (ProductNotFoundException e) {
+                // OverflowException should be crashed
+                wallet.deposit(product.getPrice());
+                err.println("TOO_LATE!!!");
                 continue;
             }
 
