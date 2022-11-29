@@ -15,11 +15,94 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public class App {
+/*
+    private Warehouse chooseWarehouse(BufferedReader in, PrintStream out, PrintStream err) {
+        int selectedNum;
+        Warehouse selectedWarehouse;
+        String input1 = null;
+
+        while (true) {
+            out.println("WAREHOUSE: Choose your warehouse!");
+            WarehouseType[] types = WarehouseType.values();
+            for (int i = 0; i < types.length; i++) {
+                out.println(String.format("%d. %s", i + 1, types[i].toString()));
+            }
+
+            try {
+                input1 = in.readLine();
+                if (input1.equals("exit")) {
+                    return null;
+                }
+                selectedNum = Integer.parseInt(input1);
+            } catch (Exception e) {
+                err.println(e);
+                continue;
+            }
+
+
+
+            try {
+                if (1 <= selectedNum && selectedNum <= types.length) {
+                    selectedWarehouse = new Warehouse(types[selectedNum - 1]);
+                    break;
+                }
+            } catch (Exception e) {
+                err.println(e);
+                continue;
+            }
+
+//            try {
+//                selectedWarehouse = new Warehouse(types[selectedNum - 1]);
+//            } catch (ArrayIndexOutOfBoundsException e) {
+//                err.println(e.toString());
+//                continue;
+//            } catch (PermanentlyClosedException e) {
+//                err.println(e.toString());
+//                continue;
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                continue;
+//            }
+//            break;
+        }
+        return selectedWarehouse;
+    }
+*/
+
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
         User user = new User();
         SafeWallet wallet;
         Product product;
-        Warehouse warehouse = chooseWarehouse(in, out, err);
+        Warehouse warehouse;
+
+        while (true) {
+            int selectedNum;
+            out.println("WAREHOUSE: Choose your warehouse!");
+            WarehouseType[] types = WarehouseType.values();
+            for (int i = 0; i < types.length; i++) {
+                out.println(String.format("%d. %s", i + 1, types[i].toString()));
+            }
+
+            try {
+                String input1 = in.readLine();
+                if (input1.equals("exit")) {
+                    return;
+                }
+                selectedNum = Integer.parseInt(input1);
+            } catch (Exception e) {
+                err.println(e);
+                continue;
+            }
+            try {
+                if (1 <= selectedNum && selectedNum <= types.length) {
+                    warehouse = new Warehouse(types[selectedNum - 1]);
+                    break;
+                }
+            } catch (Exception e) {
+                err.println(e);
+                continue;
+            }
+        }
 
         if (warehouse == null) {
             return;
@@ -117,51 +200,5 @@ public class App {
             break;
         }
         return selectedProduct;
-    }
-
-    private Warehouse chooseWarehouse(BufferedReader in, PrintStream out, PrintStream err) {
-        int selectedNum;
-        Warehouse selectedWarehouse;
-        String input1 = null;
-
-        while (true) {
-            out.println("WAREHOUSE: Choose your warehouse!");
-            WarehouseType[] types = WarehouseType.values();
-            for (int i = 0; i < types.length; i++) {
-                out.println(String.format("%d. %s", i + 1, types[i].toString()));
-            }
-
-            try {
-                input1 = in.readLine();
-                if (input1.equals("exit")) {
-                    return null;
-                }
-                selectedNum = Integer.parseInt(input1);
-            } catch (Exception e) {
-                err.println(e);
-                continue;
-            }
-
-            if (1 <= selectedNum && selectedNum <= types.length) {
-                selectedWarehouse = new Warehouse(types[selectedNum - 1]);
-                break;
-            }
-/*
-            try {
-                selectedWarehouse = new Warehouse(types[selectedNum - 1]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                err.println(e.toString());
-                continue;
-            } catch (PermanentlyClosedException e) {
-                err.println(e.toString());
-                continue;
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
-            }
-            break;
-*/
-        }
-        return selectedWarehouse;
     }
 }
