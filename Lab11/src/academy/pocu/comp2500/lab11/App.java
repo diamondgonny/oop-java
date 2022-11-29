@@ -109,7 +109,7 @@ public class App {
         while (true) {
             int selectedNum;
             int amount = wallet.getAmount();
-            out.println(String.format("BALANCE: <%d>", amount));
+            out.println(String.format("BALANCE: %d", amount));
             out.println("PRODUCT_LIST: Choose the product you want to buy!");
             for (int i = 0; i < warehouse.getProducts().size(); i++) {
                 product = warehouse.getProducts().get(i);
