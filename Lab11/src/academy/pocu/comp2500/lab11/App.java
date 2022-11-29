@@ -179,8 +179,11 @@ public class App {
 
 
             if (!wallet.withdraw(product.getPrice())) {
-                err.println("no money, work harder!!!");
-                continue;
+                try {
+                    throw new IllegalAccessException("no money, work harder!!!");
+                } catch (IllegalAccessException e) {
+                    continue;
+                }
             }
 
             try {
