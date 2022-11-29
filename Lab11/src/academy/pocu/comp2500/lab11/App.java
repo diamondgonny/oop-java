@@ -133,12 +133,12 @@ public class App {
             }
 
 
-            if (!wallet.withdraw(product.getPrice())) {
-                try {
+            try {
+                if (!wallet.withdraw(product.getPrice())) {
                     throw new IllegalAccessException("no money, work harder!!!");
-                } catch (IllegalAccessException e) {
-                    continue;
                 }
+            } catch (IllegalAccessException e) {
+                continue;
             }
 
             try {
