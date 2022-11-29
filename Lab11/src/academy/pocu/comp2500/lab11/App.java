@@ -93,9 +93,13 @@ public class App {
                 continue;
             }
 
-            if (1 <= selectedNum && selectedNum <= types.length) {
-                warehouse = new Warehouse(types[selectedNum - 1]);
-                break;
+            try {
+                if (1 <= selectedNum && selectedNum <= types.length) {
+                    warehouse = new Warehouse(types[selectedNum - 1]);
+                    break;
+                }
+            } catch (PermanentlyClosedException e) {
+                continue;
             }
         }
 
