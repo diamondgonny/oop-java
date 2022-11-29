@@ -208,7 +208,6 @@ public class App {
                 continue;
             }
 */
-            out.println("successfully purchased!");
         }
 
 /*
