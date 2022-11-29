@@ -133,17 +133,43 @@ public class App {
             }
 
             try {
-                if (!wallet.withdraw(product.getPrice())) {
-                    err.println("no money, work harder!!!");
-                    continue;
+                boolean productExists = false;
+                for (Product targetProduct : warehouse.getProducts()) {
+                    if (targetProduct.getId().equals(product.getId())) {
+                        productExists = true;
+                    }
                 }
+                if (!productExists) {
+                    throw new ProductNotFoundException(product.toString());
+                }
+                if (!wallet.withdraw(product.getPrice())) {
+                    throw new IllegalAccessException("no money, work harder!!!");
+                }
+            } catch (Exception e) {
+                continue;
+            }
 
+            try {
                 warehouse.removeProduct(product.getId());
             } catch (ProductNotFoundException e) {
                 wallet.deposit(product.getPrice());
                 err.println("TOO_LATE!!!");
                 continue;
             }
+
+/*
+            try {
+                if (!wallet.withdraw(product.getPrice())) {
+                    err.println("no money, work harder!!!");
+                    continue;
+                }
+                warehouse.removeProduct(product.getId());
+            } catch (ProductNotFoundException e) {
+                wallet.deposit(product.getPrice());
+                err.println("TOO_LATE!!!");
+                continue;
+            }
+*/
             out.println("successfully purchased!");
         }
 
