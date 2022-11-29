@@ -36,11 +36,10 @@ public class App {
 
             try {
                 warehouse = new Warehouse(types[selectedNum - 1]);
+                break;
             } catch (IndexOutOfBoundsException e) {
                 continue;
             }
-
-            break;
         }
 
         try {
