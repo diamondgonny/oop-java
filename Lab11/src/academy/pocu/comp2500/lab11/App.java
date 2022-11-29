@@ -34,10 +34,13 @@ public class App {
                 continue;
             }
 
-            if (1 <= selectedNum && selectedNum <= types.length) {
+            try {
                 warehouse = new Warehouse(types[selectedNum - 1]);
-                break;
+            } catch (IndexOutOfBoundsException e) {
+                continue;
             }
+
+            break;
         }
 
         try {
@@ -67,9 +70,9 @@ public class App {
                 continue;
             }
 
-            if (1 <= selectedNum && selectedNum <= warehouse.getProducts().size()) {
+            try {
                 product = warehouse.getProducts().get(selectedNum - 1);
-            } else {
+            } catch (IndexOutOfBoundsException e) {
                 continue;
             }
 
