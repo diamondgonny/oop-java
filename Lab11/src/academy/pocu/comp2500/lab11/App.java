@@ -3,16 +3,14 @@ package academy.pocu.comp2500.lab11;
 import academy.pocu.comp2500.lab11.pocu.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 public class App {
-    private Scanner scanner = new Scanner(System.in);
-
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
 //        1. 사용자에게 창고(warehouse)를 고르라는 메시지를 보여준다.
 //        2. 입력 스트림으로부터 사용자의 선택을 읽어온다.
-        Warehouse warehouse = chooseWarehouse(err);
+        Warehouse warehouse = chooseWarehouse(in, out, err);
         if (warehouse == null) {
             return;
         }
@@ -24,7 +22,7 @@ public class App {
             wallet = new Wallet(user);
         } catch (IllegalAccessException e) {
             // e.printStackTrace();
-            System.err.println("AUTH_ERROR");
+            err.println("AUTH_ERROR");
             return;
         }
 
@@ -36,12 +34,12 @@ public class App {
         // + 만약에 사용자가 선택한 장비의 구매를 완료하기 전에 창고에서 그 장비가 사라졌다면(다른 직원이 같은 시각에 그 장비를 구매할 수 있으니까요~) 더 이상 그 장비를 구매할 수 없겠죠? 이런 경우는 4번 단계로 돌아갑니다.
         Product product;
         while (true) {
-            product = chooseProduct(err, warehouse, wallet);
+            product = chooseProduct(in, out, err, warehouse, wallet);
             if (product == null) {
                 return;
             }
             try {
-                validatePurchase(err, warehouse, wallet, product);
+                validatePurchase(out, wallet, product);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -59,33 +57,35 @@ public class App {
         //
     }
 
-    private void validatePurchase(PrintStream err, Warehouse warehouse, Wallet wallet, Product product)
+    private void validatePurchase(PrintStream out, Wallet wallet, Product product)
             throws IllegalAccessException {
         if (!wallet.withdraw(product.getPrice())) {
             throw new IllegalAccessException("no money, work harder!!!");
+        } else {
+            out.println("successfully purchased!");
         }
-/*
-        try {
-            wallet.withdraw(product.getPrice());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-*/
     }
 
-    private Product chooseProduct(PrintStream err, Warehouse warehouse, Wallet wallet) {
-        int selectedNum = 0;
-        Product selectedProduct = null;
+    private Product chooseProduct(BufferedReader in, PrintStream out, PrintStream err,
+                                  Warehouse warehouse, Wallet wallet) {
+        int selectedNum;
+        Product selectedProduct;
+        String input4 = null;
+
         while(true) {
             int amount = wallet.getAmount();
-            System.out.println(String.format("BALANCE: <%d>", amount));
-            System.out.println("PRODUCT_LIST: Choose the product you want to buy!");
+            out.println(String.format("BALANCE: <%d>", amount));
+            out.println("PRODUCT_LIST: Choose the product you want to buy!");
             for (int i = 0; i < warehouse.getProducts().size(); i++) {
                 Product product = warehouse.getProducts().get(i);
-                System.out.println(String.format("%d. %-20s %d", i + 1, product.getName(), product.getPrice()));
+                out.println(String.format("%d. %-20s %d", i + 1, product.getName(), product.getPrice()));
             }
 
-            String input4 = scanner.nextLine();
+            try {
+                input4 = in.readLine();
+            } catch (IOException e) {
+                err.println(e.toString());
+            }
             if (input4.equals("exit")) {
                 return null;
             }
@@ -94,13 +94,13 @@ public class App {
                 selectedNum = Integer.parseInt(input4);
                 selectedProduct = warehouse.getProducts().get(selectedNum - 1);
             } catch (NumberFormatException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (IndexOutOfBoundsException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (PermanentlyClosedException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -111,18 +111,23 @@ public class App {
         return selectedProduct;
     }
 
-    private Warehouse chooseWarehouse(PrintStream err) {
-        int selectedNum = 0;
-        Warehouse selectedWarehouse = null;
+    private Warehouse chooseWarehouse(BufferedReader in, PrintStream out, PrintStream err) {
+        int selectedNum;
+        Warehouse selectedWarehouse;
+        String input1 = null;
 
         while(true) {
-            System.out.println("WAREHOUSE: Choose your warehouse!");
+            out.println("WAREHOUSE: Choose your warehouse!");
             WarehouseType[] types = WarehouseType.values();
             for (int i = 0; i < types.length; i++) {
-                System.out.println(String.format("%d. %s", i + 1, types[i].toString()));
+                out.println(String.format("%d. %s", i + 1, types[i].toString()));
             }
 
-            String input1 = scanner.nextLine();
+            try {
+                input1 = in.readLine();
+            } catch (IOException e) {
+                err.println(e.toString());
+            }
             if (input1.equals("exit")) {
                 return null;
             }
@@ -131,13 +136,13 @@ public class App {
                 selectedNum = Integer.parseInt(input1);
                 selectedWarehouse = new Warehouse(types[selectedNum - 1]);
             } catch (NumberFormatException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (PermanentlyClosedException e) {
-                System.err.println(e.toString());
+                err.println(e.toString());
                 continue;
             } catch (Exception e) {
                 e.printStackTrace();
