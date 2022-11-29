@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public class App {
+
 /*
     private Warehouse chooseWarehouse(BufferedReader in, PrintStream out, PrintStream err) {
         int selectedNum;
@@ -68,7 +69,6 @@ public class App {
         return selectedWarehouse;
     }
 */
-
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
         User user = new User();
         SafeWallet wallet;
@@ -107,11 +107,55 @@ public class App {
         }
 
         while (true) {
-            product = chooseProduct(in, out, err, warehouse, wallet);
-
-            if (product == null) {
-                return;
+            int selectedNum;
+            int amount = wallet.getAmount();
+            out.println(String.format("BALANCE: <%d>", amount));
+            out.println("PRODUCT_LIST: Choose the product you want to buy!");
+            for (int i = 0; i < warehouse.getProducts().size(); i++) {
+                product = warehouse.getProducts().get(i);
+                out.println(String.format("%d. %-20s %d", i + 1, product.getName(), product.getPrice()));
             }
+
+            try {
+                String input4 = in.readLine();
+                if (input4.equals("exit")) {
+                    return;
+                }
+                selectedNum = Integer.parseInt(input4);
+            } catch (Exception e) {
+                continue;
+            }
+
+            if (1 <= selectedNum && selectedNum <= warehouse.getProducts().size()) {
+                product = warehouse.getProducts().get(selectedNum - 1);
+            } else {
+                continue;
+            }
+
+            try {
+                boolean productExists = false;
+                for (Product targetProduct : warehouse.getProducts()) {
+                    if (targetProduct.getId().equals(product.getId())) {
+                        productExists = true;
+                    }
+                }
+                if (!productExists) {
+                    throw new ProductNotFoundException(product.toString());
+                }
+                if (!wallet.withdraw(product.getPrice())) {
+                    throw new IllegalAccessException("no money, work harder!!!");
+                }
+            } catch (Exception e) {
+                    continue;
+            }
+
+            warehouse.removeProduct(product.getId());
+            out.println("successfully purchased!");
+        }
+
+/*
+        while (true) {
+
 
             try {
                 validatePurchase(warehouse, wallet, product);
@@ -130,7 +174,9 @@ public class App {
             warehouse.removeProduct(product.getId());
             out.println("successfully purchased!");
         }
+*/
     }
+/*
 
     private void validatePurchase(Warehouse warehouse, Wallet wallet, Product product)
             throws ProductNotFoundException, IllegalAccessException {
@@ -192,4 +238,5 @@ public class App {
         }
         return selectedProduct;
     }
+    */
 }
