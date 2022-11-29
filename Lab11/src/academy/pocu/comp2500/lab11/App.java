@@ -43,6 +43,7 @@ public class App {
                 validatePurchase(out, warehouse, wallet, product);
             } catch (ProductNotFoundException e) {
                 err.println(e.toString());
+                e.printStackTrace();
                 continue;
             } catch (IllegalAccessException e) {
                 err.println(e.toString());
@@ -70,12 +71,17 @@ public class App {
 
     private void validatePurchase(PrintStream out, Warehouse warehouse, Wallet wallet, Product product)
             throws ProductNotFoundException, IllegalAccessException {
-        if (!warehouse.getProducts().contains(product)) {
+        boolean productExists = false;
+        for (Product targetProduct : warehouse.getProducts()) {
+            if (targetProduct.getId().equals(product.getId())) {
+                productExists = true;
+            }
+        }
+        if (!productExists) {
             throw new ProductNotFoundException(product.toString());
         }
         if (!wallet.withdraw(product.getPrice())) {
             throw new IllegalAccessException("no money, work harder!!!");
-        } else {
         }
     }
 
@@ -85,7 +91,7 @@ public class App {
         Product selectedProduct;
         String input4 = null;
 
-        while(true) {
+        while (true) {
             int amount = wallet.getAmount();
             out.println(String.format("BALANCE: <%d>", amount));
             out.println("PRODUCT_LIST: Choose the product you want to buy!");
@@ -129,7 +135,7 @@ public class App {
         Warehouse selectedWarehouse;
         String input1 = null;
 
-        while(true) {
+        while (true) {
             out.println("WAREHOUSE: Choose your warehouse!");
             WarehouseType[] types = WarehouseType.values();
             for (int i = 0; i < types.length; i++) {
