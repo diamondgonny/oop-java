@@ -142,6 +142,11 @@ public class App {
                 continue;
             }
 
+            if (1 <= selectedNum && selectedNum <= types.length) {
+                selectedWarehouse = new Warehouse(types[selectedNum - 1]);
+                break;
+            }
+/*
             try {
                 selectedWarehouse = new Warehouse(types[selectedNum - 1]);
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -155,6 +160,7 @@ public class App {
                 continue;
             }
             break;
+*/
         }
         return selectedWarehouse;
     }
