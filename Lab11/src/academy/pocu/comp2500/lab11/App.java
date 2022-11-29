@@ -89,13 +89,13 @@ public class App {
                     return;
                 }
                 selectedNum = Integer.parseInt(input1);
-                if (1 <= selectedNum && selectedNum <= types.length) {
-                    warehouse = new Warehouse(types[selectedNum - 1]);
-                    break;
-                }
             } catch (Exception e) {
-                err.println(e);
                 continue;
+            }
+
+            if (1 <= selectedNum && selectedNum <= types.length) {
+                warehouse = new Warehouse(types[selectedNum - 1]);
+                break;
             }
         }
 
