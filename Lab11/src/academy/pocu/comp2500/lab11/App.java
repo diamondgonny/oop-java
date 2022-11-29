@@ -89,14 +89,13 @@ public class App {
                     return;
                 }
                 selectedNum = Integer.parseInt(input1);
-            } catch (Exception e) {
+                if (1 <= selectedNum && selectedNum <= types.length) {
+                    // PermanentlyClosedException should be crashed
+                    warehouse = new Warehouse(types[selectedNum - 1]);
+                    break;
+                }
+            } catch (IOException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
                 continue;
-            }
-
-            if (1 <= selectedNum && selectedNum <= types.length) {
-                // PermanentlyClosedException should be crashed
-                warehouse = new Warehouse(types[selectedNum - 1]);
-                break;
             }
         }
 
