@@ -21,10 +21,10 @@ public class App {
             return;
         }
 
-        Wallet wallet;
+        SafeWallet wallet;
         User user = new User();
         try {
-            wallet = new Wallet(user);
+            wallet = new SafeWallet(user);
         } catch (IllegalAccessException e) {
             err.println("AUTH_ERROR");
             return;
