@@ -133,13 +133,14 @@ public class App {
             }
 
             try {
-                if (product.getPrice() > wallet.getAmount()) {
+                if (!wallet.withdraw(product.getPrice())) {
                     err.println("no money, work harder!!!");
                     continue;
                 }
-                wallet.withdraw(product.getPrice());
+
                 warehouse.removeProduct(product.getId());
             } catch (ProductNotFoundException e) {
+                wallet.deposit(product.getPrice());
                 err.println("TOO_LATE!!!");
                 continue;
             }
