@@ -93,13 +93,9 @@ public class App {
                 continue;
             }
 
-            try {
-                if (1 <= selectedNum && selectedNum <= types.length) {
-                    warehouse = new Warehouse(types[selectedNum - 1]);
-                    break;
-                }
-            } catch (PermanentlyClosedException e) {
-                continue;
+            if (1 <= selectedNum && selectedNum <= types.length) {
+                warehouse = new Warehouse(types[selectedNum - 1]);
+                break;
             }
         }
 
@@ -137,23 +133,16 @@ public class App {
             }
 
             try {
-                boolean productExists = false;
-                for (Product targetProduct : warehouse.getProducts()) {
-                    if (targetProduct.getId().equals(product.getId())) {
-                        productExists = true;
-                    }
-                }
-                if (!productExists) {
-                    throw new ProductNotFoundException(product.toString());
-                }
-                if (!wallet.withdraw(product.getPrice())) {
-                    throw new IllegalAccessException("no money, work harder!!!");
-                }
-            } catch (Exception e) {
+                if (product.getPrice() > wallet.getAmount()) {
+                    err.println("no money, work harder!!!");
                     continue;
+                }
+                wallet.withdraw(product.getPrice());
+                warehouse.removeProduct(product.getId());
+            } catch (ProductNotFoundException e) {
+                err.println("TOO_LATE!!!");
+                continue;
             }
-
-            warehouse.removeProduct(product.getId());
             out.println("successfully purchased!");
         }
 
