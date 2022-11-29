@@ -42,14 +42,14 @@ public class App {
             try {
                 validatePurchase(warehouse, wallet, product);
             } catch (ProductNotFoundException e) {
-                err.println(e.toString());
+                err.println(e);
                 e.printStackTrace();
                 continue;
             } catch (IllegalAccessException e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             } catch (Exception e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             }
 
@@ -92,7 +92,7 @@ public class App {
             try {
                 input4 = in.readLine();
             } catch (IOException e) {
-                err.println(e.toString());
+                err.println(e);
             }
             if (input4.equals("exit")) {
                 return null;
@@ -102,13 +102,13 @@ public class App {
                 selectedNum = Integer.parseInt(input4);
                 selectedProduct = warehouse.getProducts().get(selectedNum - 1);
             } catch (NumberFormatException e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             } catch (IndexOutOfBoundsException e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             } catch (PermanentlyClosedException e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -138,7 +138,7 @@ public class App {
                 }
                 selectedNum = Integer.parseInt(input1);
             } catch (Exception e) {
-                err.println(e.toString());
+                err.println(e);
                 continue;
             }
 
