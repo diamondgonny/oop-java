@@ -133,17 +133,57 @@ public class App {
                 continue;
             }
 
-            for (Product targetProduct : warehouse.getProducts()) {
-                if (targetProduct.getId().equals(product.getId())) {
-                    break;
+
+
+
+
+
+
+/*
+            try {
+                boolean productExists = false;
+                for (Product targetProduct : warehouse.getProducts()) {
+                    if (targetProduct.getId().equals(product.getId())) {
+                        productExists = true;
+                    }
                 }
+                if (!productExists) {
+                    throw new ProductNotFoundException(product.toString());
+                }
+                if (!wallet.withdraw(product.getPrice())) {
+                    throw new IllegalAccessException("no money, work harder!!!");
+                }
+            } catch (Exception e) {
+                continue;
             }
+
+            try {
+                warehouse.removeProduct(product.getId());
+            } catch (ProductNotFoundException e) {
+                wallet.deposit(product.getPrice());
+                err.println("TOO_LATE!!!");
+                continue;
+            }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
             if (wallet.withdraw(product.getPrice())) {
                 try {
                     warehouse.removeProduct(product.getId());
                 } catch (ProductNotFoundException e) {
                     // OverflowException should be crashed
-                    wallet.deposit(product.getPrice());
+                    wallet.deposit(Integer.MAX_VALUE);
                     err.println("TOO_LATE!!!");
                     continue;
                 }
