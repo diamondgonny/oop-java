@@ -133,19 +133,17 @@ public class App {
 
             try {
                 input1 = in.readLine();
-            } catch (IOException e) {
+                if (input1.equals("exit")) {
+                    return null;
+                }
+                selectedNum = Integer.parseInt(input1);
+            } catch (Exception e) {
                 err.println(e.toString());
-            }
-            if (input1.equals("exit")) {
-                return null;
+                continue;
             }
 
             try {
-                selectedNum = Integer.parseInt(input1);
                 selectedWarehouse = new Warehouse(types[selectedNum - 1]);
-            } catch (NumberFormatException e) {
-                err.println(e.toString());
-                continue;
             } catch (ArrayIndexOutOfBoundsException e) {
                 err.println(e.toString());
                 continue;
