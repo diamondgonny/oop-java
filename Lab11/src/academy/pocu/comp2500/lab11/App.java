@@ -16,13 +16,15 @@ import java.io.PrintStream;
 
 public class App {
     public void run(BufferedReader in, PrintStream out, PrintStream err) {
+        User user = new User();
+        SafeWallet wallet;
+        Product product;
         Warehouse warehouse = chooseWarehouse(in, out, err);
+
         if (warehouse == null) {
             return;
         }
 
-        SafeWallet wallet;
-        User user = new User();
         try {
             wallet = new SafeWallet(user);
         } catch (IllegalAccessException e) {
@@ -30,9 +32,9 @@ public class App {
             return;
         }
 
-        Product product;
         while (true) {
             product = chooseProduct(in, out, err, warehouse, wallet);
+
             if (product == null) {
                 return;
             }
