@@ -183,7 +183,7 @@ public class App {
                     warehouse.removeProduct(product.getId());
                 } catch (ProductNotFoundException e) {
                     // OverflowException should be crashed
-                    wallet.deposit(Integer.MAX_VALUE);
+                    wallet.deposit(product.getPrice());
                     err.println("TOO_LATE!!!");
                     continue;
                 }
