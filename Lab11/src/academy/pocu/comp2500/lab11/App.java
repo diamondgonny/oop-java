@@ -38,11 +38,22 @@ public class App {
             if (product == null) {
                 return;
             }
+
             try {
-                validatePurchase(out, wallet, product);
+                validatePurchase(out, warehouse, wallet, product);
+            } catch (ProductNotFoundException e) {
+                err.println(e.toString());
+                continue;
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                err.println(e.toString());
+                continue;
+            } catch (Exception e) {
+                err.println(e.toString());
+                continue;
             }
+
+            warehouse.removeProduct(product.getId());
+            out.println("successfully purchased!");
         }
 //        7. 6번 단계에서 사용자가 선택한 장비를 구매한 뒤, 4번 단계로 돌아갑니다.
         //C14_RepromptProdListOnNotEnoughBalance
@@ -57,12 +68,14 @@ public class App {
         //
     }
 
-    private void validatePurchase(PrintStream out, Wallet wallet, Product product)
-            throws IllegalAccessException {
+    private void validatePurchase(PrintStream out, Warehouse warehouse, Wallet wallet, Product product)
+            throws ProductNotFoundException, IllegalAccessException {
+        if (!warehouse.getProducts().contains(product)) {
+            throw new ProductNotFoundException(product.toString());
+        }
         if (!wallet.withdraw(product.getPrice())) {
             throw new IllegalAccessException("no money, work harder!!!");
         } else {
-            out.println("successfully purchased!");
         }
     }
 
