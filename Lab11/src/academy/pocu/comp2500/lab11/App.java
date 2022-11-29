@@ -89,11 +89,6 @@ public class App {
                     return;
                 }
                 selectedNum = Integer.parseInt(input1);
-            } catch (Exception e) {
-                err.println(e);
-                continue;
-            }
-            try {
                 if (1 <= selectedNum && selectedNum <= types.length) {
                     warehouse = new Warehouse(types[selectedNum - 1]);
                     break;
@@ -102,10 +97,6 @@ public class App {
                 err.println(e);
                 continue;
             }
-        }
-
-        if (warehouse == null) {
-            return;
         }
 
         try {
