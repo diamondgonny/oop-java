@@ -69,13 +69,8 @@ public class App {
                     return;
                 }
                 selectedNum = Integer.parseInt(input4);
-            } catch (Exception e) {
-                continue;
-            }
-
-            try {
                 product = warehouse.getProducts().get(selectedNum - 1);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 continue;
             }
 
