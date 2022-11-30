@@ -9,23 +9,19 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 
 public class App {
-    private User user;
-    private SafeWallet wallet;
-    private Warehouse warehouse;
-    private Product product;
-
-    public App() {
-        this.user = new User();
-    }
-
     public void run(final BufferedReader in, final PrintStream out, final PrintStream err) {
+        User user = new User();
+        SafeWallet wallet;
+        Warehouse warehouse;
+        Product product;
+
         while (true) {
             int selectedNum;
             WarehouseType[] types = WarehouseType.values();
 
             out.println("WAREHOUSE: Choose your warehouse!");
             for (int i = 0; i < types.length; i++) {
-                out.printf("%d. %s%s", i + 1, types[i].toString(), System.lineSeparator());
+                out.printf("%d. %s%n", i + 1, types[i].toString());
             }
 
             try {
@@ -56,7 +52,7 @@ public class App {
         while (true) {
             int selectedNum;
 
-            out.printf("BALANCE: %d%s", wallet.getAmount(), System.lineSeparator());
+            out.printf("BALANCE: %d%n", wallet.getAmount());
             out.println("PRODUCT_LIST: Choose the product you want to buy!");
             for (int i = 0; i < warehouse.getProducts().size(); i++) {
                 product = warehouse.getProducts().get(i);
@@ -75,7 +71,6 @@ public class App {
             }
 
             if (!wallet.withdraw(product.getPrice())) {
-                // Isn't there a thing such as, 'NoMoneyException'?
                 continue;
             }
 
