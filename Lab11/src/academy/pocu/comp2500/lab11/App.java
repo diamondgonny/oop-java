@@ -9,12 +9,16 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 
 public class App {
-    public void run(final BufferedReader in, final PrintStream out, final PrintStream err) {
-        User user = new User();
-        SafeWallet wallet;
-        Warehouse warehouse;
-        Product product;
+    private User user;
+    private SafeWallet wallet;
+    private Warehouse warehouse;
+    private Product product;
 
+    public App() {
+        this.user = new User();
+    }
+
+    public void run(final BufferedReader in, final PrintStream out, final PrintStream err) {
         while (true) {
             int selectedNum;
             WarehouseType[] types = WarehouseType.values();
