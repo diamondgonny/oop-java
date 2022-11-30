@@ -11,9 +11,8 @@ import java.io.PrintStream;
 public class App {
     public void run(final BufferedReader in, final PrintStream out, final PrintStream err) {
         User user = new User();
-        SafeWallet wallet;
         Warehouse warehouse;
-        Product product;
+        SafeWallet wallet;
 
         while (true) {
             int selectedNum;
@@ -25,11 +24,11 @@ public class App {
             }
 
             try {
-                String input1 = in.readLine();
-                if (input1.equals("exit")) {
+                String input = in.readLine();
+                if (input.equals("exit")) {
                     return;
                 }
-                selectedNum = Integer.parseInt(input1);
+                selectedNum = Integer.parseInt(input);
             } catch (Exception e) {
                 continue;
             }
@@ -51,6 +50,7 @@ public class App {
 
         while (true) {
             int selectedNum;
+            Product product;
 
             out.printf("BALANCE: %d%n", wallet.getAmount());
             out.println("PRODUCT_LIST: Choose the product you want to buy!");
@@ -60,11 +60,11 @@ public class App {
             }
 
             try {
-                String input4 = in.readLine();
-                if (input4.equals("exit")) {
+                String input = in.readLine();
+                if (input.equals("exit")) {
                     return;
                 }
-                selectedNum = Integer.parseInt(input4);
+                selectedNum = Integer.parseInt(input);
                 product = warehouse.getProducts().get(selectedNum - 1);
             } catch (Exception e) {
                 continue;
