@@ -41,7 +41,7 @@ public class App {
             try {
                 warehouse = new Warehouse(types[selectedNum - 1]);
                 break;
-            } catch (IndexOutOfBoundsException ignored) {
+            } catch (IndexOutOfBoundsException e) {
                 // PermanentlyClosedException should be crashed
             }
         }
@@ -80,6 +80,7 @@ public class App {
             }
 
             if (!wallet.withdraw(product.getPrice())) {
+                // Isn't there a thing such as, 'NoMoneyException'?
                 continue;
             }
 
