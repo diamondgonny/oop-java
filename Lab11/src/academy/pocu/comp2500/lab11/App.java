@@ -38,6 +38,7 @@ public class App {
                 warehouse = new Warehouse(types[selectedNum - 1]);
                 break;
             } catch (IndexOutOfBoundsException ignored) {
+                // PermanentlyClosedException should be crashed
             }
         }
 
